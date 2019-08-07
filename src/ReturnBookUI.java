@@ -33,8 +33,8 @@ public class ReturnBookUI {
 				}
 				else {
 					try {
-						int Book_Id = Integer.valueOf(bookScan).intValue();
-						this.control.scanBook(Book_Id);
+						int bookId = Integer.valueOf(bookScan).intValue();
+						this.control.scanBook(bookId);
 					}
 					catch (NumberFormatException e) {
 						output("Invalid bookId");
