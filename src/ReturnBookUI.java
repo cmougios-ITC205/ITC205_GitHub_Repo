@@ -76,7 +76,7 @@ public class ReturnBookUI {
 		this.output(object);
 	}
 	
-	public void Set_State(UIState state) {
+	public void setState(UIState state) {
 		this.currentState = state;
 	}
 }

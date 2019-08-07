@@ -21,7 +21,7 @@ public class ReturnBookControl {
 
 		this.returnBookUI = returnBookUI;
 
-		returnBookUI.Set_State(ReturnBookUI.UIState.READY);
+		returnBookUI.setState(ReturnBookUI.UIState.READY);
 
 		this.state = ControlState.READY;
 	}
@@ -60,7 +60,7 @@ public class ReturnBookControl {
 			this.returnBookUI.display(String.format("\nOverdue fine : $%.2f", overdueFine));
 		}
 
-		this.returnBookUI.Set_State(ReturnBookUI.UIState.INSPECTING);
+		this.returnBookUI.setState(ReturnBookUI.UIState.INSPECTING);
 		this.state = ControlState.INSPECTING;
 	}
 
@@ -70,7 +70,7 @@ public class ReturnBookControl {
 			throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state");
 		}
 
-		this.returnBookUI.Set_State(ReturnBookUI.UIState.COMPLETED);
+		this.returnBookUI.setState(ReturnBookUI.UIState.COMPLETED);
 	}
 
 
@@ -81,7 +81,7 @@ public class ReturnBookControl {
 
 		this.library.Discharge_loan(currentLoan, isDamaged);
 		this.currentLoan = null;
-		this.returnBookUI.Set_State(ReturnBookUI.UIState.READY);
+		this.returnBookUI.setState(ReturnBookUI.UIState.READY);
 		this.state = ControlState.READY;
 	}
 }
