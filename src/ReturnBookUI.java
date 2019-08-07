@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-
 public class ReturnBookUI {
 
 	public enum UIState { INITIALISED, READY, INSPECTING, COMPLETED };
