@@ -17,7 +17,7 @@ public class ReturnBookUI {
 	}
 
 	public void run() {
-		output("Return Book Use Case UI\n");
+		this.output("Return Book Use Case UI\n");
 		
 		while (true) {
 			
@@ -37,13 +37,13 @@ public class ReturnBookUI {
 						this.control.scanBook(bookId);
 					}
 					catch (NumberFormatException e) {
-						output("Invalid bookId");
+						this.output("Invalid bookId");
 					}					
 				}
 				break;
 				
 			case INSPECTING:
-				String answer = input("Is book damaged? (Y/N): ");
+				String answer = this.input("Is book damaged? (Y/N): ");
 
 				boolean isDamaged = false;
 				if (answer.toUpperCase().equals("Y")) {
@@ -53,11 +53,11 @@ public class ReturnBookUI {
 				this.control.dischargeLoan(isDamaged);
 			
 			case COMPLETED:
-				output("Return processing complete");
+				this.output("Return processing complete");
 				return;
 			
 			default:
-				output("Unhandled state");
+				this.output("Unhandled state");
 				throw new RuntimeException("ReturnBookUI : unhandled state :" + this.currentState);
 			}
 		}
@@ -65,7 +65,6 @@ public class ReturnBookUI {
 	
 	private String input(String prompt) {
 		System.out.print(prompt);
-
 		return this.systemInInput.nextLine();
 	}
 		
@@ -74,7 +73,7 @@ public class ReturnBookUI {
 	}
 			
 	public void display(Object object) {
-		output(object);
+		this.output(object);
 	}
 	
 	public void Set_State(UIState state) {
