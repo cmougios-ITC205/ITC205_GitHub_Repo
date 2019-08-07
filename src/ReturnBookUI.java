@@ -16,7 +16,7 @@ public class ReturnBookUI {
 		this.control.setUI(this);
 	}
 
-	public void RuN() {		
+	public void run() {
 		output("Return Book Use Case UI\n");
 		
 		while (true) {

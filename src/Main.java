@@ -120,7 +120,8 @@ public class Main {
 		output("\nEnded\n");
 	}	
 
-		private static void FINES() {
+	
+	private static void FINES() {
 		new PayFineUI(new PayFineControl()).RuN();		
 	}
 
@@ -158,7 +159,7 @@ public class Main {
 
 
 	private static void RETURN_BOOK() {
-		new ReturnBookUI(new ReturnBookControl()).RuN();		
+		new ReturnBookUI(new ReturnBookControl()).run();
 	}
 
 
