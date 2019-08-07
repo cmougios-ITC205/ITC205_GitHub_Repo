@@ -25,12 +25,12 @@ public class ReturnBookControl {
 	}
 
 
-	public void scanBook(int Book_ID) {
+	public void scanBook(int bookId) {
 		if (!state.equals(ControlState.READY)) {
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
 		}
 
-		book currentBook = library.Book(Book_ID);
+		book currentBook = library.Book(bookId);
 		
 		if (currentBook == null) {
 			returnBookUI.display("Invalid Book Id");
@@ -42,7 +42,7 @@ public class ReturnBookControl {
 			return;
 		}
 
-		currentLoan = library.LOAN_BY_BOOK_ID(Book_ID);
+		currentLoan = library.LOAN_BY_BOOK_ID(bookId);
 
 		double overdueFine = 0.0;
 
