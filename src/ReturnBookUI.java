@@ -58,7 +58,7 @@ public class ReturnBookUI {
 			
 			default:
 				output("Unhandled state");
-				throw new RuntimeException("ReturnBookUI : unhandled state :" + currentState);
+				throw new RuntimeException("ReturnBookUI : unhandled state :" + this.currentState);
 			}
 		}
 	}
