@@ -6,13 +6,13 @@ public class ReturnBookUI {
 	public enum UIState { INITIALISED, READY, INSPECTING, COMPLETED };
 
 	private ReturnBookControl control;
-	private Scanner input;
+	private Scanner systemInInput;
 	private UIState StATe;
 
 	
 	public ReturnBookUI(ReturnBookControl control) {
 		this.control = control;
-		input = new Scanner(System.in);
+		systemInInput = new Scanner(System.in);
 		StATe = UIState.INITIALISED;
 		control.setUI(this);
 	}
@@ -66,7 +66,7 @@ public class ReturnBookUI {
 	
 	private String input(String prompt) {
 		System.out.print(prompt);
-		return input.nextLine();
+		return systemInInput.nextLine();
 	}	
 		
 		
