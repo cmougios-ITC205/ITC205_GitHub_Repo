@@ -14,7 +14,7 @@ public class ReturnBookUI {
 		this.CoNtRoL = control;
 		input = new Scanner(System.in);
 		StATe = UI_STATE.INITIALISED;
-		control.Set_UI(this);
+		control.setUI(this);
 	}
 
 
@@ -31,12 +31,12 @@ public class ReturnBookUI {
 			case READY:
 				String Book_STR = input("Scan Book (<enter> completes): ");
 				if (Book_STR.length() == 0) {
-					CoNtRoL.Scanning_Complete();
+					CoNtRoL.completeScanning();
 				}
 				else {
 					try {
 						int Book_Id = Integer.valueOf(Book_STR).intValue();
-						CoNtRoL.Book_scanned(Book_Id);
+						CoNtRoL.scanBook(Book_Id);
 					}
 					catch (NumberFormatException e) {
 						output("Invalid bookId");
@@ -50,7 +50,7 @@ public class ReturnBookUI {
 				if (ans.toUpperCase().equals("Y")) {					
 					Is_Damaged = true;
 				}
-				CoNtRoL.Discharge_loan(Is_Damaged);
+				CoNtRoL.dischargeLoan(Is_Damaged);
 			
 			case COMPLETED:
 				output("Return processing complete");
