@@ -26,7 +26,7 @@ public class ReturnBookUI {
 				break;
 				
 			case READY:
-				String bookScan = input("Scan Book (<enter> completes): ");
+				String bookScan = askQuestion("Scan Book (<enter> completes): ");
 				if (bookScan.length() == 0) {
 					this.control.completeScanning();
 				}
@@ -42,7 +42,7 @@ public class ReturnBookUI {
 				break;
 				
 			case INSPECTING:
-				String answer = this.input("Is book damaged? (Y/N): ");
+				String answer = this.askQuestion("Is book damaged? (Y/N): ");
 
 				boolean isDamaged = false;
 				if (answer.toUpperCase().equals("Y")) {
@@ -62,7 +62,7 @@ public class ReturnBookUI {
 		}
 	}
 	
-	private String input(String prompt) {
+	private String askQuestion(String prompt) {
 		System.out.print(prompt);
 		return this.systemInInput.nextLine();
 	}
