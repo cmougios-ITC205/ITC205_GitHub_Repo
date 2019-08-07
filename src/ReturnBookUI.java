@@ -9,21 +9,19 @@ public class ReturnBookUI {
 	private Scanner systemInInput;
 	private UIState currentState;
 
-	
 	public ReturnBookUI(ReturnBookControl control) {
 		this.control = control;
-		systemInInput = new Scanner(System.in);
-		currentState = UIState.INITIALISED;
-		control.setUI(this);
+		this.systemInInput = new Scanner(System.in);
+		this.currentState = UIState.INITIALISED;
+		this.control.setUI(this);
 	}
-
 
 	public void RuN() {		
 		output("Return Book Use Case UI\n");
 		
 		while (true) {
 			
-			switch (currentState) {
+			switch (this.currentState) {
 			
 			case INITIALISED:
 				break;
@@ -31,26 +29,28 @@ public class ReturnBookUI {
 			case READY:
 				String Book_STR = input("Scan Book (<enter> completes): ");
 				if (Book_STR.length() == 0) {
-					control.completeScanning();
+					this.control.completeScanning();
 				}
 				else {
 					try {
 						int Book_Id = Integer.valueOf(Book_STR).intValue();
-						control.scanBook(Book_Id);
+						this.control.scanBook(Book_Id);
 					}
 					catch (NumberFormatException e) {
 						output("Invalid bookId");
 					}					
 				}
-				break;				
+				break;
 				
 			case INSPECTING:
 				String ans = input("Is book damaged? (Y/N): ");
-				boolean Is_Damaged = false;
-				if (ans.toUpperCase().equals("Y")) {					
-					Is_Damaged = true;
+
+				boolean isDamaged = false;
+				if (ans.toUpperCase().equals("Y")) {
+					isDamaged = true;
 				}
-				control.dischargeLoan(Is_Damaged);
+
+				this.control.dischargeLoan(isDamaged);
 			
 			case COMPLETED:
 				output("Return processing complete");
@@ -62,18 +62,16 @@ public class ReturnBookUI {
 			}
 		}
 	}
-
 	
 	private String input(String prompt) {
 		System.out.print(prompt);
-		return systemInInput.nextLine();
-	}	
-		
+
+		return this.systemInInput.nextLine();
+	}
 		
 	private void output(Object object) {
 		System.out.println(object);
 	}
-	
 			
 	public void display(Object object) {
 		output(object);
@@ -82,6 +80,4 @@ public class ReturnBookUI {
 	public void Set_State(UIState state) {
 		this.currentState = state;
 	}
-
-	
 }
