@@ -5,7 +5,7 @@ public class FixBookControl {
     private ControlState state;
 
     private library library;
-    private book Cur_Book;
+    private book currentBook;
 
 
     public FixBookControl() {
@@ -28,17 +28,17 @@ public class FixBookControl {
         if (!state.equals(ControlState.READY)) {
             throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
         }
-        Cur_Book = library.Book(bookId);
+        currentBook = library.Book(bookId);
 
-        if (Cur_Book == null) {
+        if (currentBook == null) {
             UI.display("Invalid bookId");
             return;
         }
-        if (!Cur_Book.IS_Damaged()) {
+        if (!currentBook.IS_Damaged()) {
             UI.display("Book has not been damaged");
             return;
         }
-        UI.display(Cur_Book.toString());
+        UI.display(currentBook.toString());
         UI.setState(FixBookUI.UIState.FIXING);
         state = ControlState.FIXING;
     }
@@ -49,9 +49,9 @@ public class FixBookControl {
             throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
         }
         if (MUST_fix) {
-            library.Repair_BOOK(Cur_Book);
+            library.Repair_BOOK(currentBook);
         }
-        Cur_Book = null;
+        currentBook = null;
         UI.setState(FixBookUI.UIState.READY);
         state = ControlState.READY;
     }
