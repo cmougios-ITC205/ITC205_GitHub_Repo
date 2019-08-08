@@ -60,7 +60,8 @@ public class ReturnBookControl {
 		this.returnBookUI.display(currentLoanStr);
 		
 		if (this.currentLoan.OVer_Due()) {
-			this.returnBookUI.display(String.format("\nOverdue fine : $%.2f", overdueFine));
+		    String fineValue = String.format("\nOverdue fine : $%.2f", overdueFine);
+			this.returnBookUI.display(fineValue);
 		}
 
 		this.returnBookUI.setState(ReturnBookUI.UIState.INSPECTING);
