@@ -1,87 +1,81 @@
 import java.util.Scanner;
 
-
 public class ReturnBookUI {
 
-	public static enum UI_STATE { INITIALISED, READY, INSPECTING, COMPLETED };
+	public enum UIState { INITIALISED, READY, INSPECTING, COMPLETED };
 
-	private ReturnBookControl CoNtRoL;
-	private Scanner input;
-	private UI_STATE StATe;
+	private ReturnBookControl control;
+	private Scanner systemInInput;
+	private UIState currentState;
 
-	
 	public ReturnBookUI(ReturnBookControl control) {
-		this.CoNtRoL = control;
-		input = new Scanner(System.in);
-		StATe = UI_STATE.INITIALISED;
-		control.Set_UI(this);
+		this.control = control;
+		this.systemInInput = new Scanner(System.in);
+		this.currentState = UIState.INITIALISED;
+		this.control.setUI(this);
 	}
 
-
-	public void RuN() {		
-		output("Return Book Use Case UI\n");
+	public void run() {
+		this.output("Return Book Use Case UI\n");
 		
 		while (true) {
 			
-			switch (StATe) {
+			switch (this.currentState) {
 			
 			case INITIALISED:
 				break;
 				
 			case READY:
-				String Book_STR = input("Scan Book (<enter> completes): ");
-				if (Book_STR.length() == 0) {
-					CoNtRoL.Scanning_Complete();
+				String bookScan = askQuestion("Scan Book (<enter> completes): ");
+				if (bookScan.length() == 0) {
+					this.control.completeScanning();
 				}
 				else {
 					try {
-						int Book_Id = Integer.valueOf(Book_STR).intValue();
-						CoNtRoL.Book_scanned(Book_Id);
+						int bookId = Integer.valueOf(bookScan).intValue();
+						this.control.scanBook(bookId);
 					}
 					catch (NumberFormatException e) {
-						output("Invalid bookId");
+						this.output("Invalid bookId");
 					}					
 				}
-				break;				
+				break;
 				
 			case INSPECTING:
-				String ans = input("Is book damaged? (Y/N): ");
-				boolean Is_Damaged = false;
-				if (ans.toUpperCase().equals("Y")) {					
-					Is_Damaged = true;
+				String answer = this.askQuestion("Is book damaged? (Y/N): ");
+
+				boolean isDamaged = false;
+				if (answer.toUpperCase().equals("Y")) {
+					isDamaged = true;
 				}
-				CoNtRoL.Discharge_loan(Is_Damaged);
+
+				this.control.dischargeLoan(isDamaged);
 			
 			case COMPLETED:
-				output("Return processing complete");
+				this.output("Return processing complete");
 				return;
 			
 			default:
-				output("Unhandled state");
-				throw new RuntimeException("ReturnBookUI : unhandled state :" + StATe);			
+				this.output("Unhandled state");
+				throw new RuntimeException("ReturnBookUI : unhandled state :" + this.currentState);
 			}
 		}
 	}
-
 	
-	private String input(String prompt) {
+	private String askQuestion(String prompt) {
 		System.out.print(prompt);
-		return input.nextLine();
-	}	
-		
+		return this.systemInInput.nextLine();
+	}
 		
 	private void output(Object object) {
 		System.out.println(object);
 	}
-	
 			
 	public void display(Object object) {
-		output(object);
+		this.output(object);
 	}
 	
-	public void Set_State(UI_STATE state) {
-		this.StATe = state;
+	public void setState(UIState state) {
+		this.currentState = state;
 	}
-
-	
 }

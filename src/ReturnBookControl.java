@@ -1,77 +1,91 @@
 public class ReturnBookControl {
 
-	private ReturnBookUI Ui;
-	private enum CONTROL_STATE { INITIALISED, READY, INSPECTING };
-	private CONTROL_STATE sTaTe;
+	private ReturnBookUI returnBookUI;
+	private enum ControlState { INITIALISED, READY, INSPECTING };
+	private ControlState state;
 	
-	private library lIbRaRy;
-	private loan CurrENT_loan;
+	private library library;
+	private loan currentLoan;
 	
 
 	public ReturnBookControl() {
-		this.lIbRaRy = lIbRaRy.INSTANCE();
-		sTaTe = CONTROL_STATE.INITIALISED;
+		this.library = library.INSTANCE();
+		this.state = ControlState.INITIALISED;
 	}
 	
 	
-	public void Set_UI(ReturnBookUI ui) {
-		if (!sTaTe.equals(CONTROL_STATE.INITIALISED)) {
+	public void setUI(ReturnBookUI returnBookUI) {
+		if (!state.equals(ControlState.INITIALISED)) {
 			throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state");
-		}	
-		this.Ui = ui;
-		ui.Set_State(ReturnBookUI.UI_STATE.READY);
-		sTaTe = CONTROL_STATE.READY;		
+		}
+
+		this.returnBookUI = returnBookUI;
+
+		returnBookUI.setState(ReturnBookUI.UIState.READY);
+
+		this.state = ControlState.READY;
 	}
 
 
-	public void Book_scanned(int Book_ID) {
-		if (!sTaTe.equals(CONTROL_STATE.READY)) {
+	public void scanBook(int bookId) {
+		if (!this.state.equals(ControlState.READY)) {
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
-		}	
-		book CUR_book = lIbRaRy.Book(Book_ID);
+		}
+
+		book currentBook = library.Book(bookId);
 		
-		if (CUR_book == null) {
-			Ui.display("Invalid Book Id");
+		if (currentBook == null) {
+			this.returnBookUI.display("Invalid Book Id");
 			return;
 		}
-		if (!CUR_book.On_loan()) {
-			Ui.display("Book has not been borrowed");
+
+		if (!currentBook.On_loan()) {
+			this.returnBookUI.display("Book has not been borrowed");
 			return;
-		}		
-		CurrENT_loan = lIbRaRy.LOAN_BY_BOOK_ID(Book_ID);	
-		double Over_Due_Fine = 0.0;
-		if (CurrENT_loan.OVer_Due()) {
-			Over_Due_Fine = lIbRaRy.CalculateOverDueFine(CurrENT_loan);
 		}
-		Ui.display("Inspecting");
-		Ui.display(CUR_book.toString());
-		Ui.display(CurrENT_loan.toString());
+
+		this.currentLoan = library.LOAN_BY_BOOK_ID(bookId);
+
+		double overdueFine = 0.0;
+
+		if (currentLoan.OVer_Due()) {
+			overdueFine = library.CalculateOverDueFine(currentLoan);
+		}
+
+		String currentBookStr = currentBook.toString();
+		String currentLoanStr = this.currentLoan.toString();
+
+		this.returnBookUI.display("Inspecting");
+		this.returnBookUI.display(currentBookStr);
+		this.returnBookUI.display(currentLoanStr);
 		
-		if (CurrENT_loan.OVer_Due()) {
-			Ui.display(String.format("\nOverdue fine : $%.2f", Over_Due_Fine));
+		if (this.currentLoan.OVer_Due()) {
+		    String fineValue = String.format("\nOverdue fine : $%.2f", overdueFine);
+			this.returnBookUI.display(fineValue);
 		}
-		Ui.Set_State(ReturnBookUI.UI_STATE.INSPECTING);
-		sTaTe = CONTROL_STATE.INSPECTING;		
+
+		this.returnBookUI.setState(ReturnBookUI.UIState.INSPECTING);
+		this.state = ControlState.INSPECTING;
 	}
 
 
-	public void Scanning_Complete() {
-		if (!sTaTe.equals(CONTROL_STATE.READY)) {
+	public void completeScanning() {
+		if (!this.state.equals(ControlState.READY)) {
 			throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state");
-		}	
-		Ui.Set_State(ReturnBookUI.UI_STATE.COMPLETED);		
+		}
+
+		this.returnBookUI.setState(ReturnBookUI.UIState.COMPLETED);
 	}
 
 
-	public void Discharge_loan(boolean isDamaged) {
-		if (!sTaTe.equals(CONTROL_STATE.INSPECTING)) {
+	public void dischargeLoan(boolean isDamaged) {
+		if (!this.state.equals(ControlState.INSPECTING)) {
 			throw new RuntimeException("ReturnBookControl: cannot call dischargeLoan except in INSPECTING state");
-		}	
-		lIbRaRy.Discharge_loan(CurrENT_loan, isDamaged);
-		CurrENT_loan = null;
-		Ui.Set_State(ReturnBookUI.UI_STATE.READY);
-		sTaTe = CONTROL_STATE.READY;				
+		}
+
+		this.library.Discharge_loan(currentLoan, isDamaged);
+		this.currentLoan = null;
+		this.returnBookUI.setState(ReturnBookUI.UIState.READY);
+		this.state = ControlState.READY;
 	}
-
-
 }
