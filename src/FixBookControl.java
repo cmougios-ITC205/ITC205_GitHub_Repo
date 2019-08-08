@@ -53,9 +53,9 @@ public class FixBookControl {
         if (mustFix) {
             this.library.Repair_BOOK(currentBook);
         }
-        currentBook = null;
+        this.currentBook = null;
         this.UI.setState(FixBookUI.UIState.READY);
-        state = ControlState.READY;
+        this.state = ControlState.READY;
     }
 
 
