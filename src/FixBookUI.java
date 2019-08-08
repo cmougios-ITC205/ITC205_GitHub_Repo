@@ -18,7 +18,7 @@ public class FixBookUI {
     }
 
 
-    public void Set_State(UIState state) {
+    public void setState(UIState state) {
         this.state = state;
     }
 
