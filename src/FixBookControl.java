@@ -65,10 +65,4 @@ public class FixBookControl {
         }
         this.UI.setState(FixBookUI.UIState.COMPLETED);
     }
-
-
-
-
-
-
 }
