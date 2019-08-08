@@ -7,19 +7,19 @@ public class FixBookUI {
 
     private FixBookControl control;
     private Scanner input;
-    private UIState StAtE;
+    private UIState state;
 
 
     public FixBookUI(FixBookControl control) {
         this.control = control;
         input = new Scanner(System.in);
-        StAtE = UIState.INITIALISED;
+        state = UIState.INITIALISED;
         control.Set_Ui(this);
     }
 
 
     public void Set_State(UIState state) {
-        this.StAtE = state;
+        this.state = state;
     }
 
 
@@ -28,7 +28,7 @@ public class FixBookUI {
 
         while (true) {
 
-            switch (StAtE) {
+            switch (state) {
 
             case READY:
                 String Book_STR = input("Scan Book (<enter> completes): ");
@@ -61,7 +61,7 @@ public class FixBookUI {
 
             default:
                 output("Unhandled state");
-                throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);
+                throw new RuntimeException("FixBookUI : unhandled state :" + state);
 
             }
         }
