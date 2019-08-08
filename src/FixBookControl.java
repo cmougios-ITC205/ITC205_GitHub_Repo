@@ -24,9 +24,9 @@ public class FixBookControl {
     }
 
 
-    public void Book_scanned(int bookId) {
+    public void scanBook(int bookId) {
         if (!state.equals(ControlState.READY)) {
-            throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
+            throw new RuntimeException("FixBookControl: cannot call scanBook except in READY state");
         }
         currentBook = library.Book(bookId);
 

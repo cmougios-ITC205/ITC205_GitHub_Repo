@@ -38,7 +38,7 @@ public class FixBookUI {
                 else {
                     try {
                         int Book_ID = Integer.valueOf(bookScan).intValue();
-                        this.control.Book_scanned(Book_ID);
+                        this.control.scanBook(Book_ID);
                     }
                     catch (NumberFormatException e) {
                         this.output("Invalid bookId");
