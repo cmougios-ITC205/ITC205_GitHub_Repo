@@ -10,7 +10,7 @@ public class FixBookControl {
 
     public FixBookControl() {
         this.library = library.INSTANCE();
-        state = ControlState.INITIALISED;
+        this.state = ControlState.INITIALISED;
     }
 
 
@@ -20,7 +20,7 @@ public class FixBookControl {
         }
         this.UI = fixBookUI;
         fixBookUI.setState(FixBookUI.UIState.READY);
-        state = ControlState.READY;
+        this.state = ControlState.READY;
     }
 
 
@@ -28,19 +28,19 @@ public class FixBookControl {
         if (!state.equals(ControlState.READY)) {
             throw new RuntimeException("FixBookControl: cannot call scanBook except in READY state");
         }
-        currentBook = library.Book(bookId);
+        this.currentBook = library.Book(bookId);
 
         if (currentBook == null) {
-            UI.display("Invalid bookId");
+            this.UI.display("Invalid bookId");
             return;
         }
         if (!currentBook.IS_Damaged()) {
-            UI.display("Book has not been damaged");
+            this.UI.display("Book has not been damaged");
             return;
         }
-        UI.display(currentBook.toString());
-        UI.setState(FixBookUI.UIState.FIXING);
-        state = ControlState.FIXING;
+        this.UI.display(currentBook.toString());
+        this.UI.setState(FixBookUI.UIState.FIXING);
+        this.state = ControlState.FIXING;
     }
 
 
@@ -49,10 +49,10 @@ public class FixBookControl {
             throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
         }
         if (mustFix) {
-            library.Repair_BOOK(currentBook);
+            this.library.Repair_BOOK(currentBook);
         }
         currentBook = null;
-        UI.setState(FixBookUI.UIState.READY);
+        this.UI.setState(FixBookUI.UIState.READY);
         state = ControlState.READY;
     }
 
@@ -61,7 +61,7 @@ public class FixBookControl {
         if (!state.equals(ControlState.READY)) {
             throw new RuntimeException("FixBookControl: cannot call completeScanning except in READY state");
         }
-        UI.setState(FixBookUI.UIState.COMPLETED);
+        this.UI.setState(FixBookUI.UIState.COMPLETED);
     }
 
 
