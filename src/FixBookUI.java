@@ -31,13 +31,13 @@ public class FixBookUI {
             switch (currentState) {
 
             case READY:
-                String Book_STR = askQuestion("Scan Book (<enter> completes): ");
-                if (Book_STR.length() == 0) {
+                String bookScan = askQuestion("Scan Book (<enter> completes): ");
+                if (bookScan.length() == 0) {
                     this.control.SCannING_COMplete();
                 }
                 else {
                     try {
-                        int Book_ID = Integer.valueOf(Book_STR).intValue();
+                        int Book_ID = Integer.valueOf(bookScan).intValue();
                         this.control.Book_scanned(Book_ID);
                     }
                     catch (NumberFormatException e) {
