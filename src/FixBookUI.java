@@ -5,13 +5,13 @@ public class FixBookUI {
 
     public static enum UIState { INITIALISED, READY, FIXING, COMPLETED };
 
-    private FixBookControl CoNtRoL;
+    private FixBookControl control;
     private Scanner input;
     private UIState StAtE;
 
 
     public FixBookUI(FixBookControl control) {
-        this.CoNtRoL = control;
+        this.control = control;
         input = new Scanner(System.in);
         StAtE = UIState.INITIALISED;
         control.Set_Ui(this);
@@ -33,12 +33,12 @@ public class FixBookUI {
             case READY:
                 String Book_STR = input("Scan Book (<enter> completes): ");
                 if (Book_STR.length() == 0) {
-                    CoNtRoL.SCannING_COMplete();
+                    control.SCannING_COMplete();
                 }
                 else {
                     try {
                         int Book_ID = Integer.valueOf(Book_STR).intValue();
-                        CoNtRoL.Book_scanned(Book_ID);
+                        control.Book_scanned(Book_ID);
                     }
                     catch (NumberFormatException e) {
                         output("Invalid bookId");
@@ -52,7 +52,7 @@ public class FixBookUI {
                 if (AnS.toUpperCase().equals("Y")) {
                     FiX = true;
                 }
-                CoNtRoL.FIX_Book(FiX);
+                control.FIX_Book(FiX);
                 break;
 
             case COMPLETED:
