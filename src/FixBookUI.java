@@ -31,7 +31,7 @@ public class FixBookUI {
             switch (currentState) {
 
             case READY:
-                String Book_STR = input("Scan Book (<enter> completes): ");
+                String Book_STR = askQuestion("Scan Book (<enter> completes): ");
                 if (Book_STR.length() == 0) {
                     this.control.SCannING_COMplete();
                 }
@@ -47,7 +47,7 @@ public class FixBookUI {
                 break;
 
             case FIXING:
-                String AnS = input("Fix Book? (Y/N) : ");
+                String AnS = askQuestion("Fix Book? (Y/N) : ");
                 boolean FiX = false;
                 if (AnS.toUpperCase().equals("Y")) {
                     FiX = true;
@@ -69,7 +69,7 @@ public class FixBookUI {
     }
 
 
-    private String input(String prompt) {
+    private String askQuestion(String prompt) {
         System.out.print(prompt);
         return this.systemInInput.nextLine();
     }
