@@ -23,7 +23,7 @@ public class FixBookUI {
     }
 
 
-    public void RuN() {
+    public void run() {
         output("Fix Book Use Case UI\n");
 
         while (true) {
