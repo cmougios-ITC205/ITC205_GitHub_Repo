@@ -90,7 +90,7 @@ public class BorrowBookUI {
 					CONTROL.cancel();
 					
 				} else {
-					CONTROL.Commit_LOans();
+					CONTROL.commitLoans();
 					input("Press <any key> to complete ");
 				}
 				break;
