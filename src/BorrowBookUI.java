@@ -5,16 +5,16 @@ public class BorrowBookUI
 {
 	
 	public static enum UI_STATE { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
-	private BorrowBookControl CONTROL;
-	private Scanner INPUT;
-	private UI_STATE STATE;
+	private BorrowBookControl control;
+	private Scanner input;
+	private UI_STATE state;
 
 	
 	public BorrowBookUI(BorrowBookControl control)
     {
-		this.CONTROL = control;
-		INPUT = new Scanner(System.in);
-		STATE = UI_STATE.INITIALISED;
+		this.control = control;
+		input = new Scanner(System.in);
+		state = UI_STATE.INITIALISED;
 		control.setUI(this);
 	}
 
@@ -22,7 +22,7 @@ public class BorrowBookUI
 	private String input(String prompt)
     {
 		System.out.print(prompt);
-		return INPUT.nextLine();
+		return input.nextLine();
 	}	
 		
 		
@@ -34,7 +34,7 @@ public class BorrowBookUI
 			
 	public void setState(UI_STATE STATE)
     {
-		this.STATE = STATE;
+		this.state = STATE;
 	}
 
 	
@@ -45,7 +45,7 @@ public class BorrowBookUI
 		while (true)
 		{
 			
-			switch (STATE)
+			switch (state)
             {
 			
 			case CANCELLED:
@@ -57,13 +57,13 @@ public class BorrowBookUI
 				String memStr = input("Swipe member card (press <enter> to cancel): ");
 				if (memStr.length() == 0)
 				{
-					CONTROL.cancel();
+					control.cancel();
 					break;
 				}
 				try
                 {
 					int memberId = Integer.valueOf(memStr).intValue();
-					CONTROL.swiped(memberId);
+					control.swiped(memberId);
 				}
 				catch (NumberFormatException e)
                 {
@@ -74,7 +74,7 @@ public class BorrowBookUI
 				
 			case RESTRICTED:
 				input("Press <any key> to cancel");
-				CONTROL.cancel();
+				control.cancel();
 				break;
 			
 				
@@ -82,13 +82,13 @@ public class BorrowBookUI
 				String bookStr = input("Scan Book (<enter> completes): ");
 				if (bookStr.length() == 0)
 				{
-					CONTROL.isComplete();
+					control.isComplete();
 					break;
 				}
 				try
                 {
 					int bid = Integer.valueOf(bookStr).intValue();
-					CONTROL.scanned(bid);
+					control.scanned(bid);
 					
 				} catch (NumberFormatException e)
                 {
@@ -101,12 +101,12 @@ public class BorrowBookUI
 				String answer = input("Commit loans? (Y/N): ");
 				if (answer.toUpperCase().equals("N"))
 				{
-					CONTROL.cancel();
+					control.cancel();
 					
 				}
 				else
 				{
-					CONTROL.commitLoans();
+					control.commitLoans();
 					input("Press <any key> to complete ");
 				}
 				break;
@@ -119,7 +119,7 @@ public class BorrowBookUI
 				
 			default:
 				output("Unhandled state");
-				throw new RuntimeException("BorrowBookUI : unhandled state :" + STATE);
+				throw new RuntimeException("BorrowBookUI : unhandled state :" + state);
 			}
 		}		
 	}
