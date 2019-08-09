@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 
-public class BorrowBookUI {
+public class BorrowBookUI
+{
 	
 	public static enum UI_STATE { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
 
@@ -10,7 +11,8 @@ public class BorrowBookUI {
 	private UI_STATE state;
 
 	
-	public BorrowBookUI(BorrowBookControl control) {
+	public BorrowBookUI(BorrowBookControl control)
+    {
 		this.control = control;
 		input = new Scanner(System.in);
 		state = UI_STATE.INITIALISED;
@@ -18,28 +20,34 @@ public class BorrowBookUI {
 	}
 
 	
-	private String input(String prompt) {
+	private String input(String prompt)
+    {
 		System.out.print(prompt);
 		return input.nextLine();
 	}	
 		
 		
-	private void output(Object object) {
+	private void output(Object object)
+    {
 		System.out.println(object);
 	}
 	
 			
-	public void setState(UI_STATE STATE) {
+	public void setState(UI_STATE STATE)
+    {
 		this.state = STATE;
 	}
 
 	
-	public void run() {
+	public void run()
+    {
 		output("Borrow Book Use Case UI\n");
 		
-		while (true) {
+		while (true)
+		{
 			
-			switch (state) {
+			switch (state)
+            {
 			
 			case CANCELLED:
 				output("Borrowing Cancelled");
@@ -48,15 +56,18 @@ public class BorrowBookUI {
 				
 			case READY:
 				String memberCard = input("Swipe member card (press <enter> to cancel): ");
-				if (memberCard.length() == 0) {
+				if (memberCard.length() == 0)
+				{
 					control.cancel();
 					break;
 				}
-				try {
+				try
+                {
 					int memberId = Integer.valueOf(memberCard).intValue();
 					control.swiped(memberId);
 				}
-				catch (NumberFormatException e) {
+				catch (NumberFormatException e)
+                {
 					output("Invalid Member Id");
 				}
 				break;
@@ -70,15 +81,18 @@ public class BorrowBookUI {
 				
 			case SCANNING:
 				String scanBook = input("Scan Book (<enter> completes): ");
-				if (scanBook.length() == 0) {
+				if (scanBook.length() == 0)
+				{
 					control.complete();
 					break;
 				}
-				try {
+				try
+                {
 					int BiD = Integer.valueOf(scanBook).intValue();
 					control.scanned(BiD);
 					
-				} catch (NumberFormatException e) {
+				} catch (NumberFormatException e)
+                {
 					output("Invalid Book Id");
 				} 
 				break;
@@ -86,10 +100,12 @@ public class BorrowBookUI {
 				
 			case FINALISING:
 				String ans = input("Commit loans? (Y/N): ");
-				if (ans.toUpperCase().equals("N")) {
+				if (ans.toUpperCase().equals("N"))
+				{
 					control.cancel();
 					
-				} else {
+				} else
+				{
 					control.commitLoans();
 					input("Press <any key> to complete ");
 				}
@@ -109,7 +125,8 @@ public class BorrowBookUI {
 	}
 
 
-	public void display(Object object) {
+	public void display(Object object)
+    {
 		output(object);		
 	}
 
