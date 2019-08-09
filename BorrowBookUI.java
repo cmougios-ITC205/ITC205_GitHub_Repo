@@ -5,13 +5,13 @@ public class BorrowBookUI {
 	
 	public static enum UI_STATE { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
 
-	private BorrowBookControl CONTROL;
+	private BorrowBookControl control;
 	private Scanner input;
 	private UI_STATE StaTe;
 
 	
 	public BorrowBookUI(BorrowBookControl control) {
-		this.CONTROL = control;
+		this.control = control;
 		input = new Scanner(System.in);
 		StaTe = UI_STATE.INITIALISED;
 		control.setUI(this);
@@ -49,12 +49,12 @@ public class BorrowBookUI {
 			case READY:
 				String MEM_STR = input("Swipe member card (press <enter> to cancel): ");
 				if (MEM_STR.length() == 0) {
-					CONTROL.cancel();
+					control.cancel();
 					break;
 				}
 				try {
 					int Member_ID = Integer.valueOf(MEM_STR).intValue();
-					CONTROL.swiped(Member_ID);
+					control.swiped(Member_ID);
 				}
 				catch (NumberFormatException e) {
 					output("Invalid Member Id");
@@ -64,19 +64,19 @@ public class BorrowBookUI {
 				
 			case RESTRICTED:
 				input("Press <any key> to cancel");
-				CONTROL.cancel();
+				control.cancel();
 				break;
 			
 				
 			case SCANNING:
 				String Book_Str = input("Scan Book (<enter> completes): ");
 				if (Book_Str.length() == 0) {
-					CONTROL.complete();
+					control.complete();
 					break;
 				}
 				try {
 					int BiD = Integer.valueOf(Book_Str).intValue();
-					CONTROL.scanned(BiD);
+					control.scanned(BiD);
 					
 				} catch (NumberFormatException e) {
 					output("Invalid Book Id");
@@ -87,10 +87,10 @@ public class BorrowBookUI {
 			case FINALISING:
 				String Ans = input("Commit loans? (Y/N): ");
 				if (Ans.toUpperCase().equals("N")) {
-					CONTROL.cancel();
+					control.cancel();
 					
 				} else {
-					CONTROL.commitLoans();
+					control.commitLoans();
 					input("Press <any key> to complete ");
 				}
 				break;
