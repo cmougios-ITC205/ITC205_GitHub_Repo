@@ -10,7 +10,7 @@ public class BorrowBookControl {
 	private controlState State;
 	private List<book> pending;
 	private List<loan> completed;
-	private book BOOK;
+	private book book;
 
 
 	public BorrowBookControl() {
@@ -49,20 +49,20 @@ public class BorrowBookControl {
 
 
 	public void Scanned(int bookId) {
-		BOOK = null;
+		book = null;
 		if (!State.equals(controlState.SCANNING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
 		}
-		BOOK = library.Book(bookId);
-		if (BOOK == null) {
+		book = library.Book(bookId);
+		if (book == null) {
 			ui.Display("Invalid bookId");
 			return;
 		}
-		if (!BOOK.AVAILABLE()) {
+		if (!book.AVAILABLE()) {
 			ui.Display("Book cannot be borrowed");
 			return;
 		}
-		pending.add(BOOK);
+		pending.add(book);
 		for (book B : pending) {
 			ui.Display(B.toString());
 		}
