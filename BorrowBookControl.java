@@ -4,13 +4,11 @@ import java.util.List;
 public class BorrowBookControl {
 
 	private BorrowBookUI ui;
-
 	private library library;
 	private member member;
 	private enum controlState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
 	private controlState State;
-
-	private List<book> PENDING;
+	private List<book> pending;
 	private List<loan> COMPLETED;
 	private book BOOK;
 
@@ -41,7 +39,7 @@ public class BorrowBookControl {
 			return;
 		}
 		if (library.MEMBER_CAN_BORROW(member)) {
-			PENDING = new ArrayList<>();
+			pending = new ArrayList<>();
 			ui.Set_State(BorrowBookUI.UI_STATE.SCANNING);
 			State = controlState.SCANNING; }
 		else
@@ -64,11 +62,11 @@ public class BorrowBookControl {
 			ui.Display("Book cannot be borrowed");
 			return;
 		}
-		PENDING.add(BOOK);
-		for (book B : PENDING) {
+		pending.add(BOOK);
+		for (book B : pending) {
 			ui.Display(B.toString());
 		}
-		if (library.Loans_Remaining_For_Member(member) - PENDING.size() == 0) {
+		if (library.Loans_Remaining_For_Member(member) - pending.size() == 0) {
 			ui.Display("Loan limit reached");
 			Complete();
 		}
@@ -76,12 +74,12 @@ public class BorrowBookControl {
 
 
 	public void Complete() {
-		if (PENDING.size() == 0) {
+		if (pending.size() == 0) {
 			cancel();
 		}
 		else {
 			ui.Display("\nFinal Borrowing List");
-			for (book B : PENDING) {
+			for (book B : pending) {
 				ui.Display(B.toString());
 			}
 			COMPLETED = new ArrayList<loan>();
@@ -95,7 +93,7 @@ public class BorrowBookControl {
 		if (!State.equals(controlState.FINALISING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 		}
-		for (book B : PENDING) {
+		for (book B : pending) {
 			loan LOAN = library.ISSUE_LAON(B, member);
 			COMPLETED.add(LOAN);
 		}
