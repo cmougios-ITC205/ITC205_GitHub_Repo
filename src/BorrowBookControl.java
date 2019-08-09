@@ -36,13 +36,13 @@ public class BorrowBookControl {
 		if (!STATE.equals(ControlState.READY))
 
 		    throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
-			MEMBERS = LIBRARY.member(memberId);
+			MEMBERS = LIBRARY.MEMBER(memberId);
 		if (MEMBERS == null)
 		{
 			UI.display("Invalid memberId");
 			return;
 		}
-		if (LIBRARY.memberCanBorrow(MEMBERS))
+		if (LIBRARY.MEMBER_CAN_BORROW(MEMBERS))
 			{
 			PENDING = new ArrayList<>();
 			UI.setState(BorrowBookUI.UI_STATE.SCANNING);
@@ -63,7 +63,7 @@ public class BorrowBookControl {
 		{
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
 		}	
-		BOOK = LIBRARY.book(bookId);
+		BOOK = LIBRARY.Book(bookId);
 		if (BOOK == null)
 		{
 			UI.display("Invalid bookId");
@@ -79,7 +79,7 @@ public class BorrowBookControl {
 		{
 			UI.display(B.toString());
 		}
-		if (LIBRARY.loansRemainingForMember(MEMBERS) - PENDING.size() == 0)
+		if (LIBRARY.Loans_Remaining_For_Member(MEMBERS) - PENDING.size() == 0)
 		{
 			UI.display("Loan limit reached");
 			isComplete();

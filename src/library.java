@@ -137,14 +137,14 @@ public class library implements Serializable {
 	}
 
 	
-	public member member(int memberId) {
+	public member MEMBER(int memberId) {
 		if (MEMBERS.containsKey(memberId)) 
 			return MEMBERS.get(memberId);
 		return null;
 	}
 
 	
-	public book book(int bookId) {
+	public book Book(int bookId) {
 		if (CATALOG.containsKey(bookId)) 
 			return CATALOG.get(bookId);		
 		return null;
@@ -156,7 +156,7 @@ public class library implements Serializable {
 	}
 
 	
-	public boolean memberCanBorrow(member member) {
+	public boolean MEMBER_CAN_BORROW(member member) {		
 		if (member.Number_Of_Current_Loans() == loanLimit ) 
 			return false;
 				
@@ -171,7 +171,7 @@ public class library implements Serializable {
 	}
 
 	
-	public int loansRemainingForMember(member member) {
+	public int Loans_Remaining_For_Member(member member) {		
 		return loanLimit - member.Number_Of_Current_Loans();
 	}
 

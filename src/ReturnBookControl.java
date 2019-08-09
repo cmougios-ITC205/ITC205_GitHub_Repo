@@ -28,7 +28,7 @@ public class ReturnBookControl {
 		if (!sTaTe.equals(CONTROL_STATE.READY)) {
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
 		}	
-		book CUR_book = lIbRaRy.book(Book_ID);
+		book CUR_book = lIbRaRy.Book(Book_ID);
 		
 		if (CUR_book == null) {
 			Ui.display("Invalid Book Id");
