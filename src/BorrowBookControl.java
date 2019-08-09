@@ -42,7 +42,7 @@ public class BorrowBookControl {
 			UI.Display("Invalid memberId");
 			return;
 		}
-		if (LIBRARY.MEMBER_CAN_BORROW(MEMBERS))
+		if (LIBRARY.memberCanBorrow(MEMBERS))
 			{
 			PENDING = new ArrayList<>();
 			UI.setState(BorrowBookUI.UI_STATE.SCANNING);
