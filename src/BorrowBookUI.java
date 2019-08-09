@@ -6,21 +6,21 @@ public class BorrowBookUI {
 	public static enum UI_STATE { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
 
 	private BorrowBookControl CONTROL;
-	private Scanner input;
-	private UI_STATE state;
+	private Scanner INPUT;
+	private UI_STATE STATE;
 
 	
 	public BorrowBookUI(BorrowBookControl control) {
 		this.CONTROL = control;
-		input = new Scanner(System.in);
-		state = UI_STATE.INITIALISED;
+		INPUT = new Scanner(System.in);
+		STATE = UI_STATE.INITIALISED;
 		control.setUI(this);
 	}
 
 	
 	private String input(String prompt) {
 		System.out.print(prompt);
-		return input.nextLine();
+		return INPUT.nextLine();
 	}	
 		
 		
@@ -29,8 +29,8 @@ public class BorrowBookUI {
 	}
 	
 			
-	public void setState(UI_STATE STATE) {
-		this.state = STATE;
+	public void setSTATE(UI_STATE STATE) {
+		this.STATE = STATE;
 	}
 
 	
@@ -39,7 +39,7 @@ public class BorrowBookUI {
 		
 		while (true) {
 			
-			switch (state) {
+			switch (STATE) {
 			
 			case CANCELLED:
 				output("Borrowing Cancelled");
@@ -103,7 +103,7 @@ public class BorrowBookUI {
 				
 			default:
 				output("Unhandled state");
-				throw new RuntimeException("BorrowBookUI : unhandled state :" + state);
+				throw new RuntimeException("BorrowBookUI : unhandled state :" + STATE);
 			}
 		}		
 	}
