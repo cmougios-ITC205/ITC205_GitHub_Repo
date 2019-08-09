@@ -171,7 +171,7 @@ public class library implements Serializable {
 	}
 
 	
-	public int Loans_Remaining_For_Member(member member) {		
+	public int loansRemainingForMember(member member) {
 		return loanLimit - member.Number_Of_Current_Loans();
 	}
 

@@ -4,12 +4,10 @@ import java.util.List;
 public class BorrowBookControl {
 	
 	private BorrowBookUI UI;
-	
 	private library LIBRARY;
 	private member MEMBERS;
 	private enum ControlState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
 	private ControlState STATE;
-	
 	private List<book> PENDING;
 	private List<loan> COMPLETED;
 	private book BOOK;
@@ -25,20 +23,20 @@ public class BorrowBookControl {
 	public void setUI(BorrowBookUI ui)
 	{
 		if (!STATE.equals(ControlState.INITIALISED))
-			throw new RuntimeException("BorrowBookControl: cannot call setUI except in INITIALISED state");
-			
-		this.UI = ui;
-		ui.Set_State(BorrowBookUI.UI_STATE.READY);
-		STATE = ControlState.READY;
+
+		    throw new RuntimeException("BorrowBookControl: cannot call setUI except in INITIALISED state");
+			this.UI = ui;
+	    	ui.Set_State(BorrowBookUI.UI_STATE.READY);
+		    STATE = ControlState.READY;
 	}
 
 		
 	public void swiped(int memberId)
 	{
 		if (!STATE.equals(ControlState.READY))
-			throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
-			
-		MEMBERS = LIBRARY.MEMBER(memberId);
+
+		    throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
+			MEMBERS = LIBRARY.MEMBER(memberId);
 		if (MEMBERS == null)
 		{
 			UI.Display("Invalid memberId");
@@ -81,7 +79,7 @@ public class BorrowBookControl {
 		{
 			UI.Display(B.toString());
 		}
-		if (LIBRARY.Loans_Remaining_For_Member(MEMBERS) - PENDING.size() == 0)
+		if (LIBRARY.loansRemainingForMember(MEMBERS) - PENDING.size() == 0)
 		{
 			UI.Display("Loan limit reached");
 			isComplete();
@@ -131,7 +129,7 @@ public class BorrowBookControl {
 	
 	public void cancel()
 	{
-		UI.Set_State(BorrowBookUI.UI_STATE.CANCELLED);
+        UI.Set_State(BorrowBookUI.UI_STATE.CANCELLED);
 		STATE = ControlState.CANCELLED;
 	}
 	
