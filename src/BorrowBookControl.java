@@ -63,7 +63,7 @@ public class BorrowBookControl {
 		{
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
 		}	
-		BOOK = LIBRARY.Book(bookId);
+		BOOK = LIBRARY.book(bookId);
 		if (BOOK == null)
 		{
 			UI.Display("Invalid bookId");
