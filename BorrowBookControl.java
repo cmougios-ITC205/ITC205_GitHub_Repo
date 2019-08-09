@@ -9,7 +9,7 @@ public class BorrowBookControl {
 	private enum controlState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
 	private controlState State;
 	private List<book> pending;
-	private List<loan> COMPLETED;
+	private List<loan> completed;
 	private book BOOK;
 
 
@@ -82,7 +82,7 @@ public class BorrowBookControl {
 			for (book B : pending) {
 				ui.Display(B.toString());
 			}
-			COMPLETED = new ArrayList<loan>();
+			completed = new ArrayList<loan>();
 			ui.Set_State(BorrowBookUI.UI_STATE.FINALISING);
 			State = controlState.FINALISING;
 		}
@@ -95,10 +95,10 @@ public class BorrowBookControl {
 		}
 		for (book B : pending) {
 			loan LOAN = library.ISSUE_LAON(B, member);
-			COMPLETED.add(LOAN);
+			completed.add(LOAN);
 		}
 		ui.Display("Completed Loan Slip");
-		for (loan LOAN : COMPLETED) {
+		for (loan LOAN : completed) {
 			ui.Display(LOAN.toString());
 		}
 		ui.Set_State(BorrowBookUI.UI_STATE.COMPLETED);
