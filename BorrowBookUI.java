@@ -69,13 +69,13 @@ public class BorrowBookUI {
 			
 				
 			case SCANNING:
-				String Book_Str = input("Scan Book (<enter> completes): ");
-				if (Book_Str.length() == 0) {
+				String scanBook = input("Scan Book (<enter> completes): ");
+				if (scanBook.length() == 0) {
 					control.complete();
 					break;
 				}
 				try {
-					int BiD = Integer.valueOf(Book_Str).intValue();
+					int BiD = Integer.valueOf(scanBook).intValue();
 					control.scanned(BiD);
 					
 				} catch (NumberFormatException e) {
