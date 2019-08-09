@@ -7,13 +7,13 @@ public class BorrowBookUI {
 
 	private BorrowBookControl control;
 	private Scanner input;
-	private UI_STATE StaTe;
+	private UI_STATE state;
 
 	
 	public BorrowBookUI(BorrowBookControl control) {
 		this.control = control;
 		input = new Scanner(System.in);
-		StaTe = UI_STATE.INITIALISED;
+		state = UI_STATE.INITIALISED;
 		control.setUI(this);
 	}
 
@@ -30,7 +30,7 @@ public class BorrowBookUI {
 	
 			
 	public void setState(UI_STATE STATE) {
-		this.StaTe = STATE;
+		this.state = STATE;
 	}
 
 	
@@ -39,7 +39,7 @@ public class BorrowBookUI {
 		
 		while (true) {
 			
-			switch (StaTe) {			
+			switch (state) {
 			
 			case CANCELLED:
 				output("Borrowing Cancelled");
@@ -103,7 +103,7 @@ public class BorrowBookUI {
 				
 			default:
 				output("Unhandled state");
-				throw new RuntimeException("BorrowBookUI : unhandled state :" + StaTe);			
+				throw new RuntimeException("BorrowBookUI : unhandled state :" + state);
 			}
 		}		
 	}
