@@ -84,12 +84,12 @@ public class BorrowBookControl {
 		if (LIBRARY.Loans_Remaining_For_Member(MEMBERS) - PENDING.size() == 0)
 		{
 			UI.Display("Loan limit reached");
-			Complete();
+			isComplete();
 		}
 	}
 	
 	
-	public void Complete()
+	public void isComplete()
 	{
 		if (PENDING.size() == 0)
 		{
