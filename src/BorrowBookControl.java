@@ -39,7 +39,7 @@ public class BorrowBookControl {
 			MEMBERS = LIBRARY.member(memberId);
 		if (MEMBERS == null)
 		{
-			UI.Display("Invalid memberId");
+			UI.display("Invalid memberId");
 			return;
 		}
 		if (LIBRARY.memberCanBorrow(MEMBERS))
@@ -50,7 +50,7 @@ public class BorrowBookControl {
 			}
 		else 
 		{
-			UI.Display("Member cannot borrow at this time");
+			UI.display("Member cannot borrow at this time");
 			UI.setState(BorrowBookUI.UI_STATE.RESTRICTED);
 		}
 	}
@@ -66,22 +66,22 @@ public class BorrowBookControl {
 		BOOK = LIBRARY.book(bookId);
 		if (BOOK == null)
 		{
-			UI.Display("Invalid bookId");
+			UI.display("Invalid bookId");
 			return;
 		}
 		if (!BOOK.AVAILABLE())
 		{
-			UI.Display("Book cannot be borrowed");
+			UI.display("Book cannot be borrowed");
 			return;
 		}
 		PENDING.add(BOOK);
 		for (book B : PENDING)
 		{
-			UI.Display(B.toString());
+			UI.display(B.toString());
 		}
 		if (LIBRARY.loansRemainingForMember(MEMBERS) - PENDING.size() == 0)
 		{
-			UI.Display("Loan limit reached");
+			UI.display("Loan limit reached");
 			isComplete();
 		}
 	}
@@ -94,10 +94,10 @@ public class BorrowBookControl {
 			cancel();
 		}
 		else {
-			UI.Display("\nFinal Borrowing List");
+			UI.display("\nFinal Borrowing List");
 			for (book B : PENDING)
 			{
-				UI.Display(B.toString());
+				UI.display(B.toString());
 			}
 			COMPLETED = new ArrayList<loan>();
 			UI.setState(BorrowBookUI.UI_STATE.FINALISING);
@@ -117,10 +117,10 @@ public class BorrowBookControl {
 			loan LOAN = LIBRARY.ISSUE_LAON(B, MEMBERS);
 			COMPLETED.add(LOAN);			
 		}
-		UI.Display("Completed Loan Slip");
+		UI.display("Completed Loan Slip");
 		for (loan LOAN : COMPLETED)
 		{
-			UI.Display(LOAN.toString());
+			UI.display(LOAN.toString());
 		}
 		UI.setState(BorrowBookUI.UI_STATE.COMPLETED);
 		STATE = ControlState.COMPLETED;
