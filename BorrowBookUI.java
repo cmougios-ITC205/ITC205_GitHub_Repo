@@ -81,7 +81,7 @@ public class BorrowBookUI {
 				String scanBook = input("Scan Book (<enter> completes): ");
 				if (scanBook.length() == 0) {
 
-					control.complete();
+					this.control.complete();
 					break;
 				}
 				try {
@@ -97,7 +97,7 @@ public class BorrowBookUI {
 			case FINALISING:
 				String ans = input("Commit loans? (Y/N): ");
 				if (ans.toUpperCase().equals("N")) {
-					control.cancel();
+					this.control.cancel();
 					
 				} else {
 					control.commitLoans();
