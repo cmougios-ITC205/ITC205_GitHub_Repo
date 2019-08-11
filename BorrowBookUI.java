@@ -13,14 +13,15 @@ public class BorrowBookUI {
 	public BorrowBookUI(BorrowBookControl control) {
 		this.control = control;
 		input = new Scanner(System.in);
-		state = UIState.INITIALISED;
+		this.state = UIState.INITIALISED;
 		this.control.setUI(this);
 		/*control.setUI(this);*/
 	}
 
 	
 	private String input(String prompt) {
-		System.out.print(prompt);
+		/*System.out.print(prompt);*/
+        System.out.print(this);
 		return input.nextLine();
 	}	
 		
