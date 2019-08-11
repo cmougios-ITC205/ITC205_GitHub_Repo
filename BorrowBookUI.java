@@ -28,100 +28,103 @@ public class BorrowBookUI {
 
 	private void output(Object object) {
 
-    	System.out.println(object);
+   	System.out.println(object);
+
 	}
 	
-			
+
 	public void setState(UIState STATE) {
 
-		this.state = STATE;
+	this.state = STATE;
 
 	}
 
 	
 	public void run() {
 
-		output("Borrow Book Use Case UI\n");
+	this.output("Borrow Book Use Case UI\n");
 		
-		while (true) {
+	while (true) {
 			
-			switch (state) {
+	switch (this.state) {
 			
-			case CANCELLED:
-				output("Borrowing Cancelled");
-				return;
+	case CANCELLED:
+	this.output("Borrowing Cancelled");
+	return;
 
 				
-			case READY:
-				String memberCard = input("Swipe member card (press <enter> to cancel): ");
-				if (memberCard.length() == 0) {
+	case READY:
+	String memberCard = this.input("Swipe member card (press <enter> to cancel): ");
+	if (memberCard.length() == 0) {
 
-					this.control.cancel();
-					break;
-				}
-				try {
+	this.control.cancel();
+	break;
 
-					int memberId = Integer.valueOf(memberCard).intValue();
-					this.control.swiped(memberId);
-				}
-				catch (NumberFormatException e) {
+	}
+	try {
 
-					output("Invalid Member Id");
-				}
-				break;
+	int memberId = Integer.valueOf(memberCard).intValue();
+	this.control.swiped(memberId);
+	}
+	catch (NumberFormatException e) {
+
+	this.output("Invalid Member Id");
+	}
+	break;
 
 				
-			case RESTRICTED:
-				input("Press <any key> to cancel");
-				this.control.cancel();
-				break;
+	case RESTRICTED:
+	this.input("Press <any key> to cancel");
+	this.control.cancel();
+	break;
 			
 				
-			case SCANNING:
-				String scanBook = input("Scan Book (<enter> completes): ");
-				if (scanBook.length() == 0) {
+	case SCANNING:
+	String scanBook = this.input("Scan Book (<enter> completes): ");
+    if (scanBook.length() == 0) {
 
-					this.control.complete();
-					break;
-				}
-				try {
-					int bookId = Integer.valueOf(scanBook).intValue();
-					this.control.scanned(bookId);
+	this.control.complete();
+	break;
+	}
+	try {
+	int bookId = Integer.valueOf(scanBook).intValue();
+	this.control.scanned(bookId);
 					
-				} catch (NumberFormatException e) {
-					output("Invalid Book Id");
-				} 
-				break;
+	} catch (NumberFormatException e) {
+	this.output("Invalid Book Id");
+	}
+	break;
 					
 				
-			case FINALISING:
-				String askQuestion = input("Commit loans? (Y/N): ");
-				if (askQuestion.toUpperCase().equals("N")) {
-					this.control.cancel();
+	case FINALISING:
+	String askQuestion = this.input("Commit loans? (Y/N): ");
+	if (askQuestion.toUpperCase().equals("N")) {
+	this.control.cancel();
 					
-				} else {
-					this.control.commitLoans();
-					input("Press <any key> to complete ");
-				}
-				break;
+	} else {
+	this.control.commitLoans();
+	this.input("Press <any key> to complete ");
+	}
+	break;
 				
 				
-			case COMPLETED:
-				output("Borrowing Completed");
-				return;
+	case COMPLETED:
+	this.output("Borrowing Completed");
+	return;
 	
-				
-			default:
-				output("Unhandled state");
-				throw new RuntimeException("BorrowBookUI : unhandled state :" + this.state);
-			}
-		}		
+
+	default:
+	this.output("Unhandled state");
+	throw new RuntimeException("BorrowBookUI : unhandled state :" + this.state);
+	}
+	}
 	}
 
 
 	public void display(Object object) {
 
-    	output(object);
+    this.output(object);
+
 	}
 
 
