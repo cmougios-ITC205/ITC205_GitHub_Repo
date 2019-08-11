@@ -42,13 +42,13 @@ public class BorrowBookControl {
 
     throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
 
-     }
+    }
 
     this.member = library.MEMBER(memberId);
 
     if (this.member == null) {
 
-	bookUI.display("Invalid memberId");
+	this.bookUI.display("Invalid memberId");
 	return;
 
 	}
