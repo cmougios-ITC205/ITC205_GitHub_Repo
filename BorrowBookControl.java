@@ -56,14 +56,14 @@ public class BorrowBookControl {
     if (library.MEMBER_CAN_BORROW(member)) {
 
 	pending = new ArrayList<>();
-	bookUI.setState(BorrowBookUI.UIState.SCANNING);
-	state = ControlState.SCANNING;
+	this.bookUI.setState(BorrowBookUI.UIState.SCANNING);
+	this.state = ControlState.SCANNING;
 
     }
 	else {
 
-	bookUI.display("Member cannot borrow at this time");
-	bookUI.setState(BorrowBookUI.UIState.RESTRICTED);
+	this.bookUI.display("Member cannot borrow at this time");
+	this.bookUI.setState(BorrowBookUI.UIState.RESTRICTED);
 
 	}
 	}
@@ -71,15 +71,15 @@ public class BorrowBookControl {
 
 	public void scanned(int bookId) {
 
-   this.book = null;
-	if (!state.equals(ControlState.SCANNING)) {
+    this.book = null;
+    if (!state.equals(ControlState.SCANNING)) {
 
 	throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
 
 	}
 
-	book = library.Book(bookId);
-	if (book == null) {
+	this.book = library.Book(bookId);
+	if (this.book == null) {
 
 	bookUI.display("Invalid bookId");
 	return;
