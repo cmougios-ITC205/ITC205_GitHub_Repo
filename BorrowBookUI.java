@@ -85,8 +85,8 @@ public class BorrowBookUI {
 					break;
 				}
 				try {
-					int bookID = Integer.valueOf(scanBook).intValue();
-					control.scanned(bookID);
+					int bookId = Integer.valueOf(scanBook).intValue();
+					control.scanned(bookId);
 					
 				} catch (NumberFormatException e) {
 					output("Invalid Book Id");
