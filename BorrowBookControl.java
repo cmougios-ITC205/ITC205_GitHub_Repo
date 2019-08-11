@@ -94,12 +94,12 @@ public class BorrowBookControl {
 	pending.add(book);
 	for (book addBook : pending) {
 
-	bookUI.display(addBook.toString());
+	this.bookUI.display(addBook.toString());
 
 	}
 	if (library.Loans_Remaining_For_Member(member) - pending.size() == 0) {
 
-	bookUI.display("Loan limit reached");
+	this.bookUI.display("Loan limit reached");
 	complete();
 
 	}
@@ -115,14 +115,16 @@ public class BorrowBookControl {
 	}
 	else {
 
-	bookUI.display("\nFinal Borrowing List");
+	this.bookUI.display("\nFinal Borrowing List");
 
 	for (book displayBook : pending) {
-	bookUI.display(displayBook.toString());
+
+	this.bookUI.display(displayBook.toString());
+
 	}
-	completed = new ArrayList<loan>();
-	bookUI.setState(BorrowBookUI.UIState.FINALISING);
-	state = ControlState.FINALISING;
+	this.completed = new ArrayList<loan>();
+	this.bookUI.setState(BorrowBookUI.UIState.FINALISING);
+	this.state = ControlState.FINALISING;
 	}
 	}
 
@@ -145,20 +147,20 @@ public class BorrowBookControl {
 	bookUI.display("Completed Loan Slip");
     for (loan LOAN : completed) {
 
-	bookUI.display(LOAN.toString());
+	this.bookUI.display(LOAN.toString());
 
 	}
 
-	bookUI.setState(BorrowBookUI.UIState.COMPLETED);
-	state = ControlState.COMPLETED;
+	this.bookUI.setState(BorrowBookUI.UIState.COMPLETED);
+	this.state = ControlState.COMPLETED;
 
 	}
 
 
 	public void cancel() {
 
-	bookUI.setState(BorrowBookUI.UIState.CANCELLED);
-	state = ControlState.CANCELLED;
+	this.bookUI.setState(BorrowBookUI.UIState.CANCELLED);
+	this.state = ControlState.CANCELLED;
 
 	}
 
