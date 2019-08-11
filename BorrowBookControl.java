@@ -86,7 +86,7 @@ public class BorrowBookControl {
     return;
 
     }
-    if (!book.AVAILABLE()) {
+    if (!this.book.AVAILABLE()) {
 
     this.bookUI.display("Book cannot be borrowed");
     return;
