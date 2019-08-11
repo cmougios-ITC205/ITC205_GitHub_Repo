@@ -73,7 +73,7 @@ public class BorrowBookUI {
 				
 			case RESTRICTED:
 				input("Press <any key> to cancel");
-				control.cancel();
+				this.control.cancel();
 				break;
 			
 				
