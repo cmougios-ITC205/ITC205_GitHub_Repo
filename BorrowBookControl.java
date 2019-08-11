@@ -110,7 +110,7 @@ public class BorrowBookControl {
 
     if (pending.size() == 0) {
 
-	cancel();
+	this.cancel();
 
 	}
 	else {
