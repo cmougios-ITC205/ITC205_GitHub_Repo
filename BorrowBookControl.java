@@ -75,8 +75,7 @@ public class BorrowBookControl {
 
 
 	public void complete() {
-		if (pending.size() == 0)
-		{
+		if (pending.size() == 0) {
 			cancel();
 		}
 		else {
