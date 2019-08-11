@@ -100,7 +100,7 @@ public class BorrowBookControl {
 	if (library.Loans_Remaining_For_Member(member) - pending.size() == 0) {
 
 	this.bookUI.display("Loan limit reached");
-	complete();
+	this.complete();
 
 	}
 	}
@@ -140,11 +140,11 @@ public class BorrowBookControl {
     for (book loanBook : pending) {
 
 	loan LOAN = library.ISSUE_LAON(loanBook, member);
-	completed.add(LOAN);
+	this.completed.add(LOAN);
 
 	}
 
-	bookUI.display("Completed Loan Slip");
+	this.bookUI.display("Completed Loan Slip");
     for (loan LOAN : completed) {
 
 	this.bookUI.display(LOAN.toString());
