@@ -98,7 +98,7 @@ public class BorrowBookControl {
     this.bookUI.display(addBook.toString());
 
     }
-    if (library.Loans_Remaining_For_Member(member) - pending.size() == 0) {
+    if (library.Loans_Remaining_For_Member(this.member) - pending.size() == 0) {
 
     this.bookUI.display("Loan limit reached");
     this.complete();
