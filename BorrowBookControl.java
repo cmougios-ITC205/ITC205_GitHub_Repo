@@ -25,7 +25,7 @@ public class BorrowBookControl {
 
 		this.bookUI = bookUI;
 		bookUI.setState(BorrowBookUI.UIState.READY);
-		state = ControlState.READY;
+		this.state = ControlState.READY;
 	}
 
 
