@@ -33,7 +33,9 @@ public class BorrowBookUI {
 	
 			
 	public void setState(UIState STATE) {
+
 		this.state = STATE;
+
 	}
 
 	
@@ -54,7 +56,7 @@ public class BorrowBookUI {
 				String memberCard = input("Swipe member card (press <enter> to cancel): ");
 				if (memberCard.length() == 0) {
 
-					control.cancel();
+					this.control.cancel();
 					break;
 				}
 				try {
