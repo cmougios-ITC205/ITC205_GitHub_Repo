@@ -81,13 +81,13 @@ public class BorrowBookControl {
 	this.book = library.Book(bookId);
 	if (this.book == null) {
 
-	bookUI.display("Invalid bookId");
+	this.bookUI.display("Invalid bookId");
 	return;
 
 	}
 	if (!book.AVAILABLE()) {
 
-	bookUI.display("Book cannot be borrowed");
+	this.bookUI.display("Book cannot be borrowed");
 	return;
 
 	}
