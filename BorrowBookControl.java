@@ -38,7 +38,7 @@ public class BorrowBookControl {
 
     public void swiped(int memberId) {
 
-    if (!state.equals(ControlState.READY)) {
+    if (!this.state.equals(ControlState.READY)) {
 
     throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
 
