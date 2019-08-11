@@ -139,7 +139,7 @@ public class BorrowBookControl {
 
     for (book loanBook : pending) {
 
-	loan LOAN = library.ISSUE_LAON(loanBook, member);
+	loan LOAN = this.library.ISSUE_LAON(loanBook, member);
 	this.completed.add(LOAN);
 
 	}
