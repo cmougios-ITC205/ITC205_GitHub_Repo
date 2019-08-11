@@ -131,7 +131,7 @@ public class BorrowBookControl {
 
 	public void commitLoans() {
 
-    if (!state.equals(ControlState.FINALISING)) {
+    if (!this.state.equals(ControlState.FINALISING)) {
 
     throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 
