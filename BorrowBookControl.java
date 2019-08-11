@@ -145,7 +145,7 @@ public class BorrowBookControl {
 	}
 
 	this.bookUI.display("Completed Loan Slip");
-    for (loan LOAN : completed) {
+    for (loan LOAN : this.completed) {
 
 	this.bookUI.display(LOAN.toString());
 
