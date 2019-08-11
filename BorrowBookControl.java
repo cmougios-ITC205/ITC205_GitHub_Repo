@@ -13,19 +13,19 @@ public class BorrowBookControl {
     private book book;
 
 
-	public BorrowBookControl() {
+    public BorrowBookControl() {
 
     this.library = library.INSTANCE();
     this.state = ControlState.INITIALISED;
 
-	}
+    }
 
 
-	public void setUI(BorrowBookUI bookUI) {
+    public void setUI(BorrowBookUI bookUI) {
 
     if (!state.equals(ControlState.INITIALISED)) {
 
-	throw new RuntimeException("BorrowBookControl: cannot call setUI except in INITIALISED state");
+    throw new RuntimeException("BorrowBookControl: cannot call setUI except in INITIALISED state");
 
     }
 
@@ -33,10 +33,10 @@ public class BorrowBookControl {
     this.bookUI.setState(BorrowBookUI.UIState.READY);
     this.state = ControlState.READY;
 
-	}
+    }
 
 
-	public void swiped(int memberId) {
+    public void swiped(int memberId) {
 
     if (!state.equals(ControlState.READY)) {
 
@@ -48,89 +48,89 @@ public class BorrowBookControl {
 
     if (this.member == null) {
 
-	this.bookUI.display("Invalid memberId");
-	return;
+    this.bookUI.display("Invalid memberId");
+    return;
 
-	}
+    }
 
     if (library.MEMBER_CAN_BORROW(member)) {
 
-	pending = new ArrayList<>();
-	this.bookUI.setState(BorrowBookUI.UIState.SCANNING);
-	this.state = ControlState.SCANNING;
+    pending = new ArrayList<>();
+    this.bookUI.setState(BorrowBookUI.UIState.SCANNING);
+    this.state = ControlState.SCANNING;
 
     }
-	else {
+    else {
 
-	this.bookUI.display("Member cannot borrow at this time");
-	this.bookUI.setState(BorrowBookUI.UIState.RESTRICTED);
+    this.bookUI.display("Member cannot borrow at this time");
+    this.bookUI.setState(BorrowBookUI.UIState.RESTRICTED);
 
-	}
-	}
+    }
+    }
 
 
-	public void scanned(int bookId) {
+    public void scanned(int bookId) {
 
     this.book = null;
     if (!state.equals(ControlState.SCANNING)) {
 
-	throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
+    throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
 
-	}
+    }
 
-	this.book = library.Book(bookId);
-	if (this.book == null) {
+    this.book = library.Book(bookId);
+    if (this.book == null) {
 
-	this.bookUI.display("Invalid bookId");
+    this.bookUI.display("Invalid bookId");
 
-	return;
+    return;
 
-	}
-	if (!book.AVAILABLE()) {
+    }
+    if (!book.AVAILABLE()) {
 
-	this.bookUI.display("Book cannot be borrowed");
-	return;
+    this.bookUI.display("Book cannot be borrowed");
+    return;
 
-	}
-	pending.add(book);
-	for (book addBook : pending) {
+    }
+    pending.add(book);
+    for (book addBook : pending) {
 
-	this.bookUI.display(addBook.toString());
+    this.bookUI.display(addBook.toString());
 
-	}
-	if (library.Loans_Remaining_For_Member(member) - pending.size() == 0) {
+    }
+    if (library.Loans_Remaining_For_Member(member) - pending.size() == 0) {
 
-	this.bookUI.display("Loan limit reached");
-	this.complete();
+    this.bookUI.display("Loan limit reached");
+    this.complete();
 
-	}
-	}
+    }
+    }
 
 
-	public void complete() {
+    public void complete() {
 
     if (pending.size() == 0) {
 
-	this.cancel();
+    this.cancel();
 
-	}
-	else {
+    }
+    else {
 
-	this.bookUI.display("\nFinal Borrowing List");
+    this.bookUI.display("\nFinal Borrowing List");
 
-	for (book displayBook : pending) {
+    for (book displayBook : pending) {
 
-	this.bookUI.display(displayBook.toString());
+    this.bookUI.display(displayBook.toString());
 
-	}
-	this.completed = new ArrayList<loan>();
-	this.bookUI.setState(BorrowBookUI.UIState.FINALISING);
-	this.state = ControlState.FINALISING;
-	}
-	}
+    }
+    this.completed = new ArrayList<loan>();
+    this.bookUI.setState(BorrowBookUI.UIState.FINALISING);
+    this.state = ControlState.FINALISING;
+    }
+    }
 
 
-	public void commitLoans() {
+    public void commitLoans() {
 
     if (!this.state.equals(ControlState.FINALISING)) {
 
@@ -140,30 +140,30 @@ public class BorrowBookControl {
 
     for (book loanBook : pending) {
 
-	loan LOAN = this.library.ISSUE_LAON(loanBook, member);
-	this.completed.add(LOAN);
+    loan LOAN = this.library.ISSUE_LAON(loanBook, member);
+    this.completed.add(LOAN);
 
-	}
+    }
 
-	this.bookUI.display("Completed Loan Slip");
+    this.bookUI.display("Completed Loan Slip");
     for (loan LOAN : this.completed) {
 
-	this.bookUI.display(LOAN.toString());
+    this.bookUI.display(LOAN.toString());
 
-	}
+    }
 
-	this.bookUI.setState(BorrowBookUI.UIState.COMPLETED);
-	this.state = ControlState.COMPLETED;
+    this.bookUI.setState(BorrowBookUI.UIState.COMPLETED);
+    this.state = ControlState.COMPLETED;
 
-	}
+    }
 
 
-	public void cancel() {
+    public void cancel() {
 
-	this.bookUI.setState(BorrowBookUI.UIState.CANCELLED);
-	this.state = ControlState.CANCELLED;
+    this.bookUI.setState(BorrowBookUI.UIState.CANCELLED);
+    this.state = ControlState.CANCELLED;
 
-	}
+    }
 
 
 }
