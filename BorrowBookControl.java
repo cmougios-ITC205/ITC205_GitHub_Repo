@@ -24,7 +24,7 @@ public class BorrowBookControl {
 			throw new RuntimeException("BorrowBookControl: cannot call setUI except in INITIALISED state");
 
 		this.ui = ui;
-		ui.setState(BorrowBookUI.UI_STATE.READY);
+		ui.setState(BorrowBookUI.UIState.READY);
 		state = ControlState.READY;
 	}
 
@@ -40,11 +40,11 @@ public class BorrowBookControl {
 		}
 		if (library.MEMBER_CAN_BORROW(member)) {
 			pending = new ArrayList<>();
-			ui.setState(BorrowBookUI.UI_STATE.SCANNING);
+			ui.setState(BorrowBookUI.UIState.SCANNING);
 			state = ControlState.SCANNING; }
 		else {
 			ui.display("Member cannot borrow at this time");
-			ui.setState(BorrowBookUI.UI_STATE.RESTRICTED);
+			ui.setState(BorrowBookUI.UIState.RESTRICTED);
 		}
 	}
 
@@ -85,7 +85,7 @@ public class BorrowBookControl {
 				ui.display(displayBook.toString());
 			}
 			completed = new ArrayList<loan>();
-			ui.setState(BorrowBookUI.UI_STATE.FINALISING);
+			ui.setState(BorrowBookUI.UIState.FINALISING);
 			state = ControlState.FINALISING;
 			 }
 	}
@@ -103,13 +103,13 @@ public class BorrowBookControl {
 		for (loan LOAN : completed) {
 			ui.display(LOAN.toString());
 		}
-		ui.setState(BorrowBookUI.UI_STATE.COMPLETED);
+		ui.setState(BorrowBookUI.UIState.COMPLETED);
 		state = ControlState.COMPLETED;
 	}
 
 
 	public void cancel() {
-		ui.setState(BorrowBookUI.UI_STATE.CANCELLED);
+		ui.setState(BorrowBookUI.UIState.CANCELLED);
 		state = ControlState.CANCELLED;
 	}
 
