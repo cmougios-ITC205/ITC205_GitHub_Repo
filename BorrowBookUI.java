@@ -62,7 +62,7 @@ public class BorrowBookUI {
 				try {
 
 					int memberId = Integer.valueOf(memberCard).intValue();
-					control.swiped(memberId);
+					this.control.swiped(memberId);
 				}
 				catch (NumberFormatException e) {
 
