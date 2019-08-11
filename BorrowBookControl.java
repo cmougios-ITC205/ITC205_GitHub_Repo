@@ -53,7 +53,7 @@ public class BorrowBookControl {
 
     }
 
-    if (library.MEMBER_CAN_BORROW(member)) {
+    if (library.MEMBER_CAN_BORROW(this.member)) {
 
     pending = new ArrayList<>();
     this.bookUI.setState(BorrowBookUI.UIState.SCANNING);
