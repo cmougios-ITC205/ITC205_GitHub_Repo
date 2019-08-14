@@ -12,8 +12,9 @@ public class PayFineUI {
 	
 	public PayFineUI(PayFineControl control) {
 		this.payFineControl = control;
-		input = new Scanner(System.in);
-		currentState = UIState.INITIALISED;
+		this.input = new Scanner(System.in);
+		this.currentState = UIState.INITIALISED;
+
 		control.setUI(this);
 	}
 	
