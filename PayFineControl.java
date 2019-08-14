@@ -47,19 +47,24 @@ public class PayFineControl {
 	}
 
 	public double payFine(double amount) {
-		if (!currentState.equals(ControlState.PAYING)) {
+		if (!this.currentState.equals(ControlState.PAYING)) {
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
-		}	
-		double ChAnGe = controlMember.Pay_Fine(amount);
-		if (ChAnGe > 0) {
-			controlInstance.DiSplAY(String.format("Change: $%.2f", ChAnGe));
 		}
-		controlInstance.DiSplAY(controlMember.toString());
-		controlInstance.Set_State(PayFineUI.UI_STATE.COMPLETED);
-		currentState = ControlState.COMPLETED;
-		return ChAnGe;
+
+		double change = this.controlMember.Pay_Fine(amount);
+
+		if (change > 0) {
+		    String changeFormatted = String.format("Change: $%.2f", change);
+			this.controlInstance.DiSplAY(changeFormatted);
+		}
+
+		String controlMemberStr = controlMember.toString();
+
+		this.controlInstance.DiSplAY(controlMemberStr);
+		this.controlInstance.Set_State(PayFineUI.UI_STATE.COMPLETED);
+		this.currentState = ControlState.COMPLETED;
+
+		return change;
 	}
 	
-
-
 }
