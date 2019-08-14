@@ -6,12 +6,12 @@ public class PayFineUI {
 	public enum UIState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 
 	private PayFineControl payFineControl;
-	private Scanner input;
+	private Scanner systemInInput;
 	private UIState currentState;
 	
 	public PayFineUI(PayFineControl control) {
 		this.payFineControl = control;
-		this.input = new Scanner(System.in);
+		this.systemInInput = new Scanner(System.in);
 		this.currentState = UIState.INITIALISED;
 
 		control.setUI(this);
@@ -86,7 +86,7 @@ public class PayFineUI {
 	
 	private String input(String prompt) {
 		System.out.print(prompt);
-		return input.nextLine();
+		return systemInInput.nextLine();
 	}	
 		
 		
