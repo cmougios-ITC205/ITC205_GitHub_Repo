@@ -6,7 +6,7 @@ public class Book implements Serializable {
 	
 	private String title;
 	private String author;
-	private String CALLNO;
+	private String callNumber;
 	private int ID;
 	
 	private enum STATE { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
@@ -16,7 +16,7 @@ public class Book implements Serializable {
 	public Book(String author, String title, String callNo, int id) {
 		this.author = author;
 		this.title = title;
-		this.CALLNO = callNo;
+		this.callNumber = callNo;
 		this.ID = id;
 		this.State = STATE.AVAILABLE;
 	}
@@ -26,7 +26,7 @@ public class Book implements Serializable {
 		sb.append("Book: ").append(ID).append("\n")
 		  .append("  Title:  ").append(title).append("\n")
 		  .append("  Author: ").append(author).append("\n")
-		  .append("  CallNo: ").append(CALLNO).append("\n")
+		  .append("  CallNo: ").append(callNumber).append("\n")
 		  .append("  State:  ").append(State);
 		
 		return sb.toString();
