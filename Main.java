@@ -18,7 +18,7 @@ public class Main {
 		  .append("  M  : add member\n")
 		  .append("  LM : list members\n")
 		  .append("\n")
-		  .append("  B  : add book\n")
+		  .append("  B  : add Book\n")
 		  .append("  LB : list books\n")
 		  .append("  FB : fix books\n")
 		  .append("\n")
@@ -48,7 +48,7 @@ public class Main {
 				output(m);
 			}
 			output(" ");
-			for (book b : LIB.BOOKS()) {
+			for (Book b : LIB.BOOKS()) {
 				output(b);
 			}
 						
@@ -137,7 +137,7 @@ public class Main {
 
 	private static void BOOKS() {
 		output("");
-		for (book book : LIB.BOOKS()) {
+		for (Book book : LIB.BOOKS()) {
 			output(book + "\n");
 		}		
 	}
@@ -186,7 +186,7 @@ public class Main {
 		String A = input("Enter author: ");
 		String T  = input("Enter title: ");
 		String C = input("Enter call number: ");
-		book B = LIB.Add_book(A, T, C);
+		Book B = LIB.Add_book(A, T, C);
 		output("\n" + B + "\n");
 		
 	}

@@ -42,7 +42,7 @@ public class ReturnBookUI {
 				break;
 				
 			case INSPECTING:
-				String answer = this.askQuestion("Is book damaged? (Y/N): ");
+				String answer = this.askQuestion("Is Book damaged? (Y/N): ");
 
 				boolean isDamaged = false;
 				if (answer.toUpperCase().equals("Y")) {

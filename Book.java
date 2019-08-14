@@ -2,7 +2,7 @@ import java.io.Serializable;
 
 
 @SuppressWarnings("serial")
-public class book implements Serializable {
+public class Book implements Serializable {
 	
 	private String TITLE;
 	private String AUTHOR;
@@ -13,7 +13,7 @@ public class book implements Serializable {
 	private STATE State;
 	
 	
-	public book(String author, String title, String callNo, int id) {
+	public Book(String author, String title, String callNo, int id) {
 		this.AUTHOR = author;
 		this.TITLE = title;
 		this.CALLNO = callNo;
@@ -62,7 +62,7 @@ public class book implements Serializable {
 			State = STATE.ON_LOAN;
 		}
 		else {
-			throw new RuntimeException(String.format("Book: cannot borrow while book is in state: %s", State));
+			throw new RuntimeException(String.format("Book: cannot borrow while Book is in state: %s", State));
 		}
 		
 	}
@@ -78,7 +78,7 @@ public class book implements Serializable {
 			}
 		}
 		else {
-			throw new RuntimeException(String.format("Book: cannot Return while book is in state: %s", State));
+			throw new RuntimeException(String.format("Book: cannot Return while Book is in state: %s", State));
 		}		
 	}
 
@@ -88,7 +88,7 @@ public class book implements Serializable {
 			State = STATE.AVAILABLE;
 		}
 		else {
-			throw new RuntimeException(String.format("Book: cannot repair while book is in state: %s", State));
+			throw new RuntimeException(String.format("Book: cannot repair while Book is in state: %s", State));
 		}
 	}
 
