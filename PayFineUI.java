@@ -8,7 +8,6 @@ public class PayFineUI {
 	private PayFineControl payFineControl;
 	private Scanner input;
 	private UIState currentState;
-
 	
 	public PayFineUI(PayFineControl control) {
 		this.payFineControl = control;
@@ -17,12 +16,10 @@ public class PayFineUI {
 
 		control.setUI(this);
 	}
-	
-	
-	public void Set_State(UIState state) {
-		this.currentState = state;
-	}
 
+	public void setState(UIState state) {
+	    this.currentState = state;
+	}
 
 	public void RuN() {
 		output("Pay Fine Use Case UI\n");

@@ -18,7 +18,7 @@ public class PayFineControl {
 		}
 
 		this.controlInstance = payFineUI;
-        payFineUI.Set_State(PayFineUI.UIState.READY);
+        payFineUI.setState(PayFineUI.UIState.READY);
 		this.currentState = ControlState.READY;
 	}
 
@@ -37,12 +37,12 @@ public class PayFineControl {
 		String controlMemberStr = controlMember.toString();
 
 		this.controlInstance.DiSplAY(controlMemberStr);
-		this.controlInstance.Set_State(PayFineUI.UIState.PAYING);
+		this.controlInstance.setState(PayFineUI.UIState.PAYING);
 		this.currentState = ControlState.PAYING;
 	}
 	
 	public void cancel() {
-		this.controlInstance.Set_State(PayFineUI.UIState.CANCELLED);
+		this.controlInstance.setState(PayFineUI.UIState.CANCELLED);
 		this.currentState = ControlState.CANCELLED;
 	}
 
@@ -61,7 +61,7 @@ public class PayFineControl {
 		String controlMemberStr = controlMember.toString();
 
 		this.controlInstance.DiSplAY(controlMemberStr);
-		this.controlInstance.Set_State(PayFineUI.UIState.COMPLETED);
+		this.controlInstance.setState(PayFineUI.UIState.COMPLETED);
 		this.currentState = ControlState.COMPLETED;
 
 		return change;
