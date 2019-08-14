@@ -7,19 +7,19 @@ public class PayFineUI {
 
 	private PayFineControl payFineControl;
 	private Scanner input;
-	private UIState StAtE;
+	private UIState currentState;
 
 	
 	public PayFineUI(PayFineControl control) {
 		this.payFineControl = control;
 		input = new Scanner(System.in);
-		StAtE = UIState.INITIALISED;
+		currentState = UIState.INITIALISED;
 		control.setUI(this);
 	}
 	
 	
 	public void Set_State(UIState state) {
-		this.StAtE = state;
+		this.currentState = state;
 	}
 
 
@@ -28,7 +28,7 @@ public class PayFineUI {
 		
 		while (true) {
 			
-			switch (StAtE) {
+			switch (currentState) {
 			
 			case READY:
 				String Mem_Str = input("Swipe member card (press <enter> to cancel): ");
@@ -73,7 +73,7 @@ public class PayFineUI {
 			
 			default:
 				output("Unhandled state");
-				throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);			
+				throw new RuntimeException("FixBookUI : unhandled state :" + currentState);
 			
 			}		
 		}		
