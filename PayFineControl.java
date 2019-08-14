@@ -9,8 +9,8 @@ public class PayFineControl {
 
 
 	public PayFineControl() {
-		this.controlLibrary = controlLibrary.INSTANCE();
-		currentState = ControlState.INITIALISED;
+		this.controlLibrary = this.controlLibrary.INSTANCE();
+		this.currentState = ControlState.INITIALISED;
 	}
 	
 	
