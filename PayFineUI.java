@@ -3,30 +3,30 @@ import java.util.Scanner;
 
 public class PayFineUI {
 
-	public enum UIState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
+    public enum UIState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 
-	private PayFineControl payFineControl;
-	private Scanner systemInInput;
-	private UIState currentState;
-	
-	public PayFineUI(PayFineControl control) {
-		this.payFineControl = control;
-		this.systemInInput = new Scanner(System.in);
-		this.currentState = UIState.INITIALISED;
+    private PayFineControl payFineControl;
+    private Scanner systemInInput;
+    private UIState currentState;
 
-		control.setUI(this);
-	}
+    public PayFineUI(PayFineControl control) {
+        this.payFineControl = control;
+        this.systemInInput = new Scanner(System.in);
+        this.currentState = UIState.INITIALISED;
 
-	public void setState(UIState state) {
-	    this.currentState = state;
-	}
+        control.setUI(this);
+    }
 
-	public void run() {
-		this.output("Pay Fine Use Case UI\n");
-		
-		while (true) {
-			
-			switch (this.currentState) {
+    public void setState(UIState state) {
+        this.currentState = state;
+    }
+
+    public void run() {
+        this.output("Pay Fine Use Case UI\n");
+
+        while (true) {
+
+            switch (this.currentState) {
 
                 case READY:
                     String memberCardValue = this.input("Swipe member card (press <enter> to cancel): ");
@@ -44,7 +44,7 @@ public class PayFineUI {
                     }
 
                     break;
-				
+
                 case PAYING:
                     double amount = 0;
                     String amountStr = this.input("Enter amount (<Enter> cancels) : ");
@@ -68,33 +68,33 @@ public class PayFineUI {
                     this.payFineControl.payFine(amount);
 
                     break;
-                                    
+
                 case CANCELLED:
                     this.output("Pay Fine process cancelled");
                     return;
-                
+
                 case COMPLETED:
                     this.output("Pay Fine process complete");
                     return;
-                
+
                 default:
                     this.output("Unhandled state");
                     throw new RuntimeException("FixBookUI : unhandled state :" + this.currentState);
-			}		
-		}
-	}
-	
-	private String input(String prompt) {
-		System.out.print(prompt);
-		return this.systemInInput.nextLine();
-	}
-		
-	private void output(Object object) {
-	    System.out.println(object);
-	}	
+            }
+        }
+    }
 
-	public void display(Object object) {
-	    this.output(object);
-	}
+    private String input(String prompt) {
+        System.out.print(prompt);
+        return this.systemInInput.nextLine();
+    }
+
+    private void output(Object object) {
+        System.out.println(object);
+    }
+
+    public void display(Object object) {
+        this.output(object);
+    }
 
 }
