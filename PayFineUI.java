@@ -34,7 +34,7 @@ public class PayFineUI {
 			case READY:
 				String Mem_Str = input("Swipe member card (press <enter> to cancel): ");
 				if (Mem_Str.length() == 0) {
-					CoNtRoL.CaNcEl();
+					CoNtRoL.cancel();
 					break;
 				}
 				try {
@@ -50,7 +50,7 @@ public class PayFineUI {
 				double AmouNT = 0;
 				String Amt_Str = input("Enter amount (<Enter> cancels) : ");
 				if (Amt_Str.length() == 0) {
-					CoNtRoL.CaNcEl();
+					CoNtRoL.cancel();
 					break;
 				}
 				try {
