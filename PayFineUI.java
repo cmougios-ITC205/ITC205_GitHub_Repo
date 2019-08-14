@@ -5,13 +5,13 @@ public class PayFineUI {
 
 	public enum UIState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 
-	private PayFineControl CoNtRoL;
+	private PayFineControl payFineControl;
 	private Scanner input;
 	private UIState StAtE;
 
 	
 	public PayFineUI(PayFineControl control) {
-		this.CoNtRoL = control;
+		this.payFineControl = control;
 		input = new Scanner(System.in);
 		StAtE = UIState.INITIALISED;
 		control.setUI(this);
@@ -33,12 +33,12 @@ public class PayFineUI {
 			case READY:
 				String Mem_Str = input("Swipe member card (press <enter> to cancel): ");
 				if (Mem_Str.length() == 0) {
-					CoNtRoL.cancel();
+					payFineControl.cancel();
 					break;
 				}
 				try {
 					int Member_ID = Integer.valueOf(Mem_Str).intValue();
-					CoNtRoL.cardSwiped(Member_ID);
+					payFineControl.cardSwiped(Member_ID);
 				}
 				catch (NumberFormatException e) {
 					output("Invalid memberId");
@@ -49,7 +49,7 @@ public class PayFineUI {
 				double AmouNT = 0;
 				String Amt_Str = input("Enter amount (<Enter> cancels) : ");
 				if (Amt_Str.length() == 0) {
-					CoNtRoL.cancel();
+					payFineControl.cancel();
 					break;
 				}
 				try {
@@ -60,7 +60,7 @@ public class PayFineUI {
 					output("Amount must be positive");
 					break;
 				}
-				CoNtRoL.payFine(AmouNT);
+				payFineControl.payFine(AmouNT);
 				break;
 								
 			case CANCELLED:
