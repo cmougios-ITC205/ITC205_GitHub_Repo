@@ -86,7 +86,7 @@ public class PayFineUI {
 	
 	private String input(String prompt) {
 		System.out.print(prompt);
-		return systemInInput.nextLine();
+		return this.systemInInput.nextLine();
 	}	
 		
 		
