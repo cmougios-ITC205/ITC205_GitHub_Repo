@@ -22,7 +22,7 @@ public class PayFineControl {
 		this.currentState = ControlState.READY;
 	}
 
-	public void Card_Swiped(int memberId) {
+	public void cardSwiped(int memberId) {
 		if (!currentState.equals(ControlState.READY)) {
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
 		}	
