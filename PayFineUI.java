@@ -87,17 +87,14 @@ public class PayFineUI {
 	private String input(String prompt) {
 		System.out.print(prompt);
 		return this.systemInInput.nextLine();
-	}	
-		
+	}
 		
 	private void output(Object object) {
 	    System.out.println(object);
 	}	
-			
 
-	public void DiSplAY(Object object) {
-		output(object);
+	public void display(Object object) {
+	    this.output(object);
 	}
-
 
 }

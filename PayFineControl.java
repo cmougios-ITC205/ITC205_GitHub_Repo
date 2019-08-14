@@ -30,13 +30,13 @@ public class PayFineControl {
 		this.controlMember = this.controlLibrary.MEMBER(memberId);
 		
 		if (this.controlMember == null) {
-			this.controlInstance.DiSplAY("Invalid Member Id");
+			this.controlInstance.display("Invalid Member Id");
 			return;
 		}
 
 		String controlMemberStr = controlMember.toString();
 
-		this.controlInstance.DiSplAY(controlMemberStr);
+		this.controlInstance.display(controlMemberStr);
 		this.controlInstance.setState(PayFineUI.UIState.PAYING);
 		this.currentState = ControlState.PAYING;
 	}
@@ -55,12 +55,12 @@ public class PayFineControl {
 
 		if (change > 0) {
 		    String changeFormatted = String.format("Change: $%.2f", change);
-			this.controlInstance.DiSplAY(changeFormatted);
+			this.controlInstance.display(changeFormatted);
 		}
 
 		String controlMemberStr = controlMember.toString();
 
-		this.controlInstance.DiSplAY(controlMemberStr);
+		this.controlInstance.display(controlMemberStr);
 		this.controlInstance.setState(PayFineUI.UIState.COMPLETED);
 		this.currentState = ControlState.COMPLETED;
 
