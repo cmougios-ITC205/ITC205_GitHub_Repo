@@ -5,7 +5,7 @@ public class PayFineControl {
 	private ControlState currentState;
 	
 	private library controlLibrary;
-	private member MeMbEr;
+	private member controlMember;
 
 
 	public PayFineControl() {
@@ -28,13 +28,13 @@ public class PayFineControl {
 		if (!currentState.equals(ControlState.READY)) {
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
 		}	
-		MeMbEr = controlLibrary.MEMBER(memberId);
+		controlMember = controlLibrary.MEMBER(memberId);
 		
-		if (MeMbEr == null) {
+		if (controlMember == null) {
 			controlInstance.DiSplAY("Invalid Member Id");
 			return;
 		}
-		controlInstance.DiSplAY(MeMbEr.toString());
+		controlInstance.DiSplAY(controlMember.toString());
 		controlInstance.Set_State(PayFineUI.UI_STATE.PAYING);
 		currentState = ControlState.PAYING;
 	}
@@ -50,11 +50,11 @@ public class PayFineControl {
 		if (!currentState.equals(ControlState.PAYING)) {
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 		}	
-		double ChAnGe = MeMbEr.Pay_Fine(AmOuNt);
+		double ChAnGe = controlMember.Pay_Fine(AmOuNt);
 		if (ChAnGe > 0) {
 			controlInstance.DiSplAY(String.format("Change: $%.2f", ChAnGe));
 		}
-		controlInstance.DiSplAY(MeMbEr.toString());
+		controlInstance.DiSplAY(controlMember.toString());
 		controlInstance.Set_State(PayFineUI.UI_STATE.COMPLETED);
 		currentState = ControlState.COMPLETED;
 		return ChAnGe;
