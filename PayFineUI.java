@@ -22,61 +22,67 @@ public class PayFineUI {
 	}
 
 	public void run() {
-		output("Pay Fine Use Case UI\n");
+		this.output("Pay Fine Use Case UI\n");
 		
 		while (true) {
 			
-			switch (currentState) {
-			
-			case READY:
-				String Mem_Str = input("Swipe member card (press <enter> to cancel): ");
-				if (Mem_Str.length() == 0) {
-					payFineControl.cancel();
-					break;
-				}
-				try {
-					int Member_ID = Integer.valueOf(Mem_Str).intValue();
-					payFineControl.cardSwiped(Member_ID);
-				}
-				catch (NumberFormatException e) {
-					output("Invalid memberId");
-				}
-				break;
-				
-			case PAYING:
-				double AmouNT = 0;
-				String Amt_Str = input("Enter amount (<Enter> cancels) : ");
-				if (Amt_Str.length() == 0) {
-					payFineControl.cancel();
-					break;
-				}
-				try {
-					AmouNT = Double.valueOf(Amt_Str).doubleValue();
-				}
-				catch (NumberFormatException e) {}
-				if (AmouNT <= 0) {
-					output("Amount must be positive");
-					break;
-				}
-				payFineControl.payFine(AmouNT);
-				break;
-								
-			case CANCELLED:
-				output("Pay Fine process cancelled");
-				return;
-			
-			case COMPLETED:
-				output("Pay Fine process complete");
-				return;
-			
-			default:
-				output("Unhandled state");
-				throw new RuntimeException("FixBookUI : unhandled state :" + currentState);
-			
-			}		
-		}		
-	}
+			switch (this.currentState) {
 
+                case READY:
+                    String memberCardValue = input("Swipe member card (press <enter> to cancel): ");
+
+                    if (memberCardValue.length() == 0) {
+                        this.payFineControl.cancel();
+                        break;
+                    }
+
+                    try {
+                        int memberId = Integer.valueOf(memberCardValue);
+                        this.payFineControl.cardSwiped(memberId);
+                    } catch (NumberFormatException e) {
+                        this.output("Invalid memberId");
+                    }
+
+                    break;
+				
+                case PAYING:
+                    double amount = 0;
+                    String amountStr = this.input("Enter amount (<Enter> cancels) : ");
+
+                    if (amountStr.length() == 0) {
+                        this.payFineControl.cancel();
+                        break;
+                    }
+
+                    try {
+                        amount = Double.valueOf(amountStr);
+                    } catch (NumberFormatException e) {
+
+                    }
+
+                    if (amount <= 0) {
+                        this.output("Amount must be positive");
+                        break;
+                    }
+
+                    this.payFineControl.payFine(amount);
+
+                    break;
+                                    
+                case CANCELLED:
+                    this.output("Pay Fine process cancelled");
+                    return;
+                
+                case COMPLETED:
+                    this.output("Pay Fine process complete");
+                    return;
+                
+                default:
+                    this.output("Unhandled state");
+                    throw new RuntimeException("FixBookUI : unhandled state :" + this.currentState);
+			}		
+		}
+	}
 	
 	private String input(String prompt) {
 		System.out.print(prompt);
