@@ -21,7 +21,7 @@ public class PayFineUI {
 	    this.currentState = state;
 	}
 
-	public void RuN() {
+	public void run() {
 		output("Pay Fine Use Case UI\n");
 		
 		while (true) {
