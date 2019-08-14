@@ -9,8 +9,8 @@ public class Book implements Serializable {
 	private String callNumber;
 	private int bookID;
 	
-	private enum STATE { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
-	private STATE State;
+	private enum StateOfBook { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
+	private StateOfBook State;
 	
 	
 	public Book(String author, String title, String callNo, int id) {
@@ -18,7 +18,7 @@ public class Book implements Serializable {
 		this.title = title;
 		this.callNumber = callNo;
 		this.bookID = id;
-		this.State = STATE.AVAILABLE;
+		this.State = StateOfBook.AVAILABLE;
 	}
 	
 	public String toString() {
@@ -43,23 +43,23 @@ public class Book implements Serializable {
 
 	
 	public boolean AVAILABLE() {
-		return State == STATE.AVAILABLE;
+		return State == StateOfBook.AVAILABLE;
 	}
 
 	
 	public boolean On_loan() {
-		return State == STATE.ON_LOAN;
+		return State == StateOfBook.ON_LOAN;
 	}
 
 	
 	public boolean IS_Damaged() {
-		return State == STATE.DAMAGED;
+		return State == StateOfBook.DAMAGED;
 	}
 
 	
 	public void Borrow() {
-		if (State.equals(STATE.AVAILABLE)) {
-			State = STATE.ON_LOAN;
+		if (State.equals(StateOfBook.AVAILABLE)) {
+			State = StateOfBook.ON_LOAN;
 		}
 		else {
 			throw new RuntimeException(String.format("Book: cannot borrow while Book is in state: %s", State));
@@ -69,12 +69,12 @@ public class Book implements Serializable {
 
 
 	public void Return(boolean DAMAGED) {
-		if (State.equals(STATE.ON_LOAN)) {
+		if (State.equals(StateOfBook.ON_LOAN)) {
 			if (DAMAGED) {
-				State = STATE.DAMAGED;
+				State = StateOfBook.DAMAGED;
 			}
 			else {
-				State = STATE.AVAILABLE;
+				State = StateOfBook.AVAILABLE;
 			}
 		}
 		else {
@@ -84,8 +84,8 @@ public class Book implements Serializable {
 
 	
 	public void Repair() {
-		if (State.equals(STATE.DAMAGED)) {
-			State = STATE.AVAILABLE;
+		if (State.equals(StateOfBook.DAMAGED)) {
+			State = StateOfBook.AVAILABLE;
 		}
 		else {
 			throw new RuntimeException(String.format("Book: cannot repair while Book is in state: %s", State));
