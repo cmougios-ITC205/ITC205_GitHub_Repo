@@ -2,7 +2,7 @@ public class PayFineControl {
 	
 	private PayFineUI controlInstance;
 	private enum ControlState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
-	private ControlState StAtE;
+	private ControlState currentState;
 	
 	private library LiBrArY;
 	private member MeMbEr;
@@ -10,22 +10,22 @@ public class PayFineControl {
 
 	public PayFineControl() {
 		this.LiBrArY = LiBrArY.INSTANCE();
-		StAtE = ControlState.INITIALISED;
+		currentState = ControlState.INITIALISED;
 	}
 	
 	
 	public void Set_UI(PayFineUI ui) {
-		if (!StAtE.equals(ControlState.INITIALISED)) {
+		if (!currentState.equals(ControlState.INITIALISED)) {
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
 		}	
 		this.controlInstance = ui;
 		ui.Set_State(PayFineUI.UI_STATE.READY);
-		StAtE = ControlState.READY;
+		currentState = ControlState.READY;
 	}
 
 
 	public void Card_Swiped(int memberId) {
-		if (!StAtE.equals(ControlState.READY)) {
+		if (!currentState.equals(ControlState.READY)) {
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
 		}	
 		MeMbEr = LiBrArY.MEMBER(memberId);
@@ -36,18 +36,18 @@ public class PayFineControl {
 		}
 		controlInstance.DiSplAY(MeMbEr.toString());
 		controlInstance.Set_State(PayFineUI.UI_STATE.PAYING);
-		StAtE = ControlState.PAYING;
+		currentState = ControlState.PAYING;
 	}
 	
 	
 	public void CaNcEl() {
 		controlInstance.Set_State(PayFineUI.UI_STATE.CANCELLED);
-		StAtE = ControlState.CANCELLED;
+		currentState = ControlState.CANCELLED;
 	}
 
 
 	public double PaY_FiNe(double AmOuNt) {
-		if (!StAtE.equals(ControlState.PAYING)) {
+		if (!currentState.equals(ControlState.PAYING)) {
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 		}	
 		double ChAnGe = MeMbEr.Pay_Fine(AmOuNt);
@@ -56,7 +56,7 @@ public class PayFineControl {
 		}
 		controlInstance.DiSplAY(MeMbEr.toString());
 		controlInstance.Set_State(PayFineUI.UI_STATE.COMPLETED);
-		StAtE = ControlState.COMPLETED;
+		currentState = ControlState.COMPLETED;
 		return ChAnGe;
 	}
 	
