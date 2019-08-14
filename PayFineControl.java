@@ -23,20 +23,23 @@ public class PayFineControl {
 	}
 
 	public void cardSwiped(int memberId) {
-		if (!currentState.equals(ControlState.READY)) {
+		if (!this.currentState.equals(ControlState.READY)) {
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
-		}	
-		controlMember = controlLibrary.MEMBER(memberId);
+		}
+
+		this.controlMember = this.controlLibrary.MEMBER(memberId);
 		
-		if (controlMember == null) {
-			controlInstance.DiSplAY("Invalid Member Id");
+		if (this.controlMember == null) {
+			this.controlInstance.DiSplAY("Invalid Member Id");
 			return;
 		}
-		controlInstance.DiSplAY(controlMember.toString());
-		controlInstance.Set_State(PayFineUI.UI_STATE.PAYING);
-		currentState = ControlState.PAYING;
+
+		String controlMemberStr = controlMember.toString();
+
+		this.controlInstance.DiSplAY(controlMemberStr);
+		this.controlInstance.Set_State(PayFineUI.UI_STATE.PAYING);
+		this.currentState = ControlState.PAYING;
 	}
-	
 	
 	public void CaNcEl() {
 		controlInstance.Set_State(PayFineUI.UI_STATE.CANCELLED);
