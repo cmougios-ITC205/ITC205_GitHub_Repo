@@ -29,7 +29,7 @@ public class PayFineUI {
 			switch (this.currentState) {
 
                 case READY:
-                    String memberCardValue = input("Swipe member card (press <enter> to cancel): ");
+                    String memberCardValue = this.input("Swipe member card (press <enter> to cancel): ");
 
                     if (memberCardValue.length() == 0) {
                         this.payFineControl.cancel();
