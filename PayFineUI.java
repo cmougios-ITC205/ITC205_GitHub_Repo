@@ -15,7 +15,7 @@ public class PayFineUI {
 		this.CoNtRoL = control;
 		input = new Scanner(System.in);
 		StAtE = UI_STATE.INITIALISED;
-		control.Set_UI(this);
+		control.setUI(this);
 	}
 	
 	

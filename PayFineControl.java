@@ -7,22 +7,20 @@ public class PayFineControl {
 	private library controlLibrary;
 	private member controlMember;
 
-
 	public PayFineControl() {
 		this.controlLibrary = this.controlLibrary.INSTANCE();
 		this.currentState = ControlState.INITIALISED;
 	}
 	
-	
-	public void Set_UI(PayFineUI ui) {
-		if (!currentState.equals(ControlState.INITIALISED)) {
+	public void setUI(PayFineUI payFineUI) {
+		if (!this.currentState.equals(ControlState.INITIALISED)) {
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
-		}	
-		this.controlInstance = ui;
-		ui.Set_State(PayFineUI.UI_STATE.READY);
-		currentState = ControlState.READY;
-	}
+		}
 
+		this.controlInstance = payFineUI;
+        payFineUI.Set_State(PayFineUI.UI_STATE.READY);
+		this.currentState = ControlState.READY;
+	}
 
 	public void Card_Swiped(int memberId) {
 		if (!currentState.equals(ControlState.READY)) {
