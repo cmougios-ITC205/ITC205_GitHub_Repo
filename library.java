@@ -70,7 +70,7 @@ public class library implements Serializable {
 	
 	public static synchronized void SAVE() {
 		if (SeLf != null) {
-			SeLf.LOAN_DATE = Calendar.getInstance().Date();
+			SeLf.LOAN_DATE = Calendar.getInstance().getDate();
 			try (ObjectOutputStream LoF = new ObjectOutputStream(new FileOutputStream(libraryFile));) {
 				LoF.writeObject(SeLf);
 				LoF.flush();
