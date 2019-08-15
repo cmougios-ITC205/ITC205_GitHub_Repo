@@ -31,11 +31,11 @@ public class BorrowBookControl {
 	}
 
 		
-	public void swiped(int MEMMER_ID) {
+	public void swiped(int memberId) {
 		if (!this.state.equals(ControlState.READY))
 			throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
 			
-		this.member = library.MEMBER(MEMMER_ID);
+		this.member = library.MEMBER(memberId);
 		if (this.member == null) {
 			this.UI.display("Invalid memberId");
 			return;
