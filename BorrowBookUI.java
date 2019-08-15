@@ -25,11 +25,13 @@ public class BorrowBookUI {
 		
 		
 	private void output(Object object) {
+
 		System.out.println(object);
 	}
 	
 			
 	public void setState(UiState state) {
+
 		this.state = state;
 	}
 
@@ -110,7 +112,8 @@ public class BorrowBookUI {
 
 
 	public void display(Object object) {
-		output(object);		
+
+		output(object);
 	}
 
 
