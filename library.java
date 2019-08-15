@@ -213,7 +213,7 @@ public class library implements Serializable {
 		member.Add_Fine(overDueFine);	
 		
 		member.dIsChArGeLoAn(currentLoan);
-		book.Return(isDamaged);
+		book.returnBook(isDamaged);
 		if (isDamaged) {
 			member.Add_Fine(damageFee);
 			DAMAGED_BOOKS.put(book.getBookId(), book);
