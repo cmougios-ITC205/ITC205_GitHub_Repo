@@ -36,7 +36,7 @@ public class Book implements Serializable {
 		return bookId;
 	}
 
-	public String TITLE() {
+	public String getTitle() {
 		return title;
 	}
 
