@@ -180,7 +180,7 @@ public class library implements Serializable {
 		Date dueDate = Calendar.INSTANCE().Due_Date(loanPeriod);
 		loan loan = new loan(NextLID(), book, member, dueDate);
 		member.Take_Out_Loan(loan);
-		book.Borrow();
+		book.borrowBook();
 		LOANS.put(loan.ID(), loan);
 		CURRENT_LOANS.put(book.getBookId(), loan);
 		return loan;
