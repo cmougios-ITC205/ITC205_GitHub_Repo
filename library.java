@@ -232,7 +232,7 @@ public class library implements Serializable {
 
 	public void Repair_BOOK(Book currentBook) {
 		if (DAMAGED_BOOKS.containsKey(currentBook.getBookId())) {
-			currentBook.Repair();
+			currentBook.repairBook();
 			DAMAGED_BOOKS.remove(currentBook.getBookId());
 		}
 		else {
