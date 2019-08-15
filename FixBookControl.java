@@ -34,7 +34,7 @@ public class FixBookControl {
             this.UI.display("Invalid bookId");
             return;
         }
-        if (!currentBook.IS_Damaged()) {
+        if (!currentBook.isDamaged()) {
             this.UI.display("Book has not been damaged");
             return;
         }
