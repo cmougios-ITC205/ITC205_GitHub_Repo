@@ -19,16 +19,16 @@ public class Calendar {
     }
 
     public void incrementDate(int days) {
-        javaCalendar.add(java.util.Calendar.DATE, days);
+        this.javaCalendar.add(java.util.Calendar.DATE, days);
     }
 
     public synchronized void setDate(Date date) {
         try {
-            javaCalendar.setTime(date);
-            javaCalendar.set(java.util.Calendar.HOUR_OF_DAY, 0);
-            javaCalendar.set(java.util.Calendar.MINUTE, 0);
-            javaCalendar.set(java.util.Calendar.SECOND, 0);
-            javaCalendar.set(java.util.Calendar.MILLISECOND, 0);
+            this.javaCalendar.setTime(date);
+            this.javaCalendar.set(java.util.Calendar.HOUR_OF_DAY, 0);
+            this.javaCalendar.set(java.util.Calendar.MINUTE, 0);
+            this.javaCalendar.set(java.util.Calendar.SECOND, 0);
+            this.javaCalendar.set(java.util.Calendar.MILLISECOND, 0);
         }
         catch (Exception e) {
             throw new RuntimeException(e);
@@ -36,11 +36,11 @@ public class Calendar {
     }
     public synchronized Date getDate() {
         try {
-            javaCalendar.set(java.util.Calendar.HOUR_OF_DAY, 0);
-            javaCalendar.set(java.util.Calendar.MINUTE, 0);
-            javaCalendar.set(java.util.Calendar.SECOND, 0);
-            javaCalendar.set(java.util.Calendar.MILLISECOND, 0);
-            return javaCalendar.getTime();
+            this.javaCalendar.set(java.util.Calendar.HOUR_OF_DAY, 0);
+            this.javaCalendar.set(java.util.Calendar.MINUTE, 0);
+            this.javaCalendar.set(java.util.Calendar.SECOND, 0);
+            this.javaCalendar.set(java.util.Calendar.MILLISECOND, 0);
+            return this.javaCalendar.getTime();
         }
         catch (Exception e) {
             throw new RuntimeException(e);
@@ -49,9 +49,9 @@ public class Calendar {
 
     public synchronized Date getDueDate(int loanPeriod) {
         Date currentDate = getDate();
-        javaCalendar.add(java.util.Calendar.DATE, loanPeriod);
-        Date dueDate = javaCalendar.getTime();
-        javaCalendar.setTime(currentDate);
+        this.javaCalendar.add(java.util.Calendar.DATE, loanPeriod);
+        Date dueDate = this.javaCalendar.getTime();
+        this.javaCalendar.setTime(currentDate);
         return dueDate;
     }
 
