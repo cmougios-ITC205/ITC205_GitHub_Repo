@@ -81,8 +81,8 @@ public class BorrowBookControl {
 		}
 		else {
 			this.UI.display("\nFinal Borrowing List");
-			for (book B : this.pending) {
-				this.UI.display(B.toString());
+			for (book displayBook : this.pending) {
+				this.UI.display(displayBook.toString());
 			}
 			this.completed = new ArrayList<loan>();
 			this.UI.setState(BorrowBookUI.UI_STATE.FINALISING);
@@ -95,8 +95,8 @@ public class BorrowBookControl {
 		if (!this.state.equals(ControlState.FINALISING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 		}	
-		for (book B : this.pending) {
-			loan LOAN = this.library.ISSUE_LAON(B, this.member);
+		for (book displayBook : this.pending) {
+			loan LOAN = this.library.ISSUE_LAON(dis, this.member);
 			completed.add(LOAN);
 		}
 		this.UI.display("Completed Loan Slip");
