@@ -197,7 +197,7 @@ public class library implements Serializable {
 	
 	public double CalculateOverDueFine(loan loan) {
 		if (loan.OVer_Due()) {
-			long daysOverDue = Calendar.getInstance().Get_Days_Difference(loan.Get_Due_Date());
+			long daysOverDue = Calendar.getInstance().getDaysDifference(loan.Get_Due_Date());
 			double fine = daysOverDue * finePerDay;
 			return fine;
 		}
