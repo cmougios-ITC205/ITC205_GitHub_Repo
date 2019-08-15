@@ -29,7 +29,7 @@ public class BorrowBookUI {
 	}
 	
 			
-	public void Set_State(UI_STATE STATE) {
+	public void setState(UI_STATE STATE) {
 		this.StaTe = STATE;
 	}
 
@@ -54,7 +54,7 @@ public class BorrowBookUI {
 				}
 				try {
 					int Member_ID = Integer.valueOf(MEM_STR).intValue();
-					CONTROL.Swiped(Member_ID);
+					CONTROL.swiped(Member_ID);
 				}
 				catch (NumberFormatException e) {
 					output("Invalid Member Id");
@@ -71,12 +71,12 @@ public class BorrowBookUI {
 			case SCANNING:
 				String Book_Str = input("Scan Book (<enter> completes): ");
 				if (Book_Str.length() == 0) {
-					CONTROL.Complete();
+					CONTROL.complete();
 					break;
 				}
 				try {
 					int BiD = Integer.valueOf(Book_Str).intValue();
-					CONTROL.Scanned(BiD);
+					CONTROL.scanned(BiD);
 					
 				} catch (NumberFormatException e) {
 					output("Invalid Book Id");
@@ -90,7 +90,7 @@ public class BorrowBookUI {
 					CONTROL.cancel();
 					
 				} else {
-					CONTROL.Commit_LOans();
+					CONTROL.commitLoans();
 					input("Press <any key> to complete ");
 				}
 				break;
@@ -109,7 +109,7 @@ public class BorrowBookUI {
 	}
 
 
-	public void Display(Object object) {
+	public void display(Object object) {
 		output(object);		
 	}
 
