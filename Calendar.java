@@ -57,8 +57,8 @@ public class Calendar {
 
     public synchronized long getDaysDifference(Date targetDate) {
 
-        long Diff_Millis = getDate().getTime() - targetDate.getTime();
-        long Diff_Days = TimeUnit.DAYS.convert(Diff_Millis, TimeUnit.MILLISECONDS);
+        long differenceMilliseconds = getDate().getTime() - targetDate.getTime();
+        long Diff_Days = TimeUnit.DAYS.convert(differenceMilliseconds, TimeUnit.MILLISECONDS);
         return Diff_Days;
     }
 
