@@ -53,7 +53,7 @@ public class loan implements Serializable {
 		sb.append("Loan:  ").append(ID).append("\n")
 		  .append("  Borrower ").append(M.GeT_ID()).append(" : ")
 		  .append(M.Get_LastName()).append(", ").append(M.Get_FirstName()).append("\n")
-		  .append("  Book ").append(B.getBookID()).append(" : " )
+		  .append("  Book ").append(B.getBookId()).append(" : " )
 		  .append(B.TITLE()).append("\n")
 		  .append("  DueDate: ").append(sdf.format(D)).append("\n")
 		  .append("  State: ").append(state);		

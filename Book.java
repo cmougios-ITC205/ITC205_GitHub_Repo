@@ -32,7 +32,7 @@ public class Book implements Serializable {
 		return bookStringBuilder.toString();
 	}
 
-	public Integer getBookID() {
+	public Integer getBookId() {
 		return bookId;
 	}
 

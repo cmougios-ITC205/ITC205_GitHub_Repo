@@ -132,7 +132,7 @@ public class library implements Serializable {
 	
 	public Book Add_book(String a, String t, String c) {
 		Book b = new Book(a, t, c, NextBID());
-		CATALOG.put(b.getBookID(), b);
+		CATALOG.put(b.getBookId(), b);
 		return b;
 	}
 
@@ -182,7 +182,7 @@ public class library implements Serializable {
 		member.Take_Out_Loan(loan);
 		book.Borrow();
 		LOANS.put(loan.ID(), loan);
-		CURRENT_LOANS.put(book.getBookID(), loan);
+		CURRENT_LOANS.put(book.getBookId(), loan);
 		return loan;
 	}
 	
@@ -216,10 +216,10 @@ public class library implements Serializable {
 		book.Return(isDamaged);
 		if (isDamaged) {
 			member.Add_Fine(damageFee);
-			DAMAGED_BOOKS.put(book.getBookID(), book);
+			DAMAGED_BOOKS.put(book.getBookId(), book);
 		}
 		currentLoan.DiScHaRgE();
-		CURRENT_LOANS.remove(book.getBookID());
+		CURRENT_LOANS.remove(book.getBookId());
 	}
 
 
@@ -231,9 +231,9 @@ public class library implements Serializable {
 
 
 	public void Repair_BOOK(Book currentBook) {
-		if (DAMAGED_BOOKS.containsKey(currentBook.getBookID())) {
+		if (DAMAGED_BOOKS.containsKey(currentBook.getBookId())) {
 			currentBook.Repair();
-			DAMAGED_BOOKS.remove(currentBook.getBookID());
+			DAMAGED_BOOKS.remove(currentBook.getBookId());
 		}
 		else {
 			throw new RuntimeException("Library: repairBook: Book is not damaged");
