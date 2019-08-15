@@ -48,10 +48,10 @@ public class Calendar {
     }
 
     public synchronized Date getDueDate(int loanPeriod) {
-        Date NoW = getDate();
+        Date currentDate = getDate();
         javaCalendar.add(java.util.Calendar.DATE, loanPeriod);
         Date DuEdAtE = javaCalendar.getTime();
-        javaCalendar.setTime(NoW);
+        javaCalendar.setTime(currentDate);
         return DuEdAtE;
     }
 
