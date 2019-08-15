@@ -60,7 +60,7 @@ public class BorrowBookControl {
 			UI.Display("Invalid bookId");
 			return;
 		}
-		if (!BOOK.AVAILABLE()) {
+		if (!BOOK.isAvailable()) {
 			UI.Display("Book cannot be borrowed");
 			return;
 		}
