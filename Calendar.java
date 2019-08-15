@@ -22,7 +22,7 @@ public class Calendar {
         javaCalendar.add(java.util.Calendar.DATE, days);
     }
 
-    public synchronized void Set_dATE(Date date) {
+    public synchronized void setDate(Date date) {
         try {
             javaCalendar.setTime(date);
             javaCalendar.set(java.util.Calendar.HOUR_OF_DAY, 0);
