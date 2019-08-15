@@ -21,12 +21,12 @@ public class BorrowBookControl {
 	}
 	
 
-	public void setUI(BorrowBookUI ui) {
+	public void setUI(BorrowBookUI UI) {
 		if (!this.state.equals(ControlState.INITIALISED))
 			throw new RuntimeException("BorrowBookControl: cannot call setUI except in INITIALISED state");
 			
-		this.UI = ui;
-		ui.Set_State(BorrowBookUI.UI_STATE.READY);
+		this.UI = UI;
+		UI.Set_State(BorrowBookUI.UI_STATE.READY);
 		this.state = ControlState.READY;
 	}
 
