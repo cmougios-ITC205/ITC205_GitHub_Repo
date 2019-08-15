@@ -65,12 +65,12 @@ public class BorrowBookControl {
 			return;
 		}
 		this.pending.add(this.book);
-		for (book B : this.pending) {
-			this.UI.display(B.toString());
+		for (book displayBook : this.pending) {
+			this.UI.display(displayBook.toString());
 		}
 		if (this.library.Loans_Remaining_For_Member(this.member) - this.pending.size() == 0) {
 			this.UI.display("Loan limit reached");
-			complete();
+			this.complete();
 		}
 	}
 	
@@ -96,8 +96,8 @@ public class BorrowBookControl {
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 		}	
 		for (book displayBook : this.pending) {
-			loan LOAN = this.library.ISSUE_LAON(dis, this.member);
-			completed.add(LOAN);
+			loan LOAN = this.library.ISSUE_LAON(displayBook, this.member);
+			this.completed.add(LOAN);
 		}
 		this.UI.display("Completed Loan Slip");
 		for (loan LOAN : this.completed) {
