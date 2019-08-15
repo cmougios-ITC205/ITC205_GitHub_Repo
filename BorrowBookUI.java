@@ -25,13 +25,11 @@ public class BorrowBookUI {
 		
 		
 	private void output(Object object) {
-
 		System.out.println(object);
 	}
 	
 			
 	public void setState(UiState state) {
-
 		this.state = state;
 	}
 
@@ -55,8 +53,8 @@ public class BorrowBookUI {
 					break;
 				}
 				try {
-					int Member_ID = Integer.valueOf(memberCard).intValue();
-					this.control.swiped(Member_ID);
+					int memberId = Integer.valueOf(memberCard).intValue();
+					this.control.swiped(memberId);
 				}
 				catch (NumberFormatException e) {
 					this.output("Invalid Member Id");
@@ -105,7 +103,7 @@ public class BorrowBookUI {
 				
 			default:
 				this.output("Unhandled state");
-				throw new RuntimeException("BorrowBookUI : unhandled state :" + state);
+				throw new RuntimeException("BorrowBookUI : unhandled state :" + this.state);
 			}
 		}		
 	}
