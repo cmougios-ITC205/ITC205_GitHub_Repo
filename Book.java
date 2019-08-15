@@ -62,7 +62,8 @@ public class Book implements Serializable {
             State = StateOfBook.ON_LOAN;
         }
         else {
-            throw new RuntimeException(String.format("Book: cannot borrow while Book is in state: %s", State));
+            String errorMessage = String.format("Book: cannot borrow while Book is in state: %s", State);
+            throw new RuntimeException(errorMessage);
         }
 
     }
