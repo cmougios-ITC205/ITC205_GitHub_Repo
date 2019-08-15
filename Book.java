@@ -90,7 +90,8 @@ public class Book implements Serializable {
             State = StateOfBook.AVAILABLE;
         }
         else {
-            throw new RuntimeException(String.format("Book: cannot repair while Book is in state: %s", State));
+            String errorMessage = String.format("Book: cannot repair while Book is in state: %s", State);
+            throw new RuntimeException(errorMessage);
         }
     }
 
