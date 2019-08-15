@@ -39,7 +39,7 @@ public class ReturnBookControl {
 			return;
 		}
 
-		if (!currentBook.On_loan()) {
+		if (!currentBook.isOnLoan()) {
 			this.returnBookUI.display("Book has not been borrowed");
 			return;
 		}
