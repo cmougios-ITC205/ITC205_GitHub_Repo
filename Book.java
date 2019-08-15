@@ -10,7 +10,7 @@ public class Book implements Serializable {
     private int bookId;
 
     private enum StateOfBook { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
-    private StateOfBook state;
+    private StateOfBook State;
 
 
     public Book(String author, String title, String callNumber, int bookId) {
@@ -18,7 +18,7 @@ public class Book implements Serializable {
         this.title = title;
         this.callNumber = callNumber;
         this.bookId = bookId;
-        this.state = StateOfBook.AVAILABLE;
+        this.State = StateOfBook.AVAILABLE;
     }
 
     public String toString() {
@@ -27,7 +27,7 @@ public class Book implements Serializable {
           .append("  Title:  ").append(title).append("\n")
           .append("  Author: ").append(author).append("\n")
           .append("  CallNo: ").append(callNumber).append("\n")
-          .append("  State:  ").append(state);
+          .append("  State:  ").append(State);
 
         return bookStringBuilder.toString();
     }
@@ -43,52 +43,52 @@ public class Book implements Serializable {
 
 
     public boolean isAvailable() {
-        return state == StateOfBook.AVAILABLE;
+        return State == StateOfBook.AVAILABLE;
     }
 
 
     public boolean isOnLoan() {
-        return state == StateOfBook.ON_LOAN;
+        return State == StateOfBook.ON_LOAN;
     }
 
 
     public boolean isDamaged() {
-        return state == StateOfBook.DAMAGED;
+        return State == StateOfBook.DAMAGED;
     }
 
 
     public void borrowBook() {
-        if (state.equals(StateOfBook.AVAILABLE)) {
-            state = StateOfBook.ON_LOAN;
+        if (State.equals(StateOfBook.AVAILABLE)) {
+            State = StateOfBook.ON_LOAN;
         }
         else {
-            throw new RuntimeException(String.format("Book: cannot borrow while Book is in state: %s", state));
+            throw new RuntimeException(String.format("Book: cannot borrow while Book is in state: %s", State));
         }
 
     }
 
 
     public void returnBook(boolean DAMAGED) {
-        if (state.equals(StateOfBook.ON_LOAN)) {
+        if (State.equals(StateOfBook.ON_LOAN)) {
             if (DAMAGED) {
-                state = StateOfBook.DAMAGED;
+                State = StateOfBook.DAMAGED;
             }
             else {
-                state = StateOfBook.AVAILABLE;
+                State = StateOfBook.AVAILABLE;
             }
         }
         else {
-            throw new RuntimeException(String.format("Book: cannot Return while Book is in state: %s", state));
+            throw new RuntimeException(String.format("Book: cannot Return while Book is in state: %s", State));
         }
     }
 
 
     public void repairBook() {
-        if (state.equals(StateOfBook.DAMAGED)) {
-            state = StateOfBook.AVAILABLE;
+        if (State.equals(StateOfBook.DAMAGED)) {
+            State = StateOfBook.AVAILABLE;
         }
         else {
-            throw new RuntimeException(String.format("Book: cannot repair while Book is in state: %s", state));
+            throw new RuntimeException(String.format("Book: cannot repair while Book is in state: %s", State));
         }
     }
 
