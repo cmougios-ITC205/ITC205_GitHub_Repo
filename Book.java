@@ -23,46 +23,46 @@ public class Book implements Serializable {
 
     public String toString() {
         StringBuilder bookStringBuilder = new StringBuilder();
-        bookStringBuilder.append("Book: ").append(bookId).append("\n")
-          .append("  Title:  ").append(title).append("\n")
-          .append("  Author: ").append(author).append("\n")
-          .append("  CallNo: ").append(callNumber).append("\n")
-          .append("  State:  ").append(State);
+        bookStringBuilder.append("Book: ").append(this.bookId).append("\n")
+          .append("  Title:  ").append(this.title).append("\n")
+          .append("  Author: ").append(this.author).append("\n")
+          .append("  CallNo: ").append(this.callNumber).append("\n")
+          .append("  State:  ").append(this.State);
 
         return bookStringBuilder.toString();
     }
 
     public Integer getBookId() {
-        return bookId;
+        return this.bookId;
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
 
 
     public boolean isAvailable() {
-        return State == StateOfBook.AVAILABLE;
+        return this.State == StateOfBook.AVAILABLE;
     }
 
 
     public boolean isOnLoan() {
-        return State == StateOfBook.ON_LOAN;
+        return this.State == StateOfBook.ON_LOAN;
     }
 
 
     public boolean isDamaged() {
-        return State == StateOfBook.DAMAGED;
+        return this.State == StateOfBook.DAMAGED;
     }
 
 
     public void borrowBook() {
-        if (State.equals(StateOfBook.AVAILABLE)) {
-            State = StateOfBook.ON_LOAN;
+        if (this.State.equals(StateOfBook.AVAILABLE)) {
+            this.State = StateOfBook.ON_LOAN;
         }
         else {
-            String errorMessage = String.format("Book: cannot borrow while Book is in state: %s", State);
+            String errorMessage = String.format("Book: cannot borrow while Book is in state: %s", this.State);
             throw new RuntimeException(errorMessage);
         }
 
@@ -70,27 +70,27 @@ public class Book implements Serializable {
 
 
     public void returnBook(boolean DAMAGED) {
-        if (State.equals(StateOfBook.ON_LOAN)) {
+        if (this.State.equals(StateOfBook.ON_LOAN)) {
             if (DAMAGED) {
-                State = StateOfBook.DAMAGED;
+                this.State = StateOfBook.DAMAGED;
             }
             else {
-                State = StateOfBook.AVAILABLE;
+                this.State = StateOfBook.AVAILABLE;
             }
         }
         else {
-            String errorMessage = String.format("Book: cannot Return while Book is in state: %s", State);
+            String errorMessage = String.format("Book: cannot Return while Book is in state: %s", this.State);
             throw new RuntimeException(errorMessage);
         }
     }
 
 
     public void repairBook() {
-        if (State.equals(StateOfBook.DAMAGED)) {
-            State = StateOfBook.AVAILABLE;
+        if (this.State.equals(StateOfBook.DAMAGED)) {
+            this.State = StateOfBook.AVAILABLE;
         }
         else {
-            String errorMessage = String.format("Book: cannot repair while Book is in state: %s", State);
+            String errorMessage = String.format("Book: cannot repair while Book is in state: %s", this.State);
             throw new RuntimeException(errorMessage);
         }
     }
