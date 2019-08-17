@@ -18,7 +18,7 @@ public class Main {
 		  .append("  M  : add member\n")
 		  .append("  LM : list members\n")
 		  .append("\n")
-		  .append("  B  : add book\n")
+		  .append("  B  : add Book\n")
 		  .append("  LB : list books\n")
 		  .append("  FB : fix books\n")
 		  .append("\n")
@@ -41,14 +41,14 @@ public class Main {
 		try {			
 			IN = new Scanner(System.in);
 			LIB = library.INSTANCE();
-			CAL = Calendar.INSTANCE();
+			CAL = Calendar.getInstance();
 			SDF = new SimpleDateFormat("dd/MM/yyyy");
 	
 			for (member m : LIB.MEMBERS()) {
 				output(m);
 			}
 			output(" ");
-			for (book b : LIB.BOOKS()) {
+			for (Book b : LIB.BOOKS()) {
 				output(b);
 			}
 						
@@ -58,7 +58,7 @@ public class Main {
 			
 			while (!e) {
 				
-				output("\n" + SDF.format(CAL.Date()));
+				output("\n" + SDF.format(CAL.getDate()));
 				String c = input(MENU);
 				
 				switch (c.toUpperCase()) {
@@ -137,7 +137,7 @@ public class Main {
 
 	private static void BOOKS() {
 		output("");
-		for (book book : LIB.BOOKS()) {
+		for (Book book : LIB.BOOKS()) {
 			output(book + "\n");
 		}		
 	}
@@ -173,7 +173,7 @@ public class Main {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
 			CAL.incrementDate(days);
 			LIB.checkCurrentLoans();
-			output(SDF.format(CAL.Date()));
+			output(SDF.format(CAL.getDate()));
 			
 		} catch (NumberFormatException e) {
 			 output("\nInvalid number of days\n");
@@ -186,7 +186,7 @@ public class Main {
 		String A = input("Enter author: ");
 		String T  = input("Enter title: ");
 		String C = input("Enter call number: ");
-		book B = LIB.Add_book(A, T, C);
+		Book B = LIB.Add_book(A, T, C);
 		output("\n" + B + "\n");
 		
 	}
