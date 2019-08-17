@@ -102,8 +102,8 @@ public class BorrowBookControl {
             this.booksLoaned.add(loan);
         }
         this.UI.display("Completed Loan Slip");
-        for (loan loan : this.booksLoaned) {
-            this.UI.display(loan.toString());
+        for (loan LOAN : this.booksLoaned) {
+            this.UI.display(LOAN.toString());
         }
         this.UI.setState(BorrowBookUI.UIState.COMPLETED);
         this.state = ControlState.COMPLETED;
