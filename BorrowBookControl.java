@@ -11,7 +11,7 @@ public class BorrowBookControl {
     private ControlState state;
 
     private List<book> booksPendingBorrow;
-    private List<loan> borrowBookCompleted;
+    private List<loan> booksLoaned;
     private book book;
 
 
@@ -86,7 +86,7 @@ public class BorrowBookControl {
             for (book borrowBookList : this.booksPendingBorrow) {
                 this.UI.display(borrowBookList.toString());
             }
-            this.borrowBookCompleted = new ArrayList<loan>();
+            this.booksLoaned = new ArrayList<loan>();
             this.UI.setState(BorrowBookUI.UIState.FINALISING);
             this.state = ControlState.FINALISING;
         }
@@ -99,10 +99,10 @@ public class BorrowBookControl {
         }
         for (book borrowBookList : this.booksPendingBorrow) {
             loan LOAN = this.library.ISSUE_LAON(borrowBookList, this.member);
-            this.borrowBookCompleted.add(LOAN);
+            this.booksLoaned.add(LOAN);
         }
         this.UI.display("Completed Loan Slip");
-        for (loan LOAN : this.borrowBookCompleted) {
+        for (loan LOAN : this.booksLoaned) {
             this.UI.display(LOAN.toString());
         }
         this.UI.setState(BorrowBookUI.UIState.COMPLETED);
