@@ -10,7 +10,7 @@ public class BorrowBookControl {
     private enum ControlState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
     private ControlState state;
 
-    private List<book> borrowBookStatus;
+    private List<book> booksPendingBorrow;
     private List<loan> borrowBookCompleted;
     private book book;
 
@@ -41,7 +41,7 @@ public class BorrowBookControl {
             return;
         }
         if (this.library.MEMBER_CAN_BORROW(this.member)) {
-            this.borrowBookStatus = new ArrayList<>();
+            this.booksPendingBorrow = new ArrayList<>();
             this.UI.setState(BorrowBookUI.UIState.SCANNING);
             this.state = ControlState.SCANNING;
         }
@@ -66,11 +66,11 @@ public class BorrowBookControl {
             this.UI.display("Book cannot be borrowed");
             return;
         }
-        this.borrowBookStatus.add(this.book);
-        for (book borrowBookList : this.borrowBookStatus) {
+        this.booksPendingBorrow.add(this.book);
+        for (book borrowBookList : this.booksPendingBorrow) {
             this.UI.display(borrowBookList.toString());
         }
-        if (this.library.Loans_Remaining_For_Member(this.member) - this.borrowBookStatus.size() == 0) {
+        if (this.library.Loans_Remaining_For_Member(this.member) - this.booksPendingBorrow.size() == 0) {
             this.UI.display("Loan limit reached");
             this.completeBorrow();
         }
@@ -78,12 +78,12 @@ public class BorrowBookControl {
 
 
     public void completeBorrow() {
-        if (this.borrowBookStatus.size() == 0) {
+        if (this.booksPendingBorrow.size() == 0) {
             this.cancel();
         }
         else {
             this.UI.display("\nFinal Borrowing List");
-            for (book borrowBookList : this.borrowBookStatus) {
+            for (book borrowBookList : this.booksPendingBorrow) {
                 this.UI.display(borrowBookList.toString());
             }
             this.borrowBookCompleted = new ArrayList<loan>();
@@ -97,7 +97,7 @@ public class BorrowBookControl {
         if (!this.state.equals(ControlState.FINALISING)) {
             throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
         }
-        for (book borrowBookList : this.borrowBookStatus) {
+        for (book borrowBookList : this.booksPendingBorrow) {
             loan LOAN = this.library.ISSUE_LAON(borrowBookList, this.member);
             this.borrowBookCompleted.add(LOAN);
         }
