@@ -72,12 +72,12 @@ public class BorrowBookControl {
         }
         if (this.library.Loans_Remaining_For_Member(this.member) - this.borrowBookStatus.size() == 0) {
             this.UI.display("Loan limit reached");
-            this.borrowBookComplete();
+            this.completeBorrow();
         }
     }
 
 
-    public void borrowBookComplete() {
+    public void completeBorrow() {
         if (this.borrowBookStatus.size() == 0) {
             this.cancel();
         }
