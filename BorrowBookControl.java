@@ -43,10 +43,12 @@ public class BorrowBookControl {
         if (this.library.MEMBER_CAN_BORROW(this.member)) {
             this.borrowBookStatus = new ArrayList<>();
             this.UI.setState(BorrowBookUI.UIState.SCANNING);
-            this.state = ControlState.SCANNING; }
+            this.state = ControlState.SCANNING;
+        }
         else {
             this.UI.display("Member cannot borrow at this time");
-            this.UI.setState(BorrowBookUI.UIState.RESTRICTED); }
+            this.UI.setState(BorrowBookUI.UIState.RESTRICTED);
+        }
     }
 
 
