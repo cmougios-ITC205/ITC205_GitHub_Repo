@@ -6,21 +6,21 @@ public class BorrowBookUI {
     public static enum UIState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
 
     private BorrowBookControl control;
-    private Scanner input;
+    private Scanner systemInInput;
     private UIState state;
 
 
     public BorrowBookUI(BorrowBookControl control) {
         this.control = control;
-        this.input = new Scanner(System.in);
+        this.systemInInput = new Scanner(System.in);
         this.state = UIState.INITIALISED;
         this.control.setUI(this);
     }
 
 
-    private String input(String prompt) {
+    private String askQuestion(String prompt) {
         System.out.print(prompt);
-        return this.input.nextLine();
+        return this.systemInInput.nextLine();
     }
 
 
@@ -47,14 +47,14 @@ public class BorrowBookUI {
 
 
             case READY:
-                String memberCard = input("Swipe member card (press <enter> to cancel): ");
+                String memberCard = askQuestion("Swipe member card (press <enter> to cancel): ");
                 if (memberCard.length() == 0) {
                     this.control.cancel();
                     break;
                 }
                 try {
                     int memberId = Integer.valueOf(memberCard).intValue();
-                    this.control.swiped(memberId);
+                    this.control.memberCardSwiped(memberId);
                 }
                 catch (NumberFormatException e) {
                     this.output("Invalid Member Id");
@@ -63,20 +63,20 @@ public class BorrowBookUI {
 
 
             case RESTRICTED:
-                this.input("Press <any key> to cancel");
+                this.askQuestion("Press <any key> to cancel");
                 this.control.cancel();
                 break;
 
 
             case SCANNING:
-                String scanBook = input("Scan Book (<enter> completes): ");
-                if (scanBook.length() == 0) {
-                    this.control.complete();
+                String scannedBook = askQuestion("Scan Book (<enter> completes): ");
+                if (scannedBook.length() == 0) {
+                    this.control.borrowBookComplete();
                     break;
                 }
                 try {
-                    int bookId = Integer.valueOf(scanBook).intValue();
-                    this.control.scanned(bookId);
+                    int bookId = Integer.valueOf(scannedBook).intValue();
+                    this.control.bookScanned(bookId);
 
                 } catch (NumberFormatException e) {
                     this.output("Invalid Book Id");
@@ -85,13 +85,13 @@ public class BorrowBookUI {
 
 
             case FINALISING:
-                String answerQuestion = input("Commit loans? (Y/N): ");
+                String answerQuestion = askQuestion("Commit loans? (Y/N): ");
                 if (answerQuestion.toUpperCase().equals("N")) {
                     this.control.cancel();
 
                 } else {
                     this.control.commitLoans();
-                    this.input("Press <any key> to complete ");
+                    this.askQuestion("Press <any key> to complete ");
                 }
                 break;
 
