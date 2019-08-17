@@ -89,7 +89,8 @@ public class BorrowBookUI {
                 if (answerQuestion.toUpperCase().equals("N")) {
                     this.control.cancel();
 
-                } else {
+                }
+                else {
                     this.control.commitLoans();
                     this.askQuestion("Press <any key> to complete ");
                 }
