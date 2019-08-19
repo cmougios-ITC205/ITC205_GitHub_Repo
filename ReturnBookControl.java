@@ -32,7 +32,7 @@ public class ReturnBookControl {
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
 		}
 
-		Book currentBook = library.Book(bookId);
+		Book currentBook = library.getBookId(bookId);
 		
 		if (currentBook == null) {
 			this.returnBookUI.display("Invalid Book Id");

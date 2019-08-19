@@ -28,7 +28,7 @@ public class FixBookControl {
         if (!state.equals(ControlState.READY)) {
             throw new RuntimeException("FixBookControl: cannot call scanBook except in READY state");
         }
-        this.currentBook = library.Book(bookId);
+        this.currentBook = library.getBookId(bookId);
 
         if (currentBook == null) {
             this.UI.display("Invalid bookId");
