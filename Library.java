@@ -33,7 +33,7 @@ public class Library implements Serializable {
 	private Map<Integer, member> members;
 	private Map<Integer, loan> loans;
 	private Map<Integer, loan> currentLoans;
-	private Map<Integer, Book> DAMAGED_BOOKS;
+	private Map<Integer, Book> damagedBooks;
 	
 
 	private Library() {
@@ -41,7 +41,7 @@ public class Library implements Serializable {
 		members = new HashMap<>();
 		loans = new HashMap<>();
 		currentLoans = new HashMap<>();
-		DAMAGED_BOOKS = new HashMap<>();
+		damagedBooks = new HashMap<>();
 		bookId = 1;
 		memberId = 1;
 		loanId = 1;
@@ -216,7 +216,7 @@ public class Library implements Serializable {
 		book.returnBook(isDamaged);
 		if (isDamaged) {
 			member.Add_Fine(DAMAGE_FEE);
-			DAMAGED_BOOKS.put(book.getBookId(), book);
+			damagedBooks.put(book.getBookId(), book);
 		}
 		currentLoan.DiScHaRgE();
 		currentLoans.remove(book.getBookId());
@@ -231,9 +231,9 @@ public class Library implements Serializable {
 
 
 	public void Repair_BOOK(Book currentBook) {
-		if (DAMAGED_BOOKS.containsKey(currentBook.getBookId())) {
+		if (damagedBooks.containsKey(currentBook.getBookId())) {
 			currentBook.repairBook();
-			DAMAGED_BOOKS.remove(currentBook.getBookId());
+			damagedBooks.remove(currentBook.getBookId());
 		}
 		else {
 			throw new RuntimeException("Library: repairBook: Book is not damaged");
