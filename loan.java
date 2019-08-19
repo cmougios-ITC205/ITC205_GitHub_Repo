@@ -11,7 +11,7 @@ public class loan implements Serializable {
 	private Book book;
 	private member member;
 	private Date date;
-	private LoanState loanState;
+	private LoanState state;
 
 	
 	public loan(int loanId, Book booksLoaned, member member, Date loanDueDate) {
@@ -19,31 +19,31 @@ public class loan implements Serializable {
 		this.book = booksLoaned;
 		this.member = member;
 		this.date = loanDueDate;
-		this.loanState = LoanState.CURRENT;
+		this.state = LoanState.CURRENT;
 	}
 
 
 	
-	public void checkOverDue() {
-		if (loanState == LoanState.CURRENT &&
-			Calendar.getInstance().getDate().after(date)) {
-			this.loanState = LoanState.OVER_DUE;
+	public void checkOverDueLoan() {
+		if (this.state == LoanState.CURRENT &&
+			Calendar.getInstance().getDate().after(this.date)) {
+			this.state = LoanState.OVER_DUE;
 		}
 	}
 
 	
 	public boolean isOverDue() {
-		return loanState == LoanState.OVER_DUE;
+		return this.state == LoanState.OVER_DUE;
 	}
 
 	
 	public Integer getLoanId() {
-		return loanId;
+		return this.loanId;
 	}
 
 
 	public Date getDueDate() {
-		return date;
+		return this.date;
 	}
 	
 	
@@ -51,29 +51,29 @@ public class loan implements Serializable {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 		StringBuilder concatenate  = new StringBuilder();
-		concatenate .append("Loan:  ").append(loanId).append("\n")
-		  .append("  Borrower ").append(member.GeT_ID()).append(" : ")
-		  .append(member.Get_LastName()).append(", ").append(member.Get_FirstName()).append("\n")
-		  .append("  Book ").append(book.getBookId()).append(" : " )
-		  .append(book.getTitle()).append("\n")
-		  .append("  DueDate: ").append(dateFormat.format(date)).append("\n")
-		  .append("  State: ").append(loanState);
+		concatenate .append("Loan:  ").append(this.loanId).append("\n")
+		  .append("  Borrower ").append(this.member.GeT_ID()).append(" : ")
+		  .append(this.member.Get_LastName()).append(", ").append(this.member.Get_FirstName()).append("\n")
+		  .append("  Book ").append(this.book.getBookId()).append(" : " )
+		  .append(this.book.getTitle()).append("\n")
+		  .append("  DueDate: ").append(dateFormat.format(this.date)).append("\n")
+		  .append("  State: ").append(this.state);
 		return concatenate .toString();
 	}
 
 
 	public member getMember() {
-		return member;
+		return this.member;
 	}
 
 
 	public Book getBook() {
-		return book;
+		return this.book;
 	}
 
 
 	public void setLoanDischarged() {
-		loanState = LoanState.DISCHARGED;
+		this.state = LoanState.DISCHARGED;
 	}
 
 }
