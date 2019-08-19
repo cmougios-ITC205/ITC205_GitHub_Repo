@@ -113,7 +113,7 @@ public class Library implements Serializable {
 	}
 
 
-	public List<Book> BOOKS() {
+	public List<Book> getBookList() {
 		return new ArrayList<Book>(catalog.values());
 	}
 
