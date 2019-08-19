@@ -171,8 +171,8 @@ public class Library implements Serializable {
 	}
 
 	
-	public int getNumberOfLoansAvailable(member member) {
-		return LOAN_LIMIT - member.Number_Of_Current_Loans();
+	public int getNumberOfLoansAvailable(member currentMember) {
+		return LOAN_LIMIT - currentMember.Number_Of_Current_Loans();
 	}
 
 	
