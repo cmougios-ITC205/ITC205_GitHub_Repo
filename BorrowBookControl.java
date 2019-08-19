@@ -40,7 +40,7 @@ public class BorrowBookControl {
             this.UI.display("Invalid memberId");
             return;
         }
-        if (this.library.MEMBER_CAN_BORROW(this.member)) {
+        if (this.library.canMemberBorrow(this.member)) {
             this.booksPendingBorrow = new ArrayList<>();
             this.UI.setState(BorrowBookUI.UIState.SCANNING);
             this.state = ControlState.SCANNING;

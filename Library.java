@@ -156,7 +156,7 @@ public class Library implements Serializable {
 	}
 
 	
-	public boolean MEMBER_CAN_BORROW(member member) {		
+	public boolean canMemberBorrow(member member) {
 		if (member.Number_Of_Current_Loans() == LOAN_LIMIT)
 			return false;
 				
