@@ -5,13 +5,13 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class loan implements Serializable {
 	
-	public static enum LOAN_STATE { CURRENT, OVER_DUE, DISCHARGED };
+	public static enum LoanState { CURRENT, OVER_DUE, DISCHARGED };
 	
 	private int ID;
 	private Book B;
 	private member M;
 	private Date D;
-	private LOAN_STATE state;
+	private LoanState state;
 
 	
 	public loan(int loanId, Book book, member member, Date dueDate) {
@@ -19,20 +19,20 @@ public class loan implements Serializable {
 		this.B = book;
 		this.M = member;
 		this.D = dueDate;
-		this.state = LOAN_STATE.CURRENT;
+		this.state = LoanState.CURRENT;
 	}
 
 	
 	public void checkOverDue() {
-		if (state == LOAN_STATE.CURRENT &&
+		if (state == LoanState.CURRENT &&
 			Calendar.getInstance().getDate().after(D)) {
-			this.state = LOAN_STATE.OVER_DUE;			
+			this.state = LoanState.OVER_DUE;
 		}
 	}
 
 	
 	public boolean OVer_Due() {
-		return state == LOAN_STATE.OVER_DUE;
+		return state == LoanState.OVER_DUE;
 	}
 
 	
@@ -72,7 +72,7 @@ public class loan implements Serializable {
 
 
 	public void DiScHaRgE() {
-		state = LOAN_STATE.DISCHARGED;		
+		state = LoanState.DISCHARGED;
 	}
 
 }
