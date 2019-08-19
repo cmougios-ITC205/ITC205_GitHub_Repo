@@ -14,13 +14,14 @@ public class loan implements Serializable {
 	private LoanState loanState;
 
 	
-	public loan(int loanId, Book book, member member, Date dueDate) {
+	public loan(int loanId, Book booksLoaned, member member, Date loanDueDate) {
 		this.loanId = loanId;
-		this.book = book;
+		this.book = booksLoaned;
 		this.member = member;
-		this.date = dueDate;
+		this.date = loanDueDate;
 		this.loanState = LoanState.CURRENT;
 	}
+
 
 	
 	public void checkOverDue() {
