@@ -156,14 +156,14 @@ public class Library implements Serializable {
 	}
 
 	
-	public boolean canMemberBorrow(member member) {
-		if (member.Number_Of_Current_Loans() == LOAN_LIMIT)
+	public boolean canMemberBorrow(member currentMember) {
+		if (currentMember.Number_Of_Current_Loans() == LOAN_LIMIT)
 			return false;
 				
-		if (member.Fines_OwEd() >= MAX_FINES_OWED)
+		if (currentMember.Fines_OwEd() >= MAX_FINES_OWED)
 			return false;
 				
-		for (loan loanBeingAssessed : member.GeT_LoAnS())
+		for (loan loanBeingAssessed : currentMember.GeT_LoAnS())
 			if (loanBeingAssessed.OVer_Due())
 				return false;
 			
