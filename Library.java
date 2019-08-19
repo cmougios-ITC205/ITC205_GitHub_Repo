@@ -178,12 +178,12 @@ public class Library implements Serializable {
 	
 	public loan issueLoan(Book book, member member) {
 		Date dueDate = Calendar.getInstance().getDueDate(LOAN_PERIOD);
-		loan loan = new loan(getNextLoanId(), book, member, dueDate);
-		member.Take_Out_Loan(loan);
+		loan newLoan = new loan(getNextLoanId(), book, member, dueDate);
+		member.Take_Out_Loan(newLoan);
 		book.borrowBook();
-		loans.put(loan.ID(), loan);
-		currentLoans.put(book.getBookId(), loan);
-		return loan;
+		loans.put(newLoan.ID(), newLoan);
+		currentLoans.put(book.getBookId(), newLoan);
+		return newLoan;
 	}
 	
 	
