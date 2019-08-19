@@ -8,17 +8,17 @@ public class loan implements Serializable {
     public static enum LoanState { CURRENT, OVER_DUE, DISCHARGED };
 
     private int loanId;
-    private Book book;
-    private member member;
-    private Date date;
+    private Book bookId;
+    private member memberId;
+    private Date dueDate;
     private LoanState state;
 
 
     public loan(int loanId, Book booksLoaned, member member, Date loanDueDate) {
         this.loanId = loanId;
-        this.book = booksLoaned;
-        this.member = member;
-        this.date = loanDueDate;
+        this.bookId = booksLoaned;
+        this.memberId = member;
+        this.dueDate = loanDueDate;
         this.state = LoanState.CURRENT;
     }
 
@@ -26,7 +26,7 @@ public class loan implements Serializable {
 
     public void checkOverDueLoan() {
         if (this.state == LoanState.CURRENT &&
-            Calendar.getInstance().getDate().after(this.date)) {
+            Calendar.getInstance().getDate().after(this.dueDate)) {
             this.state = LoanState.OVER_DUE;
         }
     }
@@ -43,7 +43,7 @@ public class loan implements Serializable {
 
 
     public Date getDueDate() {
-        return this.date;
+        return this.dueDate;
     }
 
 
@@ -52,23 +52,23 @@ public class loan implements Serializable {
 
         StringBuilder concatenate  = new StringBuilder();
         concatenate .append("Loan:  ").append(this.loanId).append("\n")
-          .append("  Borrower ").append(this.member.GeT_ID()).append(" : ")
-          .append(this.member.Get_LastName()).append(", ").append(this.member.Get_FirstName()).append("\n")
-          .append("  Book ").append(this.book.getBookId()).append(" : " )
-          .append(this.book.getTitle()).append("\n")
-          .append("  DueDate: ").append(dateFormat.format(this.date)).append("\n")
+          .append("  Borrower ").append(this.memberId.GeT_ID()).append(" : ")
+          .append(this.memberId.Get_LastName()).append(", ").append(this.memberId.Get_FirstName()).append("\n")
+          .append("  Book ").append(this.bookId.getBookId()).append(" : " )
+          .append(this.bookId.getTitle()).append("\n")
+          .append("  DueDate: ").append(dateFormat.format(this.dueDate)).append("\n")
           .append("  State: ").append(this.state);
         return concatenate .toString();
     }
 
 
-    public member getMember() {
-        return this.member;
+    public member getMemberId() {
+        return this.memberId;
     }
 
 
     public Book getBook() {
-        return this.book;
+        return this.bookId;
     }
 
 
