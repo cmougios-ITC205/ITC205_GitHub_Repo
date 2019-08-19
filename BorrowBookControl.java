@@ -70,7 +70,7 @@ public class BorrowBookControl {
         for (Book borrowBookList : this.booksPendingBorrow) {
             this.UI.display(borrowBookList.toString());
         }
-        if (this.library.Loans_Remaining_For_Member(this.member) - this.booksPendingBorrow.size() == 0) {
+        if (this.library.getNumberOfLoansAvailable(this.member) - this.booksPendingBorrow.size() == 0) {
             this.UI.display("Loan limit reached");
             this.completeBorrow();
         }
