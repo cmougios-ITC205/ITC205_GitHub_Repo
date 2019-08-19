@@ -11,7 +11,7 @@ public class loan implements Serializable {
     private Book bookId;
     private member memberId;
     private Date dueDate;
-    private LoanState state;
+    private LoanState loanState;
 
 
     public loan(int loanId, Book booksLoaned, member member, Date loanDueDate) {
@@ -19,21 +19,21 @@ public class loan implements Serializable {
         this.bookId = booksLoaned;
         this.memberId = member;
         this.dueDate = loanDueDate;
-        this.state = LoanState.CURRENT;
+        this.loanState = LoanState.CURRENT;
     }
 
 
 
     public void checkOverDueLoan() {
-        if (this.state == LoanState.CURRENT &&
+        if (this.loanState == LoanState.CURRENT &&
             Calendar.getInstance().getDate().after(this.dueDate)) {
-            this.state = LoanState.OVER_DUE;
+            this.loanState = LoanState.OVER_DUE;
         }
     }
 
 
     public boolean isOverDue() {
-        return this.state == LoanState.OVER_DUE;
+        return this.loanState == LoanState.OVER_DUE;
     }
 
 
@@ -57,7 +57,7 @@ public class loan implements Serializable {
           .append("  Book ").append(this.bookId.getBookId()).append(" : " )
           .append(this.bookId.getTitle()).append("\n")
           .append("  DueDate: ").append(dateFormat.format(this.dueDate)).append("\n")
-          .append("  State: ").append(this.state);
+          .append("  State: ").append(this.loanState);
         return concatenate .toString();
     }
 
@@ -73,7 +73,7 @@ public class loan implements Serializable {
 
 
     public void setLoanStateToDischarged() {
-        this.state = LoanState.DISCHARGED;
+        this.loanState = LoanState.DISCHARGED;
     }
 
 }
