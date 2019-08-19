@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Collection;
 
 @SuppressWarnings("serial")
 public class Library implements Serializable {
@@ -111,7 +112,8 @@ public class Library implements Serializable {
 
 
     public List<member> getMemberList() {
-        return new ArrayList<member>(members.values());
+    	Collection<member> membersInMap = members.values();
+    	return new ArrayList<member>(membersInMap);
     }
 
 
