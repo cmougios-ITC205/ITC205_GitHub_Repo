@@ -37,7 +37,7 @@ public class loan implements Serializable {
 	}
 
 	
-	public Integer ID() {
+	public Integer displayLoanId() {
 		return loanId;
 	}
 
