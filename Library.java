@@ -52,11 +52,11 @@ public class Library implements Serializable {
 		if (self == null) {
 			Path filePath = Paths.get(LIBRARY_FILE);
 			if (Files.exists(filePath)) {
-				try (ObjectInputStream LiF = new ObjectInputStream(new FileInputStream(LIBRARY_FILE));) {
+				try (ObjectInputStream libraryObjectInput = new ObjectInputStream(new FileInputStream(LIBRARY_FILE));) {
 			    
-					self = (Library) LiF.readObject();
+					self = (Library) libraryObjectInput.readObject();
 					Calendar.getInstance().setDate(self.loanDate);
-					LiF.close();
+					libraryObjectInput.close();
 				}
 				catch (Exception e) {
 					throw new RuntimeException(e);
