@@ -23,7 +23,7 @@ public class Library implements Serializable {
 	private static final double maxFinesOwed = 1.0;
 	private static final double damageFee = 2.0;
 	
-	private static Library SeLf;
+	private static Library self;
 	private int BOOK_ID;
 	private int MEMBER_ID;
 	private int LOAN_ID;
@@ -49,30 +49,30 @@ public class Library implements Serializable {
 
 	
 	public static synchronized Library INSTANCE() {
-		if (SeLf == null) {
-			Path PATH = Paths.get(libraryFile);			
+		if (self == null) {
+			Path PATH = Paths.get(libraryFile);
 			if (Files.exists(PATH)) {	
 				try (ObjectInputStream LiF = new ObjectInputStream(new FileInputStream(libraryFile));) {
 			    
-					SeLf = (Library) LiF.readObject();
-					Calendar.getInstance().setDate(SeLf.LOAN_DATE);
+					self = (Library) LiF.readObject();
+					Calendar.getInstance().setDate(self.LOAN_DATE);
 					LiF.close();
 				}
 				catch (Exception e) {
 					throw new RuntimeException(e);
 				}
 			}
-			else SeLf = new Library();
+			else self = new Library();
 		}
-		return SeLf;
+		return self;
 	}
 
 	
 	public static synchronized void SAVE() {
-		if (SeLf != null) {
-			SeLf.LOAN_DATE = Calendar.getInstance().getDate();
+		if (self != null) {
+			self.LOAN_DATE = Calendar.getInstance().getDate();
 			try (ObjectOutputStream LoF = new ObjectOutputStream(new FileOutputStream(libraryFile));) {
-				LoF.writeObject(SeLf);
+				LoF.writeObject(self);
 				LoF.flush();
 				LoF.close();	
 			}
@@ -157,7 +157,7 @@ public class Library implements Serializable {
 
 	
 	public boolean MEMBER_CAN_BORROW(member member) {		
-		if (member.Number_Of_Current_Loans() == loanLimit ) 
+		if (member.Number_Of_Current_Loans() == loanLimit )
 			return false;
 				
 		if (member.Fines_OwEd() >= maxFinesOwed) 
