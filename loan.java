@@ -37,12 +37,12 @@ public class loan implements Serializable {
 	}
 
 	
-	public Integer displayLoanId() {
+	public Integer getLoanId() {
 		return loanId;
 	}
 
 
-	public Date Get_Due_Date() {
+	public Date getDueDate() {
 		return date;
 	}
 	

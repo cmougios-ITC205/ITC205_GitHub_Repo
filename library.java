@@ -181,7 +181,7 @@ public class library implements Serializable {
 		loan loan = new loan(NextLID(), book, member, dueDate);
 		member.Take_Out_Loan(loan);
 		book.borrowBook();
-		LOANS.put(loan.displayLoanId(), loan);
+		LOANS.put(loan.getLoanId(), loan);
 		CURRENT_LOANS.put(book.getBookId(), loan);
 		return loan;
 	}
@@ -197,7 +197,7 @@ public class library implements Serializable {
 	
 	public double CalculateOverDueFine(loan loan) {
 		if (loan.isOverDue()) {
-			long daysOverDue = Calendar.getInstance().getDaysDifference(loan.Get_Due_Date());
+			long daysOverDue = Calendar.getInstance().getDaysDifference(loan.getDueDate());
 			double fine = daysOverDue * finePerDay;
 			return fine;
 		}
