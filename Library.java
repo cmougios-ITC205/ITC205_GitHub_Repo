@@ -205,7 +205,7 @@ public class Library implements Serializable {
 	}
 
 
-	public void Discharge_loan(loan currentLoan, boolean isDamaged) {
+	public void dischargeLoan(loan currentLoan, boolean isDamaged) {
 		member member = currentLoan.Member();
 		Book book  = currentLoan.Book();
 		

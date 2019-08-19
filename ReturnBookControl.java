@@ -83,7 +83,7 @@ public class ReturnBookControl {
 			throw new RuntimeException("ReturnBookControl: cannot call dischargeLoan except in INSPECTING state");
 		}
 
-		this.library.Discharge_loan(currentLoan, isDamaged);
+		this.library.dischargeLoan(currentLoan, isDamaged);
 		this.currentLoan = null;
 		this.returnBookUI.setState(ReturnBookUI.UIState.READY);
 		this.state = ControlState.READY;
