@@ -192,7 +192,8 @@ public class Library implements Serializable {
         currentBook.borrowBook();
         int newLoanId = newLoan.ID();
         loans.put(newLoanId, newLoan);
-        currentLoans.put(currentBook.getBookId(), newLoan);
+        int currentBookId = currentBook.getBookId();
+        currentLoans.put(currentBookId, newLoan);
         return newLoan;
     }
 
