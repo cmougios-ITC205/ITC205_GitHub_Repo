@@ -72,7 +72,7 @@ public class loan implements Serializable {
 	}
 
 
-	public void setLoanDischarged() {
+	public void setLoanStateToDischarged() {
 		this.state = LoanState.DISCHARGED;
 	}
 

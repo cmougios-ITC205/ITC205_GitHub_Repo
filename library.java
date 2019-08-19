@@ -218,7 +218,7 @@ public class library implements Serializable {
 			member.Add_Fine(damageFee);
 			DAMAGED_BOOKS.put(book.getBookId(), book);
 		}
-		currentLoan.setLoanDischarged();
+		currentLoan.setLoanStateToDischarged();
 		CURRENT_LOANS.remove(book.getBookId());
 	}
 
