@@ -9,7 +9,7 @@ public class ReturnBookControl {
 	
 
 	public ReturnBookControl() {
-		this.library = library.INSTANCE();
+		this.library = library.getInstance();
 		this.state = ControlState.INITIALISED;
 	}
 	

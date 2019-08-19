@@ -8,7 +8,7 @@ public class PayFineControl {
 	private member controlMember;
 
 	public PayFineControl() {
-		this.controlLibrary = this.controlLibrary.INSTANCE();
+		this.controlLibrary = this.controlLibrary.getInstance();
 		this.currentState = ControlState.INITIALISED;
 	}
 	

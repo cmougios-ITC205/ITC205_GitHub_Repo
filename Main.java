@@ -40,7 +40,7 @@ public class Main {
 	public static void main(String[] args) {		
 		try {			
 			IN = new Scanner(System.in);
-			LIB = Library.INSTANCE();
+			LIB = Library.getInstance();
 			CAL = Calendar.getInstance();
 			SDF = new SimpleDateFormat("dd/MM/yyyy");
 	
