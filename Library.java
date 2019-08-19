@@ -118,7 +118,8 @@ public class Library implements Serializable {
 
 
     public List<Book> getBookList() {
-        return new ArrayList<Book>(catalog.values());
+    	Collection<Book> booksInMap = catalog.values();
+        return new ArrayList<Book>(booksInMap);
     }
 
 
