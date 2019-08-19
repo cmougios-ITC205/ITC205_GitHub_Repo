@@ -163,8 +163,8 @@ public class Library implements Serializable {
 		if (member.Fines_OwEd() >= MAX_FINES_OWED)
 			return false;
 				
-		for (loan loan : member.GeT_LoAnS()) 
-			if (loan.OVer_Due()) 
+		for (loan loanBeingAssessed : member.GeT_LoAnS())
+			if (loanBeingAssessed.OVer_Due())
 				return false;
 			
 		return true;
