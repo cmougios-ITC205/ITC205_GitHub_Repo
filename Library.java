@@ -32,7 +32,7 @@ public class Library implements Serializable {
 	private Map<Integer, Book> catalog;
 	private Map<Integer, member> members;
 	private Map<Integer, loan> loans;
-	private Map<Integer, loan> CURRENT_LOANS;
+	private Map<Integer, loan> currentLoans;
 	private Map<Integer, Book> DAMAGED_BOOKS;
 	
 
@@ -40,7 +40,7 @@ public class Library implements Serializable {
 		catalog = new HashMap<>();
 		members = new HashMap<>();
 		loans = new HashMap<>();
-		CURRENT_LOANS = new HashMap<>();
+		currentLoans = new HashMap<>();
 		DAMAGED_BOOKS = new HashMap<>();
 		bookId = 1;
 		memberId = 1;
@@ -119,7 +119,7 @@ public class Library implements Serializable {
 
 
 	public List<loan> CurrentLoans() {
-		return new ArrayList<loan>(CURRENT_LOANS.values());
+		return new ArrayList<loan>(currentLoans.values());
 	}
 
 
@@ -182,14 +182,14 @@ public class Library implements Serializable {
 		member.Take_Out_Loan(loan);
 		book.borrowBook();
 		loans.put(loan.ID(), loan);
-		CURRENT_LOANS.put(book.getBookId(), loan);
+		currentLoans.put(book.getBookId(), loan);
 		return loan;
 	}
 	
 	
 	public loan LOAN_BY_BOOK_ID(int bookId) {
-		if (CURRENT_LOANS.containsKey(bookId)) {
-			return CURRENT_LOANS.get(bookId);
+		if (currentLoans.containsKey(bookId)) {
+			return currentLoans.get(bookId);
 		}
 		return null;
 	}
@@ -219,12 +219,12 @@ public class Library implements Serializable {
 			DAMAGED_BOOKS.put(book.getBookId(), book);
 		}
 		currentLoan.DiScHaRgE();
-		CURRENT_LOANS.remove(book.getBookId());
+		currentLoans.remove(book.getBookId());
 	}
 
 
 	public void checkCurrentLoans() {
-		for (loan loan : CURRENT_LOANS.values()) {
+		for (loan loan : currentLoans.values()) {
 			loan.checkOverDue();
 		}		
 	}
