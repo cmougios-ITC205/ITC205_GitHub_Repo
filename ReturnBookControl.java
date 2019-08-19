@@ -49,7 +49,7 @@ public class ReturnBookControl {
 		double overdueFine = 0.0;
 
 		if (currentLoan.OVer_Due()) {
-			overdueFine = library.CalculateOverDueFine(currentLoan);
+			overdueFine = library.calculateOverDueFine(currentLoan);
 		}
 
 		String currentBookStr = currentBook.toString();
