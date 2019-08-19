@@ -44,7 +44,7 @@ public class ReturnBookControl {
 			return;
 		}
 
-		this.currentLoan = library.LOAN_BY_BOOK_ID(bookId);
+		this.currentLoan = library.getLoanByBookId(bookId);
 
 		double overdueFine = 0.0;
 

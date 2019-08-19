@@ -187,7 +187,7 @@ public class Library implements Serializable {
 	}
 	
 	
-	public loan LOAN_BY_BOOK_ID(int bookId) {
+	public loan getLoanByBookId(int bookId) {
 		if (currentLoans.containsKey(bookId)) {
 			return currentLoans.get(bookId);
 		}
