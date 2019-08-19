@@ -51,7 +51,7 @@ public class FixBookControl {
             throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
         }
         if (mustFix) {
-            this.library.Repair_BOOK(currentBook);
+            this.library.repairBook(currentBook);
         }
         this.currentBook = null;
         this.UI.setState(FixBookUI.UIState.READY);

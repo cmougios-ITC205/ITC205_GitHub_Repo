@@ -230,7 +230,7 @@ public class Library implements Serializable {
 	}
 
 
-	public void Repair_BOOK(Book currentBook) {
+	public void repairBook(Book currentBook) {
 		if (damagedBooks.containsKey(currentBook.getBookId())) {
 			currentBook.repairBook();
 			damagedBooks.remove(currentBook.getBookId());
