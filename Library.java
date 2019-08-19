@@ -54,7 +54,7 @@ public class Library implements Serializable {
             Path filePath = Paths.get(LIBRARY_FILE);
             if (Files.exists(filePath)) {
                 try (   FileInputStream libraryFileInput = new FileInputStream(LIBRARY_FILE);
-                		ObjectInputStream libraryObjectInput = new ObjectInputStream(libraryFileInput);) {
+                        ObjectInputStream libraryObjectInput = new ObjectInputStream(libraryFileInput);) {
 
                     self = (Library) libraryObjectInput.readObject();
                     Calendar.getInstance().setDate(self.loanDate);
@@ -74,7 +74,7 @@ public class Library implements Serializable {
         if (self != null) {
             self.loanDate = Calendar.getInstance().getDate();
             try (FileOutputStream libraryFileOutput = new FileOutputStream(LIBRARY_FILE);
-            		ObjectOutputStream libraryObjectOutput = new ObjectOutputStream(libraryFileOutput);) {
+                    ObjectOutputStream libraryObjectOutput = new ObjectOutputStream(libraryFileOutput);) {
                 libraryObjectOutput.writeObject(self);
                 libraryObjectOutput.flush();
                 libraryObjectOutput.close();
@@ -112,25 +112,25 @@ public class Library implements Serializable {
 
 
     public List<member> getMemberList() {
-    	Collection<member> membersInMap = members.values();
-    	return new ArrayList<member>(membersInMap);
+        Collection<member> membersInMap = members.values();
+        return new ArrayList<member>(membersInMap);
     }
 
 
     public List<Book> getBookList() {
-    	Collection<Book> booksInMap = catalog.values();
+        Collection<Book> booksInMap = catalog.values();
         return new ArrayList<Book>(booksInMap);
     }
 
 
     public List<loan> getCurrentLoansList() {
-    	Collection<loan> loansInMap = currentLoans.values();
+        Collection<loan> loansInMap = currentLoans.values();
         return new ArrayList<loan>(loansInMap);
     }
 
 
     public member addMember(String lastName, String firstName, String email, int phoneNo) {
-    	int nextMemberId = this.getNextMemberId();
+        int nextMemberId = this.getNextMemberId();
         member newMember = new member(lastName, firstName, email, phoneNo, nextMemberId);
         members.put(newMember.GeT_ID(), newMember);
         return newMember;
@@ -138,7 +138,7 @@ public class Library implements Serializable {
 
 
     public Book addBook(String a, String t, String c) {
-    	int nextBookId = this.getNextBookId();
+        int nextBookId = this.getNextBookId();
         Book newBook = new Book(a, t, c, nextBookId);
         catalog.put(newBook.getBookId(), newBook);
         return newBook;
@@ -208,7 +208,7 @@ public class Library implements Serializable {
 
     public double calculateOverDueFine(loan currentLoan) {
         if (currentLoan.OVer_Due()) {
-        	Date loanDueDate = currentLoan.Get_Due_Date();
+            Date loanDueDate = currentLoan.Get_Due_Date();
             long daysOverDue = Calendar.getInstance().getDaysDifference(loanDueDate);
             double fine = daysOverDue * FINE_PER_DAY;
             return fine;
@@ -227,7 +227,7 @@ public class Library implements Serializable {
         loanee.dIsChArGeLoAn(currentLoan);
         loanedBook.returnBook(isDamaged);
 
-		int loanedBookId = loanedBook.getBookId();
+        int loanedBookId = loanedBook.getBookId();
 
         if (isDamaged) {
             loanee.Add_Fine(DAMAGE_FEE);
@@ -246,7 +246,7 @@ public class Library implements Serializable {
 
 
     public void repairBook(Book currentBook) {
-    	int currentBookId = currentBook.getBookId();
+        int currentBookId = currentBook.getBookId();
         if (damagedBooks.containsKey(currentBookId)) {
             currentBook.repairBook();
             damagedBooks.remove(currentBookId);
