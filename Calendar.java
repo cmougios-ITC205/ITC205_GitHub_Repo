@@ -2,64 +2,64 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class Calendar {
-	
-	private static Calendar SeLf;
-	private static java.util.Calendar CaLeNdAr;
-	
-	
-	private Calendar() {
-		CaLeNdAr = java.util.Calendar.getInstance();
-	}
-	
-	public static Calendar INSTANCE() {
-		if (SeLf == null) {
-			SeLf = new Calendar();
-		}
-		return SeLf;
-	}
-	
-	public void incrementDate(int days) {
-		CaLeNdAr.add(java.util.Calendar.DATE, days);		
-	}
-	
-	public synchronized void Set_dATE(Date date) {
-		try {
-			CaLeNdAr.setTime(date);
-	        CaLeNdAr.set(java.util.Calendar.HOUR_OF_DAY, 0);  
-	        CaLeNdAr.set(java.util.Calendar.MINUTE, 0);  
-	        CaLeNdAr.set(java.util.Calendar.SECOND, 0);  
-	        CaLeNdAr.set(java.util.Calendar.MILLISECOND, 0);
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}	
-	}
-	public synchronized Date Date() {
-		try {
-	        CaLeNdAr.set(java.util.Calendar.HOUR_OF_DAY, 0);  
-	        CaLeNdAr.set(java.util.Calendar.MINUTE, 0);  
-	        CaLeNdAr.set(java.util.Calendar.SECOND, 0);  
-	        CaLeNdAr.set(java.util.Calendar.MILLISECOND, 0);
-			return CaLeNdAr.getTime();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}	
-	}
 
-	public synchronized Date Due_Date(int loanPeriod) {
-		Date NoW = Date();
-		CaLeNdAr.add(java.util.Calendar.DATE, loanPeriod);
-		Date DuEdAtE = CaLeNdAr.getTime();
-		CaLeNdAr.setTime(NoW);
-		return DuEdAtE;
-	}
-	
-	public synchronized long Get_Days_Difference(Date targetDate) {
-		
-		long Diff_Millis = Date().getTime() - targetDate.getTime();
-	    long Diff_Days = TimeUnit.DAYS.convert(Diff_Millis, TimeUnit.MILLISECONDS);
-	    return Diff_Days;
-	}
+    private static Calendar self;
+    private static java.util.Calendar javaCalendar;
+
+
+    private Calendar() {
+        this.javaCalendar = java.util.Calendar.getInstance();
+    }
+
+    public static Calendar getInstance() {
+        if (self == null) {
+            self = new Calendar();
+        }
+        return self;
+    }
+
+    public void incrementDate(int days) {
+        this.javaCalendar.add(java.util.Calendar.DATE, days);
+    }
+
+    public synchronized void setDate(Date date) {
+        try {
+            this.javaCalendar.setTime(date);
+            this.javaCalendar.set(java.util.Calendar.HOUR_OF_DAY, 0);
+            this.javaCalendar.set(java.util.Calendar.MINUTE, 0);
+            this.javaCalendar.set(java.util.Calendar.SECOND, 0);
+            this.javaCalendar.set(java.util.Calendar.MILLISECOND, 0);
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public synchronized Date getDate() {
+        try {
+            this.javaCalendar.set(java.util.Calendar.HOUR_OF_DAY, 0);
+            this.javaCalendar.set(java.util.Calendar.MINUTE, 0);
+            this.javaCalendar.set(java.util.Calendar.SECOND, 0);
+            this.javaCalendar.set(java.util.Calendar.MILLISECOND, 0);
+            return this.javaCalendar.getTime();
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public synchronized Date getDueDate(int loanPeriod) {
+        Date currentDate = getDate();
+        this.javaCalendar.add(java.util.Calendar.DATE, loanPeriod);
+        Date dueDate = this.javaCalendar.getTime();
+        this.javaCalendar.setTime(currentDate);
+        return dueDate;
+    }
+
+    public synchronized long getDaysDifference(Date targetDate) {
+
+        long differenceMilliseconds = getDate().getTime() - targetDate.getTime();
+        long differenceDays = TimeUnit.DAYS.convert(differenceMilliseconds, TimeUnit.MILLISECONDS);
+        return differenceDays;
+    }
 
 }

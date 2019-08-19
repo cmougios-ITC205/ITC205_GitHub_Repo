@@ -29,11 +29,11 @@ public class library implements Serializable {
 	private int LOAN_ID;
 	private Date LOAN_DATE;
 	
-	private Map<Integer, book> CATALOG;
+	private Map<Integer, Book> CATALOG;
 	private Map<Integer, member> MEMBERS;
 	private Map<Integer, loan> LOANS;
 	private Map<Integer, loan> CURRENT_LOANS;
-	private Map<Integer, book> DAMAGED_BOOKS;
+	private Map<Integer, Book> DAMAGED_BOOKS;
 	
 
 	private library() {
@@ -55,7 +55,7 @@ public class library implements Serializable {
 				try (ObjectInputStream LiF = new ObjectInputStream(new FileInputStream(libraryFile));) {
 			    
 					SeLf = (library) LiF.readObject();
-					Calendar.INSTANCE().Set_dATE(SeLf.LOAN_DATE);
+					Calendar.getInstance().setDate(SeLf.LOAN_DATE);
 					LiF.close();
 				}
 				catch (Exception e) {
@@ -70,7 +70,7 @@ public class library implements Serializable {
 	
 	public static synchronized void SAVE() {
 		if (SeLf != null) {
-			SeLf.LOAN_DATE = Calendar.INSTANCE().Date();
+			SeLf.LOAN_DATE = Calendar.getInstance().getDate();
 			try (ObjectOutputStream LoF = new ObjectOutputStream(new FileOutputStream(libraryFile));) {
 				LoF.writeObject(SeLf);
 				LoF.flush();
@@ -113,8 +113,8 @@ public class library implements Serializable {
 	}
 
 
-	public List<book> BOOKS() {		
-		return new ArrayList<book>(CATALOG.values()); 
+	public List<Book> BOOKS() {
+		return new ArrayList<Book>(CATALOG.values());
 	}
 
 
@@ -130,9 +130,9 @@ public class library implements Serializable {
 	}
 
 	
-	public book Add_book(String a, String t, String c) {		
-		book b = new book(a, t, c, NextBID());
-		CATALOG.put(b.ID(), b);		
+	public Book Add_book(String a, String t, String c) {
+		Book b = new Book(a, t, c, NextBID());
+		CATALOG.put(b.getBookId(), b);
 		return b;
 	}
 
@@ -144,7 +144,7 @@ public class library implements Serializable {
 	}
 
 	
-	public book Book(int bookId) {
+	public Book Book(int bookId) {
 		if (CATALOG.containsKey(bookId)) 
 			return CATALOG.get(bookId);		
 		return null;
@@ -176,13 +176,13 @@ public class library implements Serializable {
 	}
 
 	
-	public loan ISSUE_LAON(book book, member member) {
-		Date dueDate = Calendar.INSTANCE().Due_Date(loanPeriod);
+	public loan ISSUE_LAON(Book book, member member) {
+		Date dueDate = Calendar.getInstance().getDueDate(loanPeriod);
 		loan loan = new loan(NextLID(), book, member, dueDate);
 		member.Take_Out_Loan(loan);
-		book.Borrow();
+		book.borrowBook();
 		LOANS.put(loan.ID(), loan);
-		CURRENT_LOANS.put(book.ID(), loan);
+		CURRENT_LOANS.put(book.getBookId(), loan);
 		return loan;
 	}
 	
@@ -197,7 +197,7 @@ public class library implements Serializable {
 	
 	public double CalculateOverDueFine(loan loan) {
 		if (loan.OVer_Due()) {
-			long daysOverDue = Calendar.INSTANCE().Get_Days_Difference(loan.Get_Due_Date());
+			long daysOverDue = Calendar.getInstance().getDaysDifference(loan.Get_Due_Date());
 			double fine = daysOverDue * finePerDay;
 			return fine;
 		}
@@ -207,19 +207,19 @@ public class library implements Serializable {
 
 	public void Discharge_loan(loan currentLoan, boolean isDamaged) {
 		member member = currentLoan.Member();
-		book book  = currentLoan.Book();
+		Book book  = currentLoan.Book();
 		
 		double overDueFine = CalculateOverDueFine(currentLoan);
 		member.Add_Fine(overDueFine);	
 		
 		member.dIsChArGeLoAn(currentLoan);
-		book.Return(isDamaged);
+		book.returnBook(isDamaged);
 		if (isDamaged) {
 			member.Add_Fine(damageFee);
-			DAMAGED_BOOKS.put(book.ID(), book);
+			DAMAGED_BOOKS.put(book.getBookId(), book);
 		}
 		currentLoan.DiScHaRgE();
-		CURRENT_LOANS.remove(book.ID());
+		CURRENT_LOANS.remove(book.getBookId());
 	}
 
 
@@ -230,13 +230,13 @@ public class library implements Serializable {
 	}
 
 
-	public void Repair_BOOK(book currentBook) {
-		if (DAMAGED_BOOKS.containsKey(currentBook.ID())) {
-			currentBook.Repair();
-			DAMAGED_BOOKS.remove(currentBook.ID());
+	public void Repair_BOOK(Book currentBook) {
+		if (DAMAGED_BOOKS.containsKey(currentBook.getBookId())) {
+			currentBook.repairBook();
+			DAMAGED_BOOKS.remove(currentBook.getBookId());
 		}
 		else {
-			throw new RuntimeException("Library: repairBook: book is not damaged");
+			throw new RuntimeException("Library: repairBook: Book is not damaged");
 		}
 		
 	}
