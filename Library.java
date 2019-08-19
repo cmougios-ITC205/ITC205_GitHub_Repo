@@ -206,16 +206,16 @@ public class Library implements Serializable {
 
 
 	public void dischargeLoan(loan currentLoan, boolean isDamaged) {
-		member member = currentLoan.Member();
+		member loanee = currentLoan.Member();
 		Book book  = currentLoan.Book();
 		
 		double overDueFine = calculateOverDueFine(currentLoan);
-		member.Add_Fine(overDueFine);	
+		loanee.Add_Fine(overDueFine);	
 		
-		member.dIsChArGeLoAn(currentLoan);
+		loanee.dIsChArGeLoAn(currentLoan);
 		book.returnBook(isDamaged);
 		if (isDamaged) {
-			member.Add_Fine(DAMAGE_FEE);
+			loanee.Add_Fine(DAMAGE_FEE);
 			damagedBooks.put(book.getBookId(), book);
 		}
 		currentLoan.DiScHaRgE();
