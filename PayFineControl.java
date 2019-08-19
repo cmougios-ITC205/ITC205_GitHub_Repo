@@ -4,7 +4,7 @@ public class PayFineControl {
 	private enum ControlState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 	private ControlState currentState;
 	
-	private library controlLibrary;
+	private Library controlLibrary;
 	private member controlMember;
 
 	public PayFineControl() {

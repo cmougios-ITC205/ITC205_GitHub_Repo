@@ -14,16 +14,16 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("serial")
-public class library implements Serializable {
+public class Library implements Serializable {
 	
-	private static final String libraryFile = "library.obj";
+	private static final String libraryFile = "Library.obj";
 	private static final int loanLimit = 2;
 	private static final int loanPeriod = 2;
 	private static final double finePerDay = 1.0;
 	private static final double maxFinesOwed = 1.0;
 	private static final double damageFee = 2.0;
 	
-	private static library SeLf;
+	private static Library SeLf;
 	private int BOOK_ID;
 	private int MEMBER_ID;
 	private int LOAN_ID;
@@ -36,7 +36,7 @@ public class library implements Serializable {
 	private Map<Integer, Book> DAMAGED_BOOKS;
 	
 
-	private library() {
+	private Library() {
 		CATALOG = new HashMap<>();
 		MEMBERS = new HashMap<>();
 		LOANS = new HashMap<>();
@@ -48,13 +48,13 @@ public class library implements Serializable {
 	}
 
 	
-	public static synchronized library INSTANCE() {		
+	public static synchronized Library INSTANCE() {
 		if (SeLf == null) {
 			Path PATH = Paths.get(libraryFile);			
 			if (Files.exists(PATH)) {	
 				try (ObjectInputStream LiF = new ObjectInputStream(new FileInputStream(libraryFile));) {
 			    
-					SeLf = (library) LiF.readObject();
+					SeLf = (Library) LiF.readObject();
 					Calendar.getInstance().setDate(SeLf.LOAN_DATE);
 					LiF.close();
 				}
@@ -62,7 +62,7 @@ public class library implements Serializable {
 					throw new RuntimeException(e);
 				}
 			}
-			else SeLf = new library();
+			else SeLf = new Library();
 		}
 		return SeLf;
 	}
