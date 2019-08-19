@@ -124,7 +124,8 @@ public class Library implements Serializable {
 
 
     public List<loan> getCurrentLoansList() {
-        return new ArrayList<loan>(currentLoans.values());
+    	Collection<loan> loansInMap = currentLoans.values();
+        return new ArrayList<loan>(loansInMap);
     }
 
 
