@@ -31,7 +31,7 @@ public class Library implements Serializable {
 	
 	private Map<Integer, Book> catalog;
 	private Map<Integer, member> members;
-	private Map<Integer, loan> LOANS;
+	private Map<Integer, loan> loans;
 	private Map<Integer, loan> CURRENT_LOANS;
 	private Map<Integer, Book> DAMAGED_BOOKS;
 	
@@ -39,7 +39,7 @@ public class Library implements Serializable {
 	private Library() {
 		catalog = new HashMap<>();
 		members = new HashMap<>();
-		LOANS = new HashMap<>();
+		loans = new HashMap<>();
 		CURRENT_LOANS = new HashMap<>();
 		DAMAGED_BOOKS = new HashMap<>();
 		bookId = 1;
@@ -181,7 +181,7 @@ public class Library implements Serializable {
 		loan loan = new loan(NextLID(), book, member, dueDate);
 		member.Take_Out_Loan(loan);
 		book.borrowBook();
-		LOANS.put(loan.ID(), loan);
+		loans.put(loan.ID(), loan);
 		CURRENT_LOANS.put(book.getBookId(), loan);
 		return loan;
 	}
