@@ -48,7 +48,7 @@ public class ReturnBookControl {
 
 		double overdueFine = 0.0;
 
-		if (currentLoan.OVer_Due()) {
+		if (currentLoan.isOverDue()) {
 			overdueFine = library.CalculateOverDueFine(currentLoan);
 		}
 
@@ -59,7 +59,7 @@ public class ReturnBookControl {
 		this.returnBookUI.display(currentBookStr);
 		this.returnBookUI.display(currentLoanStr);
 		
-		if (this.currentLoan.OVer_Due()) {
+		if (this.currentLoan.isOverDue()) {
 		    String fineValue = String.format("\nOverdue fine : $%.2f", overdueFine);
 			this.returnBookUI.display(fineValue);
 		}

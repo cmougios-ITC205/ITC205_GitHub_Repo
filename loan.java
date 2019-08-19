@@ -32,7 +32,7 @@ public class loan implements Serializable {
 	}
 
 	
-	public boolean OVer_Due() {
+	public boolean isOverDue() {
 		return loanState == LoanState.OVER_DUE;
 	}
 
