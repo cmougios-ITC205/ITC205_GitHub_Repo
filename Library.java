@@ -68,7 +68,7 @@ public class Library implements Serializable {
 	}
 
 	
-	public static synchronized void SAVE() {
+	public static synchronized void saveInstanceToFile() {
 		if (self != null) {
 			self.loanDate = Calendar.getInstance().getDate();
 			try (ObjectOutputStream LoF = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
