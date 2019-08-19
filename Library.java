@@ -71,10 +71,10 @@ public class Library implements Serializable {
 	public static synchronized void saveInstanceToFile() {
 		if (self != null) {
 			self.loanDate = Calendar.getInstance().getDate();
-			try (ObjectOutputStream LoF = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
-				LoF.writeObject(self);
-				LoF.flush();
-				LoF.close();	
+			try (ObjectOutputStream libraryObjectOutput = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
+				libraryObjectOutput.writeObject(self);
+				libraryObjectOutput.flush();
+				libraryObjectOutput.close();
 			}
 			catch (Exception e) {
 				throw new RuntimeException(e);
