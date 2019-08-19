@@ -118,7 +118,7 @@ public class Library implements Serializable {
 	}
 
 
-	public List<loan> CurrentLoans() {
+	public List<loan> getCurrentLoansList() {
 		return new ArrayList<loan>(currentLoans.values());
 	}
 
