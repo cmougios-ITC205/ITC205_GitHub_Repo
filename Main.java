@@ -186,7 +186,7 @@ public class Main {
 		String A = input("Enter author: ");
 		String T  = input("Enter title: ");
 		String C = input("Enter call number: ");
-		Book B = LIB.Add_book(A, T, C);
+		Book B = LIB.addBook(A, T, C);
 		output("\n" + B + "\n");
 		
 	}
