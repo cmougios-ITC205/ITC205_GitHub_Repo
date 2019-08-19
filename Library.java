@@ -151,7 +151,7 @@ public class Library implements Serializable {
 	}
 
 	
-	public int LOAN_LIMIT() {
+	public int getLoanLimit() {
 		return LOAN_LIMIT;
 	}
 
