@@ -137,7 +137,7 @@ public class Library implements Serializable {
 	}
 
 	
-	public member MEMBER(int memberId) {
+	public member getMemberId(int memberId) {
 		if (members.containsKey(memberId))
 			return members.get(memberId);
 		return null;

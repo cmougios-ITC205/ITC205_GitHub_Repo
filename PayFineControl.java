@@ -27,7 +27,7 @@ public class PayFineControl {
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
 		}
 
-		this.controlMember = this.controlLibrary.MEMBER(memberId);
+		this.controlMember = this.controlLibrary.getMemberId(memberId);
 		
 		if (this.controlMember == null) {
 			this.controlInstance.display("Invalid Member Id");
