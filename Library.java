@@ -226,12 +226,15 @@ public class Library implements Serializable {
 
         loanee.dIsChArGeLoAn(currentLoan);
         loanedBook.returnBook(isDamaged);
+
+		int loanedBookId = loanedBook.getBookId();
+
         if (isDamaged) {
             loanee.Add_Fine(DAMAGE_FEE);
-            damagedBooks.put(loanedBook.getBookId(), loanedBook);
+            damagedBooks.put(loanedBookId, loanedBook);
         }
         currentLoan.DiScHaRgE();
-        currentLoans.remove(loanedBook.getBookId());
+        currentLoans.remove(loanedBookId);
     }
 
 
