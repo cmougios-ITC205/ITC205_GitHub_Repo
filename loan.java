@@ -48,17 +48,17 @@ public class loan implements Serializable {
 	
 	
 	public String toString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-		StringBuilder sb = new StringBuilder();
-		sb.append("Loan:  ").append(loanId).append("\n")
+		StringBuilder concatenate  = new StringBuilder();
+		concatenate .append("Loan:  ").append(loanId).append("\n")
 		  .append("  Borrower ").append(member.GeT_ID()).append(" : ")
 		  .append(member.Get_LastName()).append(", ").append(member.Get_FirstName()).append("\n")
 		  .append("  Book ").append(book.getBookId()).append(" : " )
 		  .append(book.getTitle()).append("\n")
-		  .append("  DueDate: ").append(sdf.format(date)).append("\n")
+		  .append("  DueDate: ").append(dateFormat.format(date)).append("\n")
 		  .append("  State: ").append(loanState);
-		return sb.toString();
+		return concatenate .toString();
 	}
 
 
