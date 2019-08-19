@@ -198,7 +198,7 @@ public class Main {
 			String FN  = input("Enter first name: ");
 			String EM = input("Enter email: ");
 			int PN = Integer.valueOf(input("Enter phone number: ")).intValue();
-			member M = LIB.Add_mem(LN, FN, EM, PN);
+			member M = LIB.addMember(LN, FN, EM, PN);
 			output("\n" + M + "\n");
 			
 		} catch (NumberFormatException e) {
