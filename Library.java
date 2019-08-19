@@ -50,8 +50,8 @@ public class Library implements Serializable {
 	
 	public static synchronized Library getInstance() {
 		if (self == null) {
-			Path path = Paths.get(LIBRARY_FILE);
-			if (Files.exists(path)) {
+			Path filePath = Paths.get(LIBRARY_FILE);
+			if (Files.exists(filePath)) {
 				try (ObjectInputStream LiF = new ObjectInputStream(new FileInputStream(LIBRARY_FILE));) {
 			    
 					self = (Library) LiF.readObject();
