@@ -53,7 +53,7 @@ public class Library implements Serializable {
         if (self == null) {
             Path filePath = Paths.get(LIBRARY_FILE);
             if (Files.exists(filePath)) {
-                try (   FileInputStream libraryFileInput = new FileInputStream(LIBRARY_FILE);
+                try (FileInputStream libraryFileInput = new FileInputStream(LIBRARY_FILE);
                         ObjectInputStream libraryObjectInput = new ObjectInputStream(libraryFileInput);) {
 
                     self = (Library) libraryObjectInput.readObject();
