@@ -30,7 +30,7 @@ public class Library implements Serializable {
 	private Date loanDate;
 	
 	private Map<Integer, Book> catalog;
-	private Map<Integer, member> MEMBERS;
+	private Map<Integer, member> members;
 	private Map<Integer, loan> LOANS;
 	private Map<Integer, loan> CURRENT_LOANS;
 	private Map<Integer, Book> DAMAGED_BOOKS;
@@ -38,7 +38,7 @@ public class Library implements Serializable {
 
 	private Library() {
 		catalog = new HashMap<>();
-		MEMBERS = new HashMap<>();
+		members = new HashMap<>();
 		LOANS = new HashMap<>();
 		CURRENT_LOANS = new HashMap<>();
 		DAMAGED_BOOKS = new HashMap<>();
@@ -109,7 +109,7 @@ public class Library implements Serializable {
 
 	
 	public List<member> MEMBERS() {		
-		return new ArrayList<member>(MEMBERS.values()); 
+		return new ArrayList<member>(members.values());
 	}
 
 
@@ -125,7 +125,7 @@ public class Library implements Serializable {
 
 	public member Add_mem(String lastName, String firstName, String email, int phoneNo) {		
 		member member = new member(lastName, firstName, email, phoneNo, NextMID());
-		MEMBERS.put(member.GeT_ID(), member);		
+		members.put(member.GeT_ID(), member);
 		return member;
 	}
 
@@ -138,8 +138,8 @@ public class Library implements Serializable {
 
 	
 	public member MEMBER(int memberId) {
-		if (MEMBERS.containsKey(memberId)) 
-			return MEMBERS.get(memberId);
+		if (members.containsKey(memberId))
+			return members.get(memberId);
 		return null;
 	}
 
