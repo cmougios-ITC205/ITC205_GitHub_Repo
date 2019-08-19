@@ -8,31 +8,31 @@ public class loan implements Serializable {
 	public static enum LoanState { CURRENT, OVER_DUE, DISCHARGED };
 	
 	private int loanId;
-	private Book B;
-	private member M;
-	private Date D;
-	private LoanState state;
+	private Book book;
+	private member member;
+	private Date date;
+	private LoanState loanState;
 
 	
 	public loan(int loanId, Book book, member member, Date dueDate) {
 		this.loanId = loanId;
-		this.B = book;
-		this.M = member;
-		this.D = dueDate;
-		this.state = LoanState.CURRENT;
+		this.book = book;
+		this.member = member;
+		this.date = dueDate;
+		this.loanState = LoanState.CURRENT;
 	}
 
 	
 	public void checkOverDue() {
-		if (state == LoanState.CURRENT &&
-			Calendar.getInstance().getDate().after(D)) {
-			this.state = LoanState.OVER_DUE;
+		if (loanState == LoanState.CURRENT &&
+			Calendar.getInstance().getDate().after(date)) {
+			this.loanState = LoanState.OVER_DUE;
 		}
 	}
 
 	
 	public boolean OVer_Due() {
-		return state == LoanState.OVER_DUE;
+		return loanState == LoanState.OVER_DUE;
 	}
 
 	
@@ -42,7 +42,7 @@ public class loan implements Serializable {
 
 
 	public Date Get_Due_Date() {
-		return D;
+		return date;
 	}
 	
 	
@@ -51,28 +51,28 @@ public class loan implements Serializable {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("Loan:  ").append(loanId).append("\n")
-		  .append("  Borrower ").append(M.GeT_ID()).append(" : ")
-		  .append(M.Get_LastName()).append(", ").append(M.Get_FirstName()).append("\n")
-		  .append("  Book ").append(B.getBookId()).append(" : " )
-		  .append(B.getTitle()).append("\n")
-		  .append("  DueDate: ").append(sdf.format(D)).append("\n")
-		  .append("  State: ").append(state);		
+		  .append("  Borrower ").append(member.GeT_ID()).append(" : ")
+		  .append(member.Get_LastName()).append(", ").append(member.Get_FirstName()).append("\n")
+		  .append("  Book ").append(book.getBookId()).append(" : " )
+		  .append(book.getTitle()).append("\n")
+		  .append("  DueDate: ").append(sdf.format(date)).append("\n")
+		  .append("  State: ").append(loanState);
 		return sb.toString();
 	}
 
 
 	public member Member() {
-		return M;
+		return member;
 	}
 
 
 	public Book Book() {
-		return B;
+		return book;
 	}
 
 
 	public void DiScHaRgE() {
-		state = LoanState.DISCHARGED;
+		loanState = LoanState.DISCHARGED;
 	}
 
 }
