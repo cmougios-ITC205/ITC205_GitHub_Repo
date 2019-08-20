@@ -7,7 +7,7 @@ public class Main {
 	private static Scanner scannerInInput;
 	private static library libraryService;
 	private static String menuPrompt;
-	private static Calendar CAL;
+	private static Calendar calendarService;
 	private static SimpleDateFormat SDF;
 	
 	
@@ -41,7 +41,7 @@ public class Main {
 		try {			
 			scannerInInput = new Scanner(System.in);
 			libraryService = library.INSTANCE();
-			CAL = Calendar.getInstance();
+			calendarService = Calendar.getInstance();
 			SDF = new SimpleDateFormat("dd/MM/yyyy");
 	
 			for (member m : libraryService.MEMBERS()) {
@@ -58,7 +58,7 @@ public class Main {
 			
 			while (!e) {
 				
-				output("\n" + SDF.format(CAL.getDate()));
+				output("\n" + SDF.format(calendarService.getDate()));
 				String c = input(menuPrompt);
 				
 				switch (c.toUpperCase()) {
@@ -171,9 +171,9 @@ public class Main {
 	private static void INCREMENT_DATE() {
 		try {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
-			CAL.incrementDate(days);
+			calendarService.incrementDate(days);
 			libraryService.checkCurrentLoans();
-			output(SDF.format(CAL.getDate()));
+			output(SDF.format(calendarService.getDate()));
 			
 		} catch (NumberFormatException e) {
 			 output("\nInvalid number of days\n");
