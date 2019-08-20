@@ -54,9 +54,8 @@ public class Member implements Serializable {
 	}
 	
 	public int getNumberOfCurrentLoans() {
-		return loanCollection.size();
+		return this.loanCollection.size();
 	}
-
 	
 	public double Fines_OwEd() {
 		return fines;
