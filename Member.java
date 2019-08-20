@@ -1,8 +1,5 @@
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Member implements Serializable {
 
@@ -52,7 +49,8 @@ public class Member implements Serializable {
 	}
 
 	public List<loan> getLoans() {
-		return new ArrayList<loan>(loanCollection.values());
+        Collection<loan> loanCollectionValues = this.loanCollection.values();
+        return new ArrayList<loan>(loanCollectionValues);
 	}
 
 	
