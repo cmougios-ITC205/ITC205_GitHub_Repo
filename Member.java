@@ -98,14 +98,13 @@ public class Member implements Serializable {
 		else {
 			this.fines -= amount;
 		}
-		
+
 		return change;
 	}
 
-
-	public void dIsChArGeLoAn(loan LoAn) {
-		if (loanCollection.containsKey(LoAn.ID())) {
-			loanCollection.remove(LoAn.ID());
+	public void dischargeLoan(loan loanToDischarge) {
+		if (loanCollection.containsKey(loanToDischarge.ID())) {
+			loanCollection.remove(loanToDischarge.ID());
 		}
 		else {
 			throw new RuntimeException("No such loan held by member");
