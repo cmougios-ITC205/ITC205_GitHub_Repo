@@ -65,7 +65,7 @@ public class Main {
 				switch (userInput.toUpperCase()) {
 
                     case "M":
-                        ADD_MEMBER();
+                        addMember();
                         break;
 
                     case "LM":
@@ -189,7 +189,7 @@ public class Main {
 		output("\n" + bookAdded + "\n");
 	}
 	
-	private static void ADD_MEMBER() {
+	private static void addMember() {
 		try {
 			String LN = input("Enter last name: ");
 			String FN  = input("Enter first name: ");
