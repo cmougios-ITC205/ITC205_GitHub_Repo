@@ -137,8 +137,9 @@ public class Main {
 
 	private static void outputBooks() {
 		output("");
-		for (Book book : libraryService.BOOKS()) {
-			output(book + "\n");
+
+		for (Book bookRecord : libraryService.BOOKS()) {
+			output(bookRecord + "\n");
 		}		
 	}
 
