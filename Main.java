@@ -6,7 +6,7 @@ public class Main {
 	
 	private static Scanner scannerInInput;
 	private static library libraryService;
-	private static String MENU;
+	private static String menuPrompt;
 	private static Calendar CAL;
 	private static SimpleDateFormat SDF;
 	
@@ -52,14 +52,14 @@ public class Main {
 				output(b);
 			}
 						
-			MENU = Get_menu();
+			menuPrompt = Get_menu();
 			
 			boolean e = false;
 			
 			while (!e) {
 				
 				output("\n" + SDF.format(CAL.getDate()));
-				String c = input(MENU);
+				String c = input(menuPrompt);
 				
 				switch (c.toUpperCase()) {
 				
