@@ -192,10 +192,10 @@ public class Main {
 	private static void addMember() {
 		try {
 			String lastName = input("Enter last name: ");
-			String FN  = input("Enter first name: ");
+			String firstName  = input("Enter first name: ");
 			String EM = input("Enter email: ");
 			int PN = Integer.valueOf(input("Enter phone number: ")).intValue();
-			member M = libraryService.Add_mem(lastName, FN, EM, PN);
+			member M = libraryService.Add_mem(lastName, firstName, EM, PN);
 			output("\n" + M + "\n");
 			
 		} catch (NumberFormatException e) {
