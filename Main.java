@@ -1,11 +1,12 @@
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 
 public class Main {
     
     private static Scanner scannerInInput;
-    private static library libraryService;
+    private static Library libraryService;
     private static String menuPrompt;
     private static Calendar calendarService;
     private static SimpleDateFormat displayDateFormat;
@@ -39,17 +40,17 @@ public class Main {
     public static void main(String[] args) {
         try {
             scannerInInput = new Scanner(System.in);
-            libraryService = library.INSTANCE();
+            libraryService = Library.getInstance();
             calendarService = Calendar.getInstance();
             displayDateFormat = new SimpleDateFormat("dd/MM/yyyy");
     
-            for (Member memberRecord : libraryService.MEMBERS()) {
+            for (Member memberRecord : libraryService.getMemberList()) {
                 output(memberRecord);
             }
 
             output(" ");
 
-            for (Book bookRecord : libraryService.BOOKS()) {
+            for (Book bookRecord : libraryService.getBookList()) {
                 output(bookRecord);
             }
 
@@ -113,7 +114,7 @@ public class Main {
                         break;
                 }
                 
-                library.SAVE();
+                library.saveInstanceToFile();
             }
         } catch (RuntimeException e) {
             output(e);
@@ -130,7 +131,7 @@ public class Main {
     private static void outputCurrentLoans() {
         output("");
 
-        for (loan loanRecord : libraryService.CurrentLoans()) {
+        for (loan loanRecord : libraryService.getCurrentLoansList()) {
             output(loanRecord + "\n");
         }
     }
@@ -138,7 +139,7 @@ public class Main {
     private static void outputBooks() {
         output("");
 
-        for (Book bookRecord : libraryService.BOOKS()) {
+        for (Book bookRecord : libraryService.getBookList()) {
             output(bookRecord + "\n");
         }
     }
@@ -146,7 +147,7 @@ public class Main {
     private static void outputMembers() {
         output("");
 
-        for (Member memberRecord : libraryService.MEMBERS()) {
+        for (Member memberRecord : libraryService.getMemberList()) {
             output(memberRecord + "\n");
         }
     }
@@ -173,7 +174,9 @@ public class Main {
             calendarService.incrementDate(days);
             libraryService.checkCurrentLoans();
 
-            output(displayDateFormat.format(calendarService.getDate()));
+            Date calendarDate = calendarService.getDate();
+            String dateFormatted = displayDateFormat.format(calendarDate);
+            output(dateFormatted);
 
         } catch (NumberFormatException e) {
              output("\nInvalid number of days\n");
@@ -184,7 +187,7 @@ public class Main {
         String author = input("Enter author: ");
         String title  = input("Enter title: ");
         String callNumber = input("Enter call number: ");
-        Book bookAdded = libraryService.Add_book(author, title, callNumber);
+        Book bookAdded = libraryService.addBook(author, title, callNumber);
 
         output("\n" + bookAdded + "\n");
     }
@@ -196,7 +199,7 @@ public class Main {
             String email = input("Enter email: ");
             String phoneNumberInput = input("Enter phone number: ");
             int pinNumber = Integer.valueOf(phoneNumberInput).intValue();
-            Member memberAdded = libraryService.Add_mem(lastName, firstName, email, pinNumber);
+            Member memberAdded = libraryService.addMember(lastName, firstName, email, pinNumber);
 
             output("\n" + memberAdded + "\n");
 

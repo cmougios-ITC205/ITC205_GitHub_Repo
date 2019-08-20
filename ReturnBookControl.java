@@ -4,12 +4,12 @@ public class ReturnBookControl {
 	private enum ControlState { INITIALISED, READY, INSPECTING };
 	private ControlState state;
 	
-	private library library;
+	private Library library;
 	private loan currentLoan;
 	
 
 	public ReturnBookControl() {
-		this.library = library.INSTANCE();
+		this.library = library.getInstance();
 		this.state = ControlState.INITIALISED;
 	}
 	
@@ -32,7 +32,7 @@ public class ReturnBookControl {
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
 		}
 
-		Book currentBook = library.Book(bookId);
+		Book currentBook = library.getBookId(bookId);
 		
 		if (currentBook == null) {
 			this.returnBookUI.display("Invalid Book Id");
@@ -44,12 +44,12 @@ public class ReturnBookControl {
 			return;
 		}
 
-		this.currentLoan = library.LOAN_BY_BOOK_ID(bookId);
+		this.currentLoan = library.getLoanByBookId(bookId);
 
 		double overdueFine = 0.0;
 
 		if (currentLoan.OVer_Due()) {
-			overdueFine = library.CalculateOverDueFine(currentLoan);
+			overdueFine = library.calculateOverDueFine(currentLoan);
 		}
 
 		String currentBookStr = currentBook.toString();
@@ -83,7 +83,7 @@ public class ReturnBookControl {
 			throw new RuntimeException("ReturnBookControl: cannot call dischargeLoan except in INSPECTING state");
 		}
 
-		this.library.Discharge_loan(currentLoan, isDamaged);
+		this.library.dischargeLoan(currentLoan, isDamaged);
 		this.currentLoan = null;
 		this.returnBookUI.setState(ReturnBookUI.UIState.READY);
 		this.state = ControlState.READY;

@@ -4,12 +4,12 @@ public class FixBookControl {
     private enum ControlState { INITIALISED, READY, FIXING };
     private ControlState state;
 
-    private library library;
+    private Library library;
     private Book currentBook;
 
 
     public FixBookControl() {
-        this.library = library.INSTANCE();
+        this.library = library.getInstance();
         this.state = ControlState.INITIALISED;
     }
 
@@ -28,7 +28,7 @@ public class FixBookControl {
         if (!state.equals(ControlState.READY)) {
             throw new RuntimeException("FixBookControl: cannot call scanBook except in READY state");
         }
-        this.currentBook = library.Book(bookId);
+        this.currentBook = library.getBookId(bookId);
 
         if (currentBook == null) {
             this.UI.display("Invalid bookId");
@@ -51,7 +51,7 @@ public class FixBookControl {
             throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
         }
         if (mustFix) {
-            this.library.Repair_BOOK(currentBook);
+            this.library.repairBook(currentBook);
         }
         this.currentBook = null;
         this.UI.setState(FixBookUI.UIState.READY);
