@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 	
-	private static Scanner IN;
+	private static Scanner scannerInInput;
 	private static library LIB;
 	private static String MENU;
 	private static Calendar CAL;
@@ -39,7 +39,7 @@ public class Main {
 
 	public static void main(String[] args) {		
 		try {			
-			IN = new Scanner(System.in);
+			scannerInInput = new Scanner(System.in);
 			LIB = library.INSTANCE();
 			CAL = Calendar.getInstance();
 			SDF = new SimpleDateFormat("dd/MM/yyyy");
@@ -210,7 +210,7 @@ public class Main {
 
 	private static String input(String prompt) {
 		System.out.print(prompt);
-		return IN.nextLine();
+		return scannerInInput.nextLine();
 	}
 	
 	
