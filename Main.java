@@ -60,9 +60,9 @@ public class Main {
 			while (!finishedProcess) {
 				
 				output("\n" + displayDateFormat.format(calendarService.getDate()));
-				String c = input(menuPrompt);
+				String userInput = input(menuPrompt);
 				
-				switch (c.toUpperCase()) {
+				switch (userInput.toUpperCase()) {
 				
 				case "M": 
 					ADD_MEMBER();
