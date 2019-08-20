@@ -52,9 +52,8 @@ public class Member implements Serializable {
         Collection<loan> loanCollectionValues = this.loanCollection.values();
         return new ArrayList<loan>(loanCollectionValues);
 	}
-
 	
-	public int Number_Of_Current_Loans() {
+	public int getNumberOfCurrentLoans() {
 		return loanCollection.size();
 	}
 

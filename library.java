@@ -157,7 +157,7 @@ public class library implements Serializable {
 
 	
 	public boolean MEMBER_CAN_BORROW(Member member) {
-		if (member.Number_Of_Current_Loans() == loanLimit )
+		if (member.getNumberOfCurrentLoans() == loanLimit )
 			return false;
 				
 		if (member.Fines_OwEd() >= maxFinesOwed)
@@ -172,7 +172,7 @@ public class library implements Serializable {
 
 	
 	public int Loans_Remaining_For_Member(Member member) {
-		return loanLimit - member.Number_Of_Current_Loans();
+		return loanLimit - member.getNumberOfCurrentLoans();
 	}
 
 	
