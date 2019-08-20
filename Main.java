@@ -193,9 +193,9 @@ public class Main {
 		try {
 			String lastName = input("Enter last name: ");
 			String firstName  = input("Enter first name: ");
-			String EM = input("Enter email: ");
+			String email = input("Enter email: ");
 			int PN = Integer.valueOf(input("Enter phone number: ")).intValue();
-			member M = libraryService.Add_mem(lastName, firstName, EM, PN);
+			member M = libraryService.Add_mem(lastName, firstName, email, PN);
 			output("\n" + M + "\n");
 			
 		} catch (NumberFormatException e) {
