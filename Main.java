@@ -81,7 +81,7 @@ public class Main {
                         break;
 
                     case "FB":
-                        FIX_BOOKS();
+                        fixBooks();
                         break;
 
                     case "L":
@@ -161,10 +161,10 @@ public class Main {
 		new ReturnBookUI(control).run();
 	}
 
-	private static void FIX_BOOKS() {
-		new FixBookUI(new FixBookControl()).run();		
+	private static void fixBooks() {
+	    FixBookControl control = new FixBookControl();
+		new FixBookUI(control).run();
 	}
-
 
 	private static void INCREMENT_DATE() {
 		try {
