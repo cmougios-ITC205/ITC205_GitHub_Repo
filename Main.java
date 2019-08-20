@@ -63,67 +63,68 @@ public class Main {
 				String userInput = input(menuPrompt);
 				
 				switch (userInput.toUpperCase()) {
-				
-				case "M": 
-					ADD_MEMBER();
-					break;
-					
-				case "LM": 
-					MEMBERS();
-					break;
-					
-				case "B": 
-					ADD_BOOK();
-					break;
-					
-				case "LB": 
-					BOOKS();
-					break;
-					
-				case "FB": 
-					FIX_BOOKS();
-					break;
-					
-				case "L": 
-					BORROW_BOOK();
-					break;
-					
-				case "R": 
-					RETURN_BOOK();
-					break;
-					
-				case "LL": 
-					CURRENT_LOANS();
-					break;
-					
-				case "P": 
-					FINES();
-					break;
-					
-				case "T": 
-					INCREMENT_DATE();
-					break;
-					
-				case "Q": 
-					finishedProcess = true;
-					break;
-					
-				default: 
-					output("\nInvalid option\n");
-					break;
+
+                    case "M":
+                        ADD_MEMBER();
+                        break;
+
+                    case "LM":
+                        MEMBERS();
+                        break;
+
+                    case "B":
+                        ADD_BOOK();
+                        break;
+
+                    case "LB":
+                        BOOKS();
+                        break;
+
+                    case "FB":
+                        FIX_BOOKS();
+                        break;
+
+                    case "L":
+                        BORROW_BOOK();
+                        break;
+
+                    case "R":
+                        RETURN_BOOK();
+                        break;
+
+                    case "LL":
+                        CURRENT_LOANS();
+                        break;
+
+                    case "P":
+                        runFinesProcess();
+                        break;
+
+                    case "T":
+                        INCREMENT_DATE();
+                        break;
+
+                    case "Q":
+                        finishedProcess = true;
+                        break;
+
+                    default:
+                        output("\nInvalid option\n");
+                        break;
 				}
 				
 				library.SAVE();
 			}			
 		} catch (RuntimeException e) {
 			output(e);
-		}		
+		}
+
 		output("\nEnded\n");
 	}	
-
 	
-	private static void FINES() {
-		new PayFineUI(new PayFineControl()).run();
+	private static void runFinesProcess() {
+	    PayFineControl payFineControl = new PayFineControl();
+		new PayFineUI(payFineControl).run();
 	}
 
 
