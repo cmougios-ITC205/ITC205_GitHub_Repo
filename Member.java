@@ -9,7 +9,7 @@ public class Member implements Serializable {
 	private String lastName;
 	private String firstName;
 	private String email;
-	private int PN;
+	private int phoneNumber;
 	private int ID;
 	private double FINES;
 	
@@ -20,7 +20,7 @@ public class Member implements Serializable {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.email = email;
-		this.PN = phoneNo;
+		this.phoneNumber = phoneNo;
 		this.ID = id;
 		
 		this.LNS = new HashMap<>();
@@ -32,7 +32,7 @@ public class Member implements Serializable {
 		sb.append("Member:  ").append(ID).append("\n")
 		  .append("  Name:  ").append(lastName).append(", ").append(firstName).append("\n")
 		  .append("  Email: ").append(email).append("\n")
-		  .append("  Phone: ").append(PN)
+		  .append("  Phone: ").append(phoneNumber)
 		  .append("\n")
 		  .append(String.format("  Fines Owed :  $%.2f", FINES))
 		  .append("\n");
