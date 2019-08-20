@@ -77,7 +77,7 @@ public class Member implements Serializable {
 	}
 	
 	public String getFirstName() {
-		return firstName;
+		return this.firstName;
 	}
 
 	public void Add_Fine(double fine) {
