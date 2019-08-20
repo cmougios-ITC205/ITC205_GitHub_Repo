@@ -80,7 +80,7 @@ public class Member implements Serializable {
 		return this.firstName;
 	}
 
-	public void Add_Fine(double fine) {
+	public void addFine(double fine) {
 		fines += fine;
 	}
 	

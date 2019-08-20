@@ -210,12 +210,12 @@ public class library implements Serializable {
 		Book book  = currentLoan.Book();
 		
 		double overDueFine = CalculateOverDueFine(currentLoan);
-		member.Add_Fine(overDueFine);	
+		member.addFine(overDueFine);
 		
 		member.dIsChArGeLoAn(currentLoan);
 		book.returnBook(isDamaged);
 		if (isDamaged) {
-			member.Add_Fine(damageFee);
+			member.addFine(damageFee);
 			DAMAGED_BOOKS.put(book.getBookId(), book);
 		}
 		currentLoan.DiScHaRgE();
