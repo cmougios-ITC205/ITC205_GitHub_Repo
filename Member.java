@@ -39,9 +39,10 @@ public class Member implements Serializable {
 		  .append(finesOwed)
 		  .append("\n");
 		
-		for (loan LoAn : loanCollection.values()) {
-			sb.append(LoAn).append("\n");
-		}		  
+		for (loan loanRecord : loanCollection.values()) {
+			sb.append(loanRecord).append("\n");
+		}
+		
 		return sb.toString();
 	}
 
