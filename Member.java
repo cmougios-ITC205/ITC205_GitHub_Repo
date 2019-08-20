@@ -81,7 +81,7 @@ public class Member implements Serializable {
 	}
 
 	public void addFine(double fine) {
-		fines += fine;
+		this.fines += fine;
 	}
 	
 	public double Pay_Fine(double AmOuNt) {
