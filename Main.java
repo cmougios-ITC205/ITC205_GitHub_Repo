@@ -85,7 +85,7 @@ public class Main {
                         break;
 
                     case "L":
-                        BORROW_BOOK();
+                        borrowBook();
                         break;
 
                     case "R":
@@ -150,12 +150,10 @@ public class Main {
 		}		
 	}
 
-
-
-	private static void BORROW_BOOK() {
-		new BorrowBookUI(new BorrowBookControl()).run();		
+	private static void borrowBook() {
+	    BorrowBookControl control = new BorrowBookControl();
+		new BorrowBookUI(control).run();
 	}
-
 
 	private static void RETURN_BOOK() {
 		new ReturnBookUI(new ReturnBookControl()).run();
