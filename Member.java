@@ -61,7 +61,7 @@ public class Member implements Serializable {
 		return this.fines;
 	}
 	
-	public void Take_Out_Loan(loan loan) {
+	public void takeOutLoan(loan loan) {
 		if (!loanCollection.containsKey(loan.ID())) {
 			loanCollection.put(loan.ID(), loan);
 		}
