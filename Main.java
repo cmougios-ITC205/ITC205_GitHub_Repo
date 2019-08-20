@@ -181,13 +181,12 @@ public class Main {
 	}
 
 	private static void addBook() {
-		
 		String author = input("Enter author: ");
 		String title  = input("Enter title: ");
 		String callNumber = input("Enter call number: ");
-		Book B = libraryService.Add_book(author, title, callNumber);
-		output("\n" + B + "\n");
-		
+		Book bookAdded = libraryService.Add_book(author, title, callNumber);
+
+		output("\n" + bookAdded + "\n");
 	}
 	
 	private static void ADD_MEMBER() {
