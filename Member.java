@@ -75,12 +75,10 @@ public class Member implements Serializable {
 	public String getLastName() {
 		return this.lastName;
 	}
-
 	
-	public String Get_FirstName() {
+	public String getFirstName() {
 		return firstName;
 	}
-
 
 	public void Add_Fine(double fine) {
 		fines += fine;
