@@ -58,7 +58,7 @@ public class Member implements Serializable {
 	}
 
 	public double getFinesOwed() {
-		return fines;
+		return this.fines;
 	}
 	
 	public void Take_Out_Loan(loan loan) {
