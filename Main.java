@@ -55,9 +55,9 @@ public class Main {
 						
 			menuPrompt = getMenu();
 			
-			boolean e = false;
+			boolean finishedProcess = false;
 			
-			while (!e) {
+			while (!finishedProcess) {
 				
 				output("\n" + displayDateFormat.format(calendarService.getDate()));
 				String c = input(menuPrompt);
@@ -105,7 +105,7 @@ public class Main {
 					break;
 					
 				case "Q": 
-					e = true;
+					finishedProcess = true;
 					break;
 					
 				default: 
