@@ -77,7 +77,7 @@ public class Main {
                         break;
 
                     case "LB":
-                        BOOKS();
+                        outputBooks();
                         break;
 
                     case "FB":
@@ -135,7 +135,7 @@ public class Main {
 		}		
 	}
 
-	private static void BOOKS() {
+	private static void outputBooks() {
 		output("");
 		for (Book book : libraryService.BOOKS()) {
 			output(book + "\n");
