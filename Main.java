@@ -183,9 +183,9 @@ public class Main {
 	private static void addBook() {
 		
 		String author = input("Enter author: ");
-		String T  = input("Enter title: ");
+		String title  = input("Enter title: ");
 		String C = input("Enter call number: ");
-		Book B = libraryService.Add_book(author, T, C);
+		Book B = libraryService.Add_book(author, title, C);
 		output("\n" + B + "\n");
 		
 	}
