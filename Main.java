@@ -93,7 +93,7 @@ public class Main {
                         break;
 
                     case "LL":
-                        CURRENT_LOANS();
+                        outputCurrentLoans();
                         break;
 
                     case "P":
@@ -121,21 +121,19 @@ public class Main {
 
 		output("\nEnded\n");
 	}	
-	
+
 	private static void runFinesProcess() {
 	    PayFineControl payFineControl = new PayFineControl();
 		new PayFineUI(payFineControl).run();
 	}
 
-
-	private static void CURRENT_LOANS() {
+	private static void outputCurrentLoans() {
 		output("");
-		for (loan loan : libraryService.CurrentLoans()) {
-			output(loan + "\n");
+
+		for (loan loanRecord : libraryService.CurrentLoans()) {
+			output(loanRecord + "\n");
 		}		
 	}
-
-
 
 	private static void BOOKS() {
 		output("");
