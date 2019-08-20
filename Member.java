@@ -26,15 +26,17 @@ public class Member implements Serializable {
 		this.loanCollection = new HashMap<>();
 	}
 
-	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
+
+		String finesOwed = String.format("  Fines Owed :  $%.2f", fines);
+
 		sb.append("Member:  ").append(id).append("\n")
 		  .append("  Name:  ").append(lastName).append(", ").append(firstName).append("\n")
 		  .append("  Email: ").append(email).append("\n")
 		  .append("  Phone: ").append(phoneNumber)
 		  .append("\n")
-		  .append(String.format("  Fines Owed :  $%.2f", fines))
+		  .append(finesOwed)
 		  .append("\n");
 		
 		for (loan LoAn : loanCollection.values()) {
