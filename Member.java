@@ -29,12 +29,12 @@ public class Member implements Serializable {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 
-		String finesOwed = String.format("  Fines Owed :  $%.2f", fines);
+		String finesOwed = String.format("  Fines Owed :  $%.2f", this.fines);
 
-		sb.append("Member:  ").append(id).append("\n")
-		  .append("  Name:  ").append(lastName).append(", ").append(firstName).append("\n")
-		  .append("  Email: ").append(email).append("\n")
-		  .append("  Phone: ").append(phoneNumber)
+		sb.append("Member:  ").append(this.id).append("\n")
+		  .append("  Name:  ").append(this.lastName).append(", ").append(this.firstName).append("\n")
+		  .append("  Email: ").append(this.email).append("\n")
+		  .append("  Phone: ").append(this.phoneNumber)
 		  .append("\n")
 		  .append(finesOwed)
 		  .append("\n");
