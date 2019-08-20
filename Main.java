@@ -73,7 +73,7 @@ public class Main {
                         break;
 
                     case "B":
-                        ADD_BOOK();
+                        addBook();
                         break;
 
                     case "LB":
@@ -172,7 +172,7 @@ public class Main {
 
 			calendarService.incrementDate(days);
 			libraryService.checkCurrentLoans();
-			
+
 			output(displayDateFormat.format(calendarService.getDate()));
 			
 		} catch (NumberFormatException e) {
@@ -180,17 +180,15 @@ public class Main {
 		}
 	}
 
-
-	private static void ADD_BOOK() {
+	private static void addBook() {
 		
-		String A = input("Enter author: ");
+		String author = input("Enter author: ");
 		String T  = input("Enter title: ");
 		String C = input("Enter call number: ");
-		Book B = libraryService.Add_book(A, T, C);
+		Book B = libraryService.Add_book(author, T, C);
 		output("\n" + B + "\n");
 		
 	}
-
 	
 	private static void ADD_MEMBER() {
 		try {
