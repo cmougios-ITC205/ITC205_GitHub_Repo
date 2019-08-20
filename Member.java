@@ -56,11 +56,10 @@ public class Member implements Serializable {
 	public int getNumberOfCurrentLoans() {
 		return this.loanCollection.size();
 	}
-	
-	public double Fines_OwEd() {
+
+	public double getFinesOwed() {
 		return fines;
 	}
-
 	
 	public void Take_Out_Loan(loan loan) {
 		if (!loanCollection.containsKey(loan.ID())) {

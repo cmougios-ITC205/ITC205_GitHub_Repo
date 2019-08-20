@@ -160,7 +160,7 @@ public class library implements Serializable {
 		if (member.getNumberOfCurrentLoans() == loanLimit )
 			return false;
 				
-		if (member.Fines_OwEd() >= maxFinesOwed)
+		if (member.getFinesOwed() >= maxFinesOwed)
 			return false;
 				
 		for (loan loan : member.getLoans())
