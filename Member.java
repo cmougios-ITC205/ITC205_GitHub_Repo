@@ -42,12 +42,12 @@ public class Member implements Serializable {
 		for (loan loanRecord : loanCollection.values()) {
 			sb.append(loanRecord).append("\n");
 		}
-		
+
 		return sb.toString();
 	}
 
 	
-	public int GeT_ID() {
+	public int getId() {
 		return id;
 	}
 
