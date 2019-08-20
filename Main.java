@@ -114,7 +114,7 @@ public class Main {
                         break;
                 }
                 
-                library.saveInstanceToFile();
+                Library.saveInstanceToFile();
             }
         } catch (RuntimeException e) {
             output(e);

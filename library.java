@@ -31,7 +31,7 @@ public class Library implements Serializable {
     private Date loanDate;
 
     private Map<Integer, Book> catalog;
-    private Map<Integer, member> members;
+    private Map<Integer, Member> members;
     private Map<Integer, loan> loans;
     private Map<Integer, loan> currentLoans;
     private Map<Integer, Book> damagedBooks;
@@ -111,9 +111,9 @@ public class Library implements Serializable {
     }
 
 
-    public List<member> getMemberList() {
-        Collection<member> membersInMap = members.values();
-        return new ArrayList<member>(membersInMap);
+    public List<Member> getMemberList() {
+        Collection<Member> membersInMap = members.values();
+        return new ArrayList<Member>(membersInMap);
     }
 
 
@@ -129,10 +129,10 @@ public class Library implements Serializable {
     }
 
 
-    public member addMember(String lastName, String firstName, String email, int phoneNo) {
+    public Member addMember(String lastName, String firstName, String email, int phoneNo) {
         int nextMemberId = this.getNextMemberId();
-        member newMember = new member(lastName, firstName, email, phoneNo, nextMemberId);
-        members.put(newMember.GeT_ID(), newMember);
+        Member newMember = new Member(lastName, firstName, email, phoneNo, nextMemberId);
+        members.put(newMember.getId(), newMember);
         return newMember;
     }
 
@@ -145,7 +145,7 @@ public class Library implements Serializable {
     }
 
 
-    public member getMemberId(int memberId) {
+    public Member getMemberId(int memberId) {
         if (members.containsKey(memberId))
             return members.get(memberId);
         return null;
@@ -164,14 +164,14 @@ public class Library implements Serializable {
     }
 
 
-    public boolean canMemberBorrow(member currentMember) {
-        if (currentMember.Number_Of_Current_Loans() == LOAN_LIMIT)
+    public boolean canMemberBorrow(Member currentMember) {
+        if (currentMember.getNumberOfCurrentLoans() == LOAN_LIMIT)
             return false;
 
-        if (currentMember.Fines_OwEd() >= MAX_FINES_OWED)
+        if (currentMember.getFinesOwed() >= MAX_FINES_OWED)
             return false;
 
-        for (loan loanBeingAssessed : currentMember.GeT_LoAnS())
+        for (loan loanBeingAssessed : currentMember.getLoans())
             if (loanBeingAssessed.OVer_Due())
                 return false;
 
@@ -179,16 +179,16 @@ public class Library implements Serializable {
     }
 
 
-    public int getNumberOfLoansAvailable(member currentMember) {
-        return LOAN_LIMIT - currentMember.Number_Of_Current_Loans();
+    public int getNumberOfLoansAvailable(Member currentMember) {
+        return LOAN_LIMIT - currentMember.getNumberOfCurrentLoans();
     }
 
 
-    public loan issueLoan(Book currentBook, member currentMember) {
+    public loan issueLoan(Book currentBook, Member currentMember) {
         Date dueDate = Calendar.getInstance().getDueDate(LOAN_PERIOD);
         int nextLoanId = this.getNextLoanId();
         loan newLoan = new loan(nextLoanId, currentBook, currentMember, dueDate);
-        currentMember.Take_Out_Loan(newLoan);
+        currentMember.takeOutLoan(newLoan);
         currentBook.borrowBook();
         int newLoanId = newLoan.ID();
         loans.put(newLoanId, newLoan);
@@ -218,19 +218,19 @@ public class Library implements Serializable {
 
 
     public void dischargeLoan(loan currentLoan, boolean isDamaged) {
-        member loanee = currentLoan.Member();
+        Member loanee = currentLoan.Member();
         Book loanedBook  = currentLoan.Book();
 
         double overDueFine = calculateOverDueFine(currentLoan);
-        loanee.Add_Fine(overDueFine);
+        loanee.addFine(overDueFine);
 
-        loanee.dIsChArGeLoAn(currentLoan);
+        loanee.dischargeLoan(currentLoan);
         loanedBook.returnBook(isDamaged);
 
         int loanedBookId = loanedBook.getBookId();
 
         if (isDamaged) {
-            loanee.Add_Fine(DAMAGE_FEE);
+            loanee.addFine(DAMAGE_FEE);
             damagedBooks.put(loanedBookId, loanedBook);
         }
         currentLoan.DiScHaRgE();
@@ -256,6 +256,5 @@ public class Library implements Serializable {
         }
 
     }
-
 
 }
