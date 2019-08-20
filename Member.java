@@ -48,7 +48,7 @@ public class Member implements Serializable {
 
 	
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	
