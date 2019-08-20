@@ -89,7 +89,7 @@ public class Main {
                         break;
 
                     case "R":
-                        RETURN_BOOK();
+                        returnBook();
                         break;
 
                     case "LL":
@@ -145,6 +145,7 @@ public class Main {
 
 	private static void outputMembers() {
 		output("");
+
 		for (member memberRecord : libraryService.MEMBERS()) {
 			output(memberRecord + "\n");
 		}		
@@ -155,10 +156,10 @@ public class Main {
 		new BorrowBookUI(control).run();
 	}
 
-	private static void RETURN_BOOK() {
-		new ReturnBookUI(new ReturnBookControl()).run();
+	private static void returnBook() {
+	    ReturnBookControl control = new ReturnBookControl();
+		new ReturnBookUI(control).run();
 	}
-
 
 	private static void FIX_BOOKS() {
 		new FixBookUI(new FixBookControl()).run();		
