@@ -11,7 +11,7 @@ public class Main {
 	private static SimpleDateFormat displayDateFormat;
 	
 	
-	private static String Get_menu() {
+	private static String getMenu() {
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("\nLibrary Main Menu\n\n")
@@ -52,7 +52,7 @@ public class Main {
 				output(b);
 			}
 						
-			menuPrompt = Get_menu();
+			menuPrompt = getMenu();
 			
 			boolean e = false;
 			
