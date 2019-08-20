@@ -51,8 +51,7 @@ public class Member implements Serializable {
 		return this.id;
 	}
 
-	
-	public List<loan> GeT_LoAnS() {
+	public List<loan> getLoans() {
 		return new ArrayList<loan>(loanCollection.values());
 	}
 
