@@ -5,7 +5,7 @@ public class PayFineControl {
 	private ControlState currentState;
 	
 	private library controlLibrary;
-	private member controlMember;
+	private Member controlMember;
 
 	public PayFineControl() {
 		this.controlLibrary = this.controlLibrary.INSTANCE();

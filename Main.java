@@ -43,7 +43,7 @@ public class Main {
             calendarService = Calendar.getInstance();
             displayDateFormat = new SimpleDateFormat("dd/MM/yyyy");
     
-            for (member memberRecord : libraryService.MEMBERS()) {
+            for (Member memberRecord : libraryService.MEMBERS()) {
                 output(memberRecord);
             }
 
@@ -146,7 +146,7 @@ public class Main {
     private static void outputMembers() {
         output("");
 
-        for (member memberRecord : libraryService.MEMBERS()) {
+        for (Member memberRecord : libraryService.MEMBERS()) {
             output(memberRecord + "\n");
         }
     }
@@ -196,7 +196,7 @@ public class Main {
             String email = input("Enter email: ");
             String phoneNumberInput = input("Enter phone number: ");
             int pinNumber = Integer.valueOf(phoneNumberInput).intValue();
-            member memberAdded = libraryService.Add_mem(lastName, firstName, email, pinNumber);
+            Member memberAdded = libraryService.Add_mem(lastName, firstName, email, pinNumber);
 
             output("\n" + memberAdded + "\n");
 

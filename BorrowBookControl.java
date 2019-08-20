@@ -6,7 +6,7 @@ public class BorrowBookControl {
     private BorrowBookUI UI;
 
     private library library;
-    private member member;
+    private Member member;
     private enum ControlState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
     private ControlState state;
 

@@ -30,7 +30,7 @@ public class library implements Serializable {
 	private Date LOAN_DATE;
 	
 	private Map<Integer, Book> CATALOG;
-	private Map<Integer, member> MEMBERS;
+	private Map<Integer, Member> MEMBERS;
 	private Map<Integer, loan> LOANS;
 	private Map<Integer, loan> CURRENT_LOANS;
 	private Map<Integer, Book> DAMAGED_BOOKS;
@@ -108,8 +108,8 @@ public class library implements Serializable {
 	}
 
 	
-	public List<member> MEMBERS() {		
-		return new ArrayList<member>(MEMBERS.values()); 
+	public List<Member> MEMBERS() {
+		return new ArrayList<Member>(MEMBERS.values());
 	}
 
 
@@ -123,8 +123,8 @@ public class library implements Serializable {
 	}
 
 
-	public member Add_mem(String lastName, String firstName, String email, int phoneNo) {		
-		member member = new member(lastName, firstName, email, phoneNo, NextMID());
+	public Member Add_mem(String lastName, String firstName, String email, int phoneNo) {
+		Member member = new Member(lastName, firstName, email, phoneNo, NextMID());
 		MEMBERS.put(member.GeT_ID(), member);		
 		return member;
 	}
@@ -137,7 +137,7 @@ public class library implements Serializable {
 	}
 
 	
-	public member MEMBER(int memberId) {
+	public Member MEMBER(int memberId) {
 		if (MEMBERS.containsKey(memberId)) 
 			return MEMBERS.get(memberId);
 		return null;
@@ -156,11 +156,11 @@ public class library implements Serializable {
 	}
 
 	
-	public boolean MEMBER_CAN_BORROW(member member) {		
-		if (member.Number_Of_Current_Loans() == loanLimit ) 
+	public boolean MEMBER_CAN_BORROW(Member member) {
+		if (member.Number_Of_Current_Loans() == loanLimit )
 			return false;
 				
-		if (member.Fines_OwEd() >= maxFinesOwed) 
+		if (member.Fines_OwEd() >= maxFinesOwed)
 			return false;
 				
 		for (loan loan : member.GeT_LoAnS()) 
@@ -171,12 +171,12 @@ public class library implements Serializable {
 	}
 
 	
-	public int Loans_Remaining_For_Member(member member) {		
+	public int Loans_Remaining_For_Member(Member member) {
 		return loanLimit - member.Number_Of_Current_Loans();
 	}
 
 	
-	public loan ISSUE_LAON(Book book, member member) {
+	public loan ISSUE_LAON(Book book, Member member) {
 		Date dueDate = Calendar.getInstance().getDueDate(loanPeriod);
 		loan loan = new loan(NextLID(), book, member, dueDate);
 		member.Take_Out_Loan(loan);
@@ -206,7 +206,7 @@ public class library implements Serializable {
 
 
 	public void Discharge_loan(loan currentLoan, boolean isDamaged) {
-		member member = currentLoan.Member();
+		Member member = currentLoan.Member();
 		Book book  = currentLoan.Book();
 		
 		double overDueFine = CalculateOverDueFine(currentLoan);
