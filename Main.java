@@ -145,8 +145,8 @@ public class Main {
 
 	private static void outputMembers() {
 		output("");
-		for (member member : libraryService.MEMBERS()) {
-			output(member + "\n");
+		for (member memberRecord : libraryService.MEMBERS()) {
+			output(memberRecord + "\n");
 		}		
 	}
 
