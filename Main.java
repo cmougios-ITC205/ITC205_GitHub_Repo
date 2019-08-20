@@ -69,7 +69,7 @@ public class Main {
                         break;
 
                     case "LM":
-                        MEMBERS();
+                        outputMembers();
                         break;
 
                     case "B":
@@ -143,9 +143,7 @@ public class Main {
 		}		
 	}
 
-
-
-	private static void MEMBERS() {
+	private static void outputMembers() {
 		output("");
 		for (member member : libraryService.MEMBERS()) {
 			output(member + "\n");
