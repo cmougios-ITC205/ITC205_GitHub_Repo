@@ -48,8 +48,9 @@ public class Main {
 			}
 
 			output(" ");
-			for (Book b : libraryService.BOOKS()) {
-				output(b);
+
+			for (Book bookRecord : libraryService.BOOKS()) {
+				output(bookRecord);
 			}
 						
 			menuPrompt = getMenu();
