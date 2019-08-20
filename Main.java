@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
 	
 	private static Scanner IN;
-	private static library LIB;
+	private static Library LIB;
 	private static String MENU;
 	private static Calendar CAL;
 	private static SimpleDateFormat SDF;
@@ -40,15 +40,15 @@ public class Main {
 	public static void main(String[] args) {		
 		try {			
 			IN = new Scanner(System.in);
-			LIB = library.INSTANCE();
+			LIB = Library.getInstance();
 			CAL = Calendar.getInstance();
 			SDF = new SimpleDateFormat("dd/MM/yyyy");
 	
-			for (member m : LIB.MEMBERS()) {
+			for (member m : LIB.getMemberList()) {
 				output(m);
 			}
 			output(" ");
-			for (Book b : LIB.BOOKS()) {
+			for (Book b : LIB.getBookList()) {
 				output(b);
 			}
 						
@@ -112,7 +112,7 @@ public class Main {
 					break;
 				}
 				
-				library.SAVE();
+				Library.saveInstanceToFile();
 			}			
 		} catch (RuntimeException e) {
 			output(e);
@@ -128,7 +128,7 @@ public class Main {
 
 	private static void CURRENT_LOANS() {
 		output("");
-		for (loan loan : LIB.CurrentLoans()) {
+		for (loan loan : LIB.getCurrentLoansList()) {
 			output(loan + "\n");
 		}		
 	}
@@ -137,7 +137,7 @@ public class Main {
 
 	private static void BOOKS() {
 		output("");
-		for (Book book : LIB.BOOKS()) {
+		for (Book book : LIB.getBookList()) {
 			output(book + "\n");
 		}		
 	}
@@ -146,7 +146,7 @@ public class Main {
 
 	private static void MEMBERS() {
 		output("");
-		for (member member : LIB.MEMBERS()) {
+		for (member member : LIB.getMemberList()) {
 			output(member + "\n");
 		}		
 	}
@@ -186,7 +186,7 @@ public class Main {
 		String A = input("Enter author: ");
 		String T  = input("Enter title: ");
 		String C = input("Enter call number: ");
-		Book B = LIB.Add_book(A, T, C);
+		Book B = LIB.addBook(A, T, C);
 		output("\n" + B + "\n");
 		
 	}
@@ -198,7 +198,7 @@ public class Main {
 			String FN  = input("Enter first name: ");
 			String EM = input("Enter email: ");
 			int PN = Integer.valueOf(input("Enter phone number: ")).intValue();
-			member M = LIB.Add_mem(LN, FN, EM, PN);
+			member M = LIB.addMember(LN, FN, EM, PN);
 			output("\n" + M + "\n");
 			
 		} catch (NumberFormatException e) {
