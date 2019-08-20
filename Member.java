@@ -13,7 +13,7 @@ public class Member implements Serializable {
 	private int id;
 	private double fines;
 	
-	private Map<Integer, loan> LNS;
+	private Map<Integer, loan> loanCollection;
 
 	
 	public Member(String lastName, String firstName, String email, int phoneNo, int id) {
@@ -23,7 +23,7 @@ public class Member implements Serializable {
 		this.phoneNumber = phoneNo;
 		this.id = id;
 		
-		this.LNS = new HashMap<>();
+		this.loanCollection = new HashMap<>();
 	}
 
 	
@@ -37,7 +37,7 @@ public class Member implements Serializable {
 		  .append(String.format("  Fines Owed :  $%.2f", fines))
 		  .append("\n");
 		
-		for (loan LoAn : LNS.values()) {
+		for (loan LoAn : loanCollection.values()) {
 			sb.append(LoAn).append("\n");
 		}		  
 		return sb.toString();
@@ -50,12 +50,12 @@ public class Member implements Serializable {
 
 	
 	public List<loan> GeT_LoAnS() {
-		return new ArrayList<loan>(LNS.values());
+		return new ArrayList<loan>(loanCollection.values());
 	}
 
 	
 	public int Number_Of_Current_Loans() {
-		return LNS.size();
+		return loanCollection.size();
 	}
 
 	
@@ -65,8 +65,8 @@ public class Member implements Serializable {
 
 	
 	public void Take_Out_Loan(loan loan) {
-		if (!LNS.containsKey(loan.ID())) {
-			LNS.put(loan.ID(), loan);
+		if (!loanCollection.containsKey(loan.ID())) {
+			loanCollection.put(loan.ID(), loan);
 		}
 		else {
 			throw new RuntimeException("Duplicate loan added to member");
@@ -105,8 +105,8 @@ public class Member implements Serializable {
 
 
 	public void dIsChArGeLoAn(loan LoAn) {
-		if (LNS.containsKey(LoAn.ID())) {
-			LNS.remove(LoAn.ID());
+		if (loanCollection.containsKey(LoAn.ID())) {
+			loanCollection.remove(LoAn.ID());
 		}
 		else {
 			throw new RuntimeException("No such loan held by member");
