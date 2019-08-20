@@ -9,8 +9,7 @@ public class Main {
 	private static String menuPrompt;
 	private static Calendar calendarService;
 	private static SimpleDateFormat displayDateFormat;
-	
-	
+
 	private static String getMenu() {
 		StringBuilder sb = new StringBuilder();
 		
@@ -44,9 +43,10 @@ public class Main {
 			calendarService = Calendar.getInstance();
 			displayDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	
-			for (member m : libraryService.MEMBERS()) {
-				output(m);
+			for (member memberRecord : libraryService.MEMBERS()) {
+				output(memberRecord);
 			}
+
 			output(" ");
 			for (Book b : libraryService.BOOKS()) {
 				output(b);
