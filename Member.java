@@ -88,14 +88,17 @@ public class Member implements Serializable {
 		if (amount < 0) {
 			throw new RuntimeException("Member.payFine: amount must be positive");
 		}
+
 		double change = 0;
-		if (amount > fines) {
-			change = amount - fines;
-			fines = 0;
+
+		if (amount > this.fines) {
+			change = amount - this.fines;
+			this.fines = 0;
 		}
 		else {
-			fines -= amount;
+			this.fines -= amount;
 		}
+		
 		return change;
 	}
 
