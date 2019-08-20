@@ -101,7 +101,7 @@ public class Main {
                         break;
 
                     case "T":
-                        INCREMENT_DATE();
+                        incrementDate();
                         break;
 
                     case "Q":
@@ -166,11 +166,13 @@ public class Main {
 		new FixBookUI(control).run();
 	}
 
-	private static void INCREMENT_DATE() {
+	private static void incrementDate() {
 		try {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
+
 			calendarService.incrementDate(days);
 			libraryService.checkCurrentLoans();
+			
 			output(displayDateFormat.format(calendarService.getDate()));
 			
 		} catch (NumberFormatException e) {
