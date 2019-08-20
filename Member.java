@@ -7,7 +7,7 @@ import java.util.Map;
 public class Member implements Serializable {
 
 	private String lastName;
-	private String FN;
+	private String firstName;
 	private String EM;
 	private int PN;
 	private int ID;
@@ -18,7 +18,7 @@ public class Member implements Serializable {
 	
 	public Member(String lastName, String firstName, String email, int phoneNo, int id) {
 		this.lastName = lastName;
-		this.FN = firstName;
+		this.firstName = firstName;
 		this.EM = email;
 		this.PN = phoneNo;
 		this.ID = id;
@@ -30,7 +30,7 @@ public class Member implements Serializable {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Member:  ").append(ID).append("\n")
-		  .append("  Name:  ").append(lastName).append(", ").append(FN).append("\n")
+		  .append("  Name:  ").append(lastName).append(", ").append(firstName).append("\n")
 		  .append("  Email: ").append(EM).append("\n")
 		  .append("  Phone: ").append(PN)
 		  .append("\n")
@@ -80,7 +80,7 @@ public class Member implements Serializable {
 
 	
 	public String Get_FirstName() {
-		return FN;
+		return firstName;
 	}
 
 
