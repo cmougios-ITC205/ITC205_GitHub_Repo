@@ -71,9 +71,8 @@ public class Member implements Serializable {
 			throw new RuntimeException("Duplicate loan added to member");
 		}		
 	}
-
 	
-	public String Get_LastName() {
+	public String getLastName() {
 		return lastName;
 	}
 
