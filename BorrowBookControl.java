@@ -6,7 +6,7 @@ public class BorrowBookControl {
     private BorrowBookUI UI;
 
     private Library library;
-    private member member;
+    private Member member;
     private enum ControlState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
     private ControlState state;
 
@@ -16,10 +16,9 @@ public class BorrowBookControl {
 
 
     public BorrowBookControl() {
-        this.library = library.getInstance();
+        this.library = Library.getInstance();
         this.state = ControlState.INITIALISED;
     }
-
 
     public void setUI(BorrowBookUI UI) {
         if (!this.state.equals(ControlState.INITIALISED))
@@ -29,7 +28,6 @@ public class BorrowBookControl {
         UI.setState(BorrowBookUI.UIState.READY);
         this.state = ControlState.READY;
     }
-
 
     public void swipeMemberCard(int memberId) {
         if (!this.state.equals(ControlState.READY))

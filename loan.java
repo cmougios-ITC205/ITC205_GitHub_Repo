@@ -9,12 +9,12 @@ public class loan implements Serializable {
 	
 	private int ID;
 	private Book B;
-	private member M;
+	private Member M;
 	private Date D;
 	private LOAN_STATE state;
 
 	
-	public loan(int loanId, Book book, member member, Date dueDate) {
+	public loan(int loanId, Book book, Member member, Date dueDate) {
 		this.ID = loanId;
 		this.B = book;
 		this.M = member;
@@ -51,8 +51,8 @@ public class loan implements Serializable {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("Loan:  ").append(ID).append("\n")
-		  .append("  Borrower ").append(M.GeT_ID()).append(" : ")
-		  .append(M.Get_LastName()).append(", ").append(M.Get_FirstName()).append("\n")
+		  .append("  Borrower ").append(M.getId()).append(" : ")
+		  .append(M.getLastName()).append(", ").append(M.getFirstName()).append("\n")
 		  .append("  Book ").append(B.getBookId()).append(" : " )
 		  .append(B.getTitle()).append("\n")
 		  .append("  DueDate: ").append(sdf.format(D)).append("\n")
@@ -61,7 +61,7 @@ public class loan implements Serializable {
 	}
 
 
-	public member Member() {
+	public Member Member() {
 		return M;
 	}
 

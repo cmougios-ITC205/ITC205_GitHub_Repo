@@ -4,8 +4,8 @@ public class PayFineControl {
 	private enum ControlState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 	private ControlState currentState;
 	
+	private Member controlMember;
 	private Library controlLibrary;
-	private member controlMember;
 
 	public PayFineControl() {
 		this.controlLibrary = this.controlLibrary.getInstance();
@@ -51,7 +51,7 @@ public class PayFineControl {
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 		}
 
-		double change = this.controlMember.Pay_Fine(amount);
+		double change = this.controlMember.payFine(amount);
 
 		if (change > 0) {
 		    String changeFormatted = String.format("Change: $%.2f", change);
