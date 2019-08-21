@@ -12,9 +12,9 @@ public class Main {
     private static SimpleDateFormat displayDateFormat;
 
     private static String getMenu() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder menuPrompt = new StringBuilder();
         
-        sb.append("\nLibrary Main Menu\n\n")
+        menuPrompt.append("\nLibrary Main Menu\n\n")
           .append("  M  : add member\n")
           .append("  LM : list members\n")
           .append("\n")
@@ -33,7 +33,7 @@ public class Main {
           .append("\n")
           .append("Choice : ");
           
-        return sb.toString();
+        return menuPrompt.toString();
     }
 
 
