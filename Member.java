@@ -61,11 +61,11 @@ public class Member implements Serializable {
         return this.fines;
     }
     
-    public void takeOutLoan(loan loan) {
-        Integer loanId = loan.ID();
+    public void takeOutLoan(loan loanRecord) {
+        Integer loanId = loanRecord.ID();
 
         if (!this.loanCollection.containsKey(loanId)) {
-            this.loanCollection.put(loanId, loan);
+            this.loanCollection.put(loanId, loanRecord);
         }
         else {
             throw new RuntimeException("Duplicate loan added to member");
