@@ -24,11 +24,11 @@ public class Member implements Serializable {
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder memberDetailPrompt = new StringBuilder();
 
         String finesOwed = String.format("  Fines Owed :  $%.2f", this.fines);
 
-        sb.append("Member:  ").append(this.id).append("\n")
+        memberDetailPrompt.append("Member:  ").append(this.id).append("\n")
           .append("  Name:  ").append(this.lastName).append(", ").append(this.firstName).append("\n")
           .append("  Email: ").append(this.email).append("\n")
           .append("  Phone: ").append(this.phoneNumber)
@@ -37,10 +37,10 @@ public class Member implements Serializable {
           .append("\n");
         
         for (loan loanRecord : loanCollection.values()) {
-            sb.append(loanRecord).append("\n");
+            memberDetailPrompt.append(loanRecord).append("\n");
         }
 
-        return sb.toString();
+        return memberDetailPrompt.toString();
     }
 
     
