@@ -126,8 +126,8 @@ public class Main {
     }
 
     private static void runFinesProcess() {
-        PayFineControl payFineControl = new PayFineControl();
-        new PayFineUI(payFineControl).run();
+        PayFineControl control = new PayFineControl();
+        new PayFineUI(control).run();
     }
 
     private static void outputCurrentLoans() {
