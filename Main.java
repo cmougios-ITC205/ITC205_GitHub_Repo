@@ -59,8 +59,10 @@ public class Main {
             boolean finishedProcess = false;
 
             while (!finishedProcess) {
+                Date calendarDate = calendarService.getDate();
+                String calendarDateFormatted = displayDateFormat.format(calendarDate);
 
-                output("\n" + displayDateFormat.format(calendarService.getDate()));
+                output("\n" + calendarDateFormatted);
                 String userInput = input(menuPrompt);
 
                 switch (userInput.toUpperCase()) {
