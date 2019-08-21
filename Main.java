@@ -63,7 +63,7 @@ public class Main {
                 String calendarDateFormatted = displayDateFormat.format(calendarDate);
 
                 output("\n" + calendarDateFormatted);
-                String userInput = input(menuPrompt);
+                String userInput = promptUser(menuPrompt);
 
                 switch (userInput.toUpperCase()) {
 
@@ -171,7 +171,7 @@ public class Main {
 
     private static void incrementDate() {
         try {
-            String enteredDays = input("Enter number of days: ");
+            String enteredDays = promptUser("Enter number of days: ");
             int days = Integer.valueOf(enteredDays).intValue();
 
             calendarService.incrementDate(days);
@@ -187,9 +187,9 @@ public class Main {
     }
 
     private static void addBook() {
-        String author = input("Enter author: ");
-        String title  = input("Enter title: ");
-        String callNumber = input("Enter call number: ");
+        String author = promptUser("Enter author: ");
+        String title  = promptUser("Enter title: ");
+        String callNumber = promptUser("Enter call number: ");
         Book bookAdded = libraryService.addBook(author, title, callNumber);
 
         output("\n" + bookAdded + "\n");
@@ -197,10 +197,10 @@ public class Main {
     
     private static void addMember() {
         try {
-            String lastName = input("Enter last name: ");
-            String firstName  = input("Enter first name: ");
-            String email = input("Enter email: ");
-            String phoneNumberInput = input("Enter phone number: ");
+            String lastName = promptUser("Enter last name: ");
+            String firstName  = promptUser("Enter first name: ");
+            String email = promptUser("Enter email: ");
+            String phoneNumberInput = promptUser("Enter phone number: ");
             int pinNumber = Integer.valueOf(phoneNumberInput).intValue();
             Member memberAdded = libraryService.addMember(lastName, firstName, email, pinNumber);
 
@@ -211,7 +211,7 @@ public class Main {
         }
     }
 
-    private static String input(String prompt) {
+    private static String promptUser(String prompt) {
         System.out.print(prompt);
         return scannerInInput.nextLine();
     }
