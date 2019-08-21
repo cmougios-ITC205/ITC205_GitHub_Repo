@@ -171,7 +171,8 @@ public class Main {
 
     private static void incrementDate() {
         try {
-            int days = Integer.valueOf(input("Enter number of days: ")).intValue();
+            String enteredDays = input("Enter number of days: ");
+            int days = Integer.valueOf(enteredDays).intValue();
 
             calendarService.incrementDate(days);
             libraryService.checkCurrentLoans();
