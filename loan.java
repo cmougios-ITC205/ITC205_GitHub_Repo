@@ -9,12 +9,12 @@ public class loan implements Serializable {
 
     private int loanId;
     private Book bookId;
-    private member memberId;
+    private Member memberId;
     private Date dueDate;
     private LoanState loanState;
 
 
-    public loan(int loanId, Book booksLoaned, member member, Date loanDueDate) {
+    public loan(int loanId, Book booksLoaned, Member member, Date loanDueDate) {
         this.loanId = loanId;
         this.bookId = booksLoaned;
         this.memberId = member;
@@ -52,8 +52,8 @@ public class loan implements Serializable {
 
         StringBuilder concatenate  = new StringBuilder();
         concatenate .append("Loan:  ").append(this.loanId).append("\n")
-          .append("  Borrower ").append(this.memberId.GeT_ID()).append(" : ")
-          .append(this.memberId.Get_LastName()).append(", ").append(this.memberId.Get_FirstName()).append("\n")
+          .append("  Borrower ").append(this.memberId.getId()).append(" : ")
+          .append(this.memberId.getLastName()).append(", ").append(this.memberId.getFirstName()).append("\n")
           .append("  Book ").append(this.bookId.getBookId()).append(" : " )
           .append(this.bookId.getTitle()).append("\n")
           .append("  DueDate: ").append(dateFormat.format(this.dueDate)).append("\n")
@@ -62,7 +62,7 @@ public class loan implements Serializable {
     }
 
 
-    public member getMemberId() {
+    public Member getMemberId() {
         return this.memberId;
     }
 
