@@ -11,7 +11,7 @@ public class BorrowBookControl {
     private ControlState state;
 
     private List<Book> booksPendingBorrow;
-    private List<loan> booksLoaned;
+    private List<Loan> booksLoaned;
     private Book book;
 
 
@@ -84,7 +84,7 @@ public class BorrowBookControl {
             for (Book borrowBookList : this.booksPendingBorrow) {
                 this.UI.display(borrowBookList.toString());
             }
-            this.booksLoaned = new ArrayList<loan>();
+            this.booksLoaned = new ArrayList<Loan>();
             this.UI.setState(BorrowBookUI.UIState.FINALISING);
             this.state = ControlState.FINALISING;
         }
@@ -96,11 +96,11 @@ public class BorrowBookControl {
             throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
         }
         for (Book borrowBookList : this.booksPendingBorrow) {
-            loan loan = this.library.issueLoan(borrowBookList, this.member);
+            Loan loan = this.library.issueLoan(borrowBookList, this.member);
             this.booksLoaned.add(loan);
         }
         this.UI.display("Completed Loan Slip");
-        for (loan loan : this.booksLoaned) {
+        for (Loan loan : this.booksLoaned) {
             this.UI.display(loan.toString());
         }
         this.UI.setState(BorrowBookUI.UIState.COMPLETED);

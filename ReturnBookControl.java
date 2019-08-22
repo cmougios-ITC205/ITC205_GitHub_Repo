@@ -5,7 +5,7 @@ public class ReturnBookControl {
 	private ControlState state;
 	
 	private Library library;
-	private loan currentLoan;
+	private Loan currentLoan;
 	
 
 	public ReturnBookControl() {

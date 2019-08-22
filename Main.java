@@ -133,7 +133,7 @@ public class Main {
     private static void outputCurrentLoans() {
         output("");
 
-        for (loan loanRecord : libraryService.getCurrentLoansList()) {
+        for (Loan loanRecord : libraryService.getCurrentLoansList()) {
             output(loanRecord + "\n");
         }
     }
