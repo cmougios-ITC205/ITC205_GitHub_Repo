@@ -62,7 +62,7 @@ public class Member implements Serializable {
     }
     
     public void takeOutLoan(Loan loanRecord) {
-        Integer loanId = loanRecord.getLoanId();
+        Integer loanId = loanRecord.getBookLoan();
 
         if (!this.loanCollection.containsKey(loanId)) {
             this.loanCollection.put(loanId, loanRecord);
@@ -103,7 +103,7 @@ public class Member implements Serializable {
     }
 
     public void dischargeLoan(Loan loanToDischarge) {
-        Integer loanId = loanToDischarge.getLoanId();
+        Integer loanId = loanToDischarge.getBookLoan();
 
         if (this.loanCollection.containsKey(loanId)) {
             this.loanCollection.remove(loanId);
