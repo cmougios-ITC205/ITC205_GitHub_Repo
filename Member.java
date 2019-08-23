@@ -10,7 +10,7 @@ public class Member implements Serializable {
     private int id;
     private double fines;
 
-    private Map<Integer, loan> loanCollection;
+    private Map<Integer, Loan> loanCollection;
 
 
     public Member(String lastName, String firstName, String email, int phoneNo, int id) {
@@ -36,7 +36,7 @@ public class Member implements Serializable {
           .append(finesOwed)
           .append("\n");
         
-        for (loan loanRecord : loanCollection.values()) {
+        for (Loan loanRecord : loanCollection.values()) {
             memberDetailPrompt.append(loanRecord).append("\n");
         }
 
@@ -48,9 +48,9 @@ public class Member implements Serializable {
         return this.id;
     }
 
-    public List<loan> getLoans() {
-        Collection<loan> loanCollectionValues = this.loanCollection.values();
-        return new ArrayList<loan>(loanCollectionValues);
+    public List<Loan> getLoans() {
+        Collection<Loan> loanCollectionValues = this.loanCollection.values();
+        return new ArrayList<Loan>(loanCollectionValues);
     }
     
     public int getNumberOfCurrentLoans() {
@@ -61,8 +61,8 @@ public class Member implements Serializable {
         return this.fines;
     }
     
-    public void takeOutLoan(loan loanRecord) {
-        Integer loanId = loanRecord.ID();
+    public void takeOutLoan(Loan loanRecord) {
+        Integer loanId = loanRecord.getBookLoan();
 
         if (!this.loanCollection.containsKey(loanId)) {
             this.loanCollection.put(loanId, loanRecord);
@@ -102,8 +102,8 @@ public class Member implements Serializable {
         return change;
     }
 
-    public void dischargeLoan(loan loanToDischarge) {
-        Integer loanId = loanToDischarge.ID();
+    public void dischargeLoan(Loan loanToDischarge) {
+        Integer loanId = loanToDischarge.getBookLoan();
 
         if (this.loanCollection.containsKey(loanId)) {
             this.loanCollection.remove(loanId);
