@@ -8,15 +8,15 @@ public class Loan implements Serializable {
     public enum LoanState { CURRENT, OVER_DUE, DISCHARGED };
 
     private int bookLoan;
-    private Book bookId;
+    private Book bookLoanId;
     private Member loanMember;
     private Date dueDate;
-   private LoanState loanState;
+    private LoanState loanState;
 
 
     public Loan(int loanId, Book booksLoaned, Member member, Date loanDueDate) {
         this.bookLoan = loanId;
-        this.bookId = booksLoaned;
+        this.bookLoanId = booksLoaned;
         this.loanMember = member;
         this.dueDate = loanDueDate;
         this.loanState = LoanState.CURRENT;
@@ -46,44 +46,29 @@ public class Loan implements Serializable {
         return this.dueDate;
     }
 
-    public String getLoanMemberFirstName(){
 
-        return this.loanMember.getFirstName();
-    }
-    public String getLoanMemberLastName(){
-
-        return this.loanMember.getFirstName();
-    }
-
-    public int getLoanMembersBookId(){
-
-        return this.bookId.getBookId();
-    }
-    public String getLoanMemberBookTitle(){
-
-        return this.bookId.getTitle();
-    }
-
-    public int getLoanMemberId(){
-
-        return this.loanMember.getId();
-    }
 
     public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
+        Integer loanMemberId = this.loanMember.getId();
+        Integer loanId = this.bookLoan;
+        Integer loanMemberBookId = this.bookLoanId.getBookId();
+        String getLoanMemberLastName = this.loanMember.getLastName();
+        String getLoanMemberFirstName = this.loanMember.getFirstName();
+        String getLoanMemberBookTitle = this.bookLoanId.getTitle();
+        String loanDueDate = dateFormat.format(this.dueDate);
+        LoanState loanMemberState = this.loanState;
+
+
         StringBuilder concatenate  = new StringBuilder();
-          /*concatenate .append("Loan:  ").append(this.loanId).append("\n")*/
-           concatenate .append("Loan:  ").append(this.getLoanMemberId()).append("\n")
-          .append("  Borrower ").append(this.loanMember.getId()).append(" : ")
-        /*.append(this.loanMember.getLastName()).append(", ").append(this.loanMember.getFirstName()).append("\n")*/
-          .append(this.getLoanMemberFirstName()).append(", ").append(this.getLoanMemberLastName()).append("\n")
-          /*.append("  Book ").append(this.bookId.getBookId()).append(" : " )
-          .append(this.bookId.getTitle()).append("\n")*/
-          .append("  Book ").append(this.getLoanMembersBookId()).append(" : " )
-          .append(this.getLoanMemberBookTitle()).append("\n")
-          .append("  DueDate: ").append(dateFormat.format(this.dueDate)).append("\n")
-          .append("  State: ").append(this.loanState);
+        concatenate .append("Loan:  ").append(loanId).append("\n")
+          .append("  Borrower ").append(loanMemberId).append(" : ")
+          .append(getLoanMemberLastName).append(", ").append(getLoanMemberFirstName).append("\n")
+          .append("  Book ").append(loanMemberBookId).append(" : " )
+          .append(getLoanMemberBookTitle).append("\n")
+          .append("  DueDate: ").append(loanDueDate).append("\n")
+          .append("  State: ").append(loanMemberState);
         return concatenate .toString();
     }
 
@@ -94,7 +79,7 @@ public class Loan implements Serializable {
 
 
     public Book getBook() {
-        return this.bookId;
+        return this.bookLoanId;
     }
 
 
