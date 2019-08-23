@@ -55,6 +55,14 @@ public class Loan implements Serializable {
         return this.loanMember.getFirstName();
     }
 
+    public int getLoanMembersBookId(){
+
+        return this.bookId.getBookId();
+    }
+    public String getLoanMemberBookTitle(){
+
+        return this.bookId.getTitle();
+    }
 
     public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -62,10 +70,12 @@ public class Loan implements Serializable {
         StringBuilder concatenate  = new StringBuilder();
           concatenate .append("Loan:  ").append(this.loanId).append("\n")
           .append("  Borrower ").append(this.loanMember.getId()).append(" : ")
-        /*  .append(this.loanMember.getLastName()).append(", ").append(this.loanMember.getFirstName()).append("\n")*/
+        /*.append(this.loanMember.getLastName()).append(", ").append(this.loanMember.getFirstName()).append("\n")*/
           .append(this.getLoanMemberFirstName()).append(", ").append(this.getLoanMemberLastName()).append("\n")
-          .append("  Book ").append(this.bookId.getBookId()).append(" : " )
-          .append(this.bookId.getTitle()).append("\n")
+          /*.append("  Book ").append(this.bookId.getBookId()).append(" : " )
+          .append(this.bookId.getTitle()).append("\n")*/
+          .append("  Book ").append(this.getLoanMembersBookId()).append(" : " )
+          .append(this.getLoanMemberBookTitle()).append("\n")
           .append("  DueDate: ").append(dateFormat.format(this.dueDate)).append("\n")
           .append("  State: ").append(this.loanState);
         return concatenate .toString();
