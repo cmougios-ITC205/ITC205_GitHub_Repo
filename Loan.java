@@ -64,11 +64,17 @@ public class Loan implements Serializable {
         return this.bookId.getTitle();
     }
 
+    public int getLoanMemberId(){
+
+        return this.loanMember.getId();
+    }
+
     public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         StringBuilder concatenate  = new StringBuilder();
-          concatenate .append("Loan:  ").append(this.loanId).append("\n")
+          /*concatenate .append("Loan:  ").append(this.loanId).append("\n")*/
+           concatenate .append("Loan:  ").append(this.getLoanMemberId()).append("\n")
           .append("  Borrower ").append(this.loanMember.getId()).append(" : ")
         /*.append(this.loanMember.getLastName()).append(", ").append(this.loanMember.getFirstName()).append("\n")*/
           .append(this.getLoanMemberFirstName()).append(", ").append(this.getLoanMemberLastName()).append("\n")
